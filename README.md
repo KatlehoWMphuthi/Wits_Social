@@ -1,3 +1,4 @@
 # Wits_Social
 
-![build](https://img.shields.io/circleci/build/github/KatlehoWMphuthi/Wits_Social/main)
+[![Wits_Social](https://circleci.com/gh/KatlehoWMphuthi/Wits_Social.svg?style=svg)](https://circleci.com/gh/KatlehoWMphuthi/Wits_Social)
+
