@@ -26,12 +26,12 @@
     <string name="forgotpass">Forgot Password?</string>
     <string name="dont_worry_">
         Don\'t worry it happens. Please enter  the email associated
-        with your account, and we\u00E2\u0080\u0099ll send
+        with your account, and we will send
         you instructions to reset your password.
     </string>
     <string name="email">Student Email</string>
     <string name="suffixtext">\@students.wits.ac.za</string>
-    <string name="submitbutton">Submit</string>
+    <string name="submitbutton">Reset Password</string>
     <string name="checkmail">Check your email</string>
     <string name="we_have_sen">We have sent password recovery instructions to your email.</string>
     <string name="openmail">Open email app</string>

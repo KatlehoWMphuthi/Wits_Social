@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/welcome_"
-        android:layout_width="117dp"
-        android:layout_height="28dp"
+        android:layout_width="123dp"
+        android:layout_height="37dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="122dp"
@@ -43,8 +43,8 @@
 
     <TextView
         android:id="@+id/welcoming"
-        android:layout_width="361dp"
-        android:layout_height="37dp"
+        android:layout_width="369dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="69dp"
@@ -54,6 +54,7 @@
         android:gravity="top"
         android:lineSpacingExtra="5sp"
         android:text="@string/welcoming"
+        android:textAlignment="center"
         android:textAppearance="@style/welcoming"
         android:translationY="-2.62sp"
         app:layout_constraintBottom_toBottomOf="parent"

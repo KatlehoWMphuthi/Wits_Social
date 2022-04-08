@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/enter_otp_s"
-        android:layout_width="294dp"
-        android:layout_height="56dp"
+        android:layout_width="298dp"
+        android:layout_height="74dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="141dp"
@@ -57,6 +57,7 @@
         android:layout_marginBottom="102dp"
         android:background="@drawable/roundedcorner"
         android:text="@string/otp_text"
+        android:onClick="registerLoading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
