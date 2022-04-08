@@ -1,4 +1,4 @@
-package com.example.wits_social;
+package com.example.witssocial;
 
 import org.junit.Test;
 import org.junit.internal.runners.JUnit38ClassRunner;
