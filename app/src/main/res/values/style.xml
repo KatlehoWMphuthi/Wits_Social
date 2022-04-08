@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Welcome Message Text-->
+    <style name="welcome_mes">
+
+    <item name="android:textSize">
+        18sp
+    </item>
+
+    <item name="android:textColor">
+        #000000
+    </item>
+    </style>
+    <!--EndOf Welcome Message Text-->
+
+    <!--Forgot Password Text-->
+    <style name="forgot_pass">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:letterSpacing">
+            0.01
+        </item>
+
+        <item name="android:textColor">
+            #2374E1
+        </item>
+    </style>
+    <!--EndOf Forgot Password Text-->
+
+    <!--Assistive Text-->
+    <style name="assistive_t">
+
+        <item name="android:textSize">
+            12sp
+        </item>
+
+        <item name="android:letterSpacing">
+            0.03
+        </item>
+
+        <item name="android:textColor">
+            #939094
+        </item>
+    </style>
+    <!--EndOf Assistive Text-->
+
+    <!--"New User?"-->
+    <style name="new_user_si">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:letterSpacing">
+            0.01
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+    </style>
+    <!--EndOf "New User?"-->
+
+    <!--"Sign Up"-->
+    <style name="signup">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:letterSpacing">
+            0.01
+        </item>
+
+        <item name="android:textColor">
+            #0000FF
+        </item>
+    </style>
+    <!--EndOf "Sign Up"-->
+
+    <!--Register Page Title-->
+    <style name="create_an_a">
+
+        <item name="android:textSize">
+            24sp
+        </item>
+
+        <item name="android:textColor">
+            #6750A4
+        </item>
+    </style>
+    <!--EndOf Register Page Title-->
+
+    <!--Register OTP Page Title-->
+    <style name="enter_otp_s">
+
+        <item name="android:textSize">
+            24sp
+        </item>
+
+        <item name="android:textColor">
+            #6750A4
+        </item>
+    </style>
+    <!--EndOf Register OTP Page Title-->
+
+    <!--Welcoming Message-->
+    <style name="welcoming">
+
+        <item name="android:textSize">
+            16sp
+        </item>
+
+        <item name="android:letterSpacing">
+            0.03
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+    <!--EndOf Welcoming Message-->
+
+    <!--Forgot Password Text-->
+    <style name="dont_worry_">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:letterSpacing">
+            0.02
+        </item>
+
+        <item name="android:textColor">
+            #605D62
+        </item>
+
+    </style>
+    <!--EndOf Forgot Password Text-->
+</resources>
