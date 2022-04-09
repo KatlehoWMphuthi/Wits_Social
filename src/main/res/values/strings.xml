@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">witssocial</string>
+    <string name="welcome_mes">Hello, Witsie!</string>
+    <string name="username">Username</string>
+    <string name="studentnumber">Student Number</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="assistive_t">Must contain ...</string>
+    <string name="button_text">Log in</string>
+    <string name="registerbutton_text">Sign Up</string>
+    <string name="new_user_si">New User?</string>
+    <string name="signup">Sign Up.</string>
+    <string name="old_user">Already a member?</string>
+    <string name="signin">Sign in</string>
+    <string name="create_an_a">Create an Account</string>
+    <string name="enter_otp_s">Enter OTP \nSent  to your email</string>
+    <string name="otp">Enter OTP</string>
+    <string name="otp_text">Continue</string>
+    <string name="gotit">Didn\'t get anything?</string>
+    <string name="resend">Resend</string>
+    <string name="your_awesom">Your awesome\nAccount is being created</string>
+    <string name="welcome_">Welcome.</string>
+    <string name="welcoming">Welcome onboard, we\'ve been expecting you!</string>
+    <string name="getstarted">Get Started</string>
+    <string name="forgotpass">Forgot Password?</string>
+    <string name="dont_worry_">
+        Don\'t worry it happens. Please enter  the email associated
+        with your account, and we will send
+        you instructions to reset your password.
+    </string>
+    <string name="email">Student Email</string>
+    <string name="suffixtext">\@students.wits.ac.za</string>
+    <string name="submitbutton">Reset Password</string>
+    <string name="checkmail">Check your email</string>
+    <string name="we_have_sen">We have sent password recovery instructions to your email.</string>
+    <string name="openmail">Open email app</string>
+    <string name="nomail">Didn\'t get anything?</string>
+    <string name="resendmail">Resend</string>
+
+</resources>
