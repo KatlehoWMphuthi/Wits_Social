@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/your_awesom"
-        android:layout_width="294dp"
-        android:layout_height="56dp"
+        android:layout_width="301dp"
+        android:layout_height="69dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="141dp"
