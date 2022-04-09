@@ -117,8 +117,8 @@
 
     <TextView
         android:id="@+id/old_user"
-        android:layout_width="230dp"
-        android:layout_height="21dp"
+        android:layout_width="166dp"
+        android:layout_height="24dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
@@ -128,29 +128,29 @@
         android:textAppearance="@style/new_user_si"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
+        app:layout_constraintVertical_bias="0.94" />
 
     <TextView
         android:id="@+id/signin"
-        android:layout_width="165dp"
-        android:layout_height="20dp"
+        android:layout_width="98dp"
+        android:layout_height="24dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:onClick="loginPage"
         android:gravity="center_horizontal|center_vertical"
         android:lineSpacingExtra="4sp"
+        android:onClick="loginPage"
         android:text="@string/signin"
         android:textAppearance="@style/signup"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintHorizontal_bias="0.706"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
+        app:layout_constraintVertical_bias="0.94" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

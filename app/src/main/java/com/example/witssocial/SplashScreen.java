@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,8 +21,9 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(SplashScreen.this, Login.class);
                 startActivity(intent);
-                //finish();
+                finish();
             }
-        }, 3000);
+        }, 5000);
     }
+
 }

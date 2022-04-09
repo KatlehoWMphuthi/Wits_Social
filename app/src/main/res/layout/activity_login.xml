@@ -9,17 +9,17 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="109dp"
+        android:layout_height="79dp"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="127dp"
         android:layout_marginEnd="125dp"
-        android:layout_marginBottom="452dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/witssociallogo" />
+        app:layout_constraintVertical_bias="0.2"
+        app:srcCompat="@drawable/witssociallogo2" />
 
     <TextView
         android:id="@+id/textView"
@@ -149,8 +149,8 @@
 
     <TextView
         android:id="@+id/new_user_si"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_width="125dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
@@ -160,26 +160,26 @@
         android:textAppearance="@style/new_user_si"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.939" />
 
     <TextView
         android:id="@+id/signup"
-        android:layout_width="165dp"
-        android:layout_height="20dp"
+        android:layout_width="96dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal|center_vertical"
         android:lineSpacingExtra="4sp"
+        android:onClick="registerPage"
         android:text="@string/signup"
         android:textAppearance="@style/signup"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:onClick="registerPage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintHorizontal_bias="0.676"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.939" />
