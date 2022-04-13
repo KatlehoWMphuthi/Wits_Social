@@ -1,29 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Welcome">
+    tools:context=".WelcomeActivity">
 
-    <TextView
-        android:id="@+id/welcome_"
-        android:layout_width="123dp"
-        android:layout_height="37dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="468dp"
-        android:gravity="top"
-        android:lineSpacingExtra="-5sp"
-        android:text="@string/welcome_"
-        android:textAppearance="@style/enter_otp_s"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        android:id="@+id/Linearlayout_sign"
+        android:layout_marginTop="100dp"
+        android:layout_centerInParent="true">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="318dp"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="20dp"
+            app:strokeColor="#9900F0"
+            android:text="Sign In"
+            android:textAllCaps="false"
+            app:cornerRadius="50dp"
+            android:onClick="goToSignInActivity"
+            app:rippleColor="@color/purple_500">
+
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="318dp"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="20dp"
+            app:strokeColor="@color/blue_700"
+            android:text=" Sign Up"
+            android:textAllCaps="false"
+            android:onClick="goToSignUpActivity"
+            app:cornerRadius="50dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="452dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/witssociallogo2" />
 
     <View
         android:id="@+id/image_8"
@@ -32,53 +70,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="197dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="311dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="272dp"
+        android:layout_marginBottom="252dp"
         android:background="@drawable/welcome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/welcoming"
-        android:layout_width="369dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="386dp"
-        android:layout_marginEnd="69dp"
-        android:layout_marginBottom="230dp"
-        android:gravity="top"
-        android:lineSpacingExtra="5sp"
-        android:text="@string/welcoming"
-        android:textAlignment="center"
-        android:textAppearance="@style/welcoming"
-        android:translationY="-2.62sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613" />
 
-    <Button
-        android:id="@+id/otp_button"
-        android:layout_width="328dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="528dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="72dp"
-        android:background="@drawable/roundedcorner"
-        android:text="@string/getstarted"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.856" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
