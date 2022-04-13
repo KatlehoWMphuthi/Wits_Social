@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckMail">
+    tools:context=".check_mail">
 
     <TextView
         android:id="@+id/checkmail"
@@ -67,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.871"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" 
+        app:layout_constraintVertical_bias="0.739"
         tools:ignore="RtlCompat"/>
 
     <Button
@@ -80,7 +80,7 @@
         android:layout_marginBottom="136dp"
         android:background="@drawable/roundedcorner"
         android:text="@string/openmail"
-        android:onClick="openMailApp"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -124,6 +124,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.94" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="122dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="452dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/witssociallogo2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
