@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "929664260842",
+    "project_id": "wits-social-7aafb",
+    "storage_bucket": "wits-social-7aafb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929664260842:android:680d5b8c3589d272db1593",
+        "android_client_info": {
+          "package_name": "com.example.witssocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929664260842-3ivq69bdfnhvoka9799caqibajgn2hhc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALXht2JQ0KjaGhkpmugKrgC6yPxtzaGiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929664260842-3ivq69bdfnhvoka9799caqibajgn2hhc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
