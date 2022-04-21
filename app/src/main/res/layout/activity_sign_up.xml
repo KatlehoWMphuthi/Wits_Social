@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".SignUpActivity">
+
 
     <TextView
         android:id="@+id/create_an_a"
@@ -14,42 +15,36 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="69dp"
-        android:layout_marginBottom="524dp"
+        android:layout_marginTop="32dp"
         android:gravity="top"
         android:lineSpacingExtra="-5sp"
         android:text="@string/create_an_a"
         android:textAppearance="@style/create_an_a"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.718"
+        app:layout_constraintHorizontal_bias="0.643"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Username_layout"
         android:layout_width="328dp"
         android:layout_height="85dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="150dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="384dp"
         android:hint="@string/username"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.747">
+        app:layout_constraintTop_toBottomOf="@+id/create_an_a"
+        app:layout_constraintVertical_bias="0.573">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"/>
+            android:background="#ffffff" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -58,22 +53,21 @@
         android:layout_width="330dp"
         android:layout_height="85dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="256dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="312dp"
         android:hint="@string/studentnumber"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.747">
+        app:layout_constraintTop_toBottomOf="@+id/Username_layout"
+        app:layout_constraintVertical_bias="0.738">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/StudentNumber"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#ffffff"/>
+            android:background="#ffffff" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -81,34 +75,31 @@
         android:layout_width="328dp"
         android:layout_height="85dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="328dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="220dp"
         android:hint="@string/password"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.747">>
+        app:layout_constraintTop_toBottomOf="@+id/StudentNumber_layout"
+        app:layout_constraintVertical_bias="0.632">>
 
         <com.google.android.material.textfield.TextInputEditText
 
             android:id="@+id/Password_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:background="#ffffff"/>
+            android:background="#ffffff"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <Button
         android:id="@+id/LoginButton"
         android:layout_width="328dp"
         android:layout_height="48dp"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="528dp"
         android:layout_marginEnd="34dp"
         android:layout_marginBottom="72dp"
         android:background="@drawable/roundedcorner"
@@ -119,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LayoutPassword"
         app:layout_constraintVertical_bias="0.856" />
 
     <TextView
@@ -135,10 +126,10 @@
         android:textAppearance="@style/new_user_si"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton"
+        app:layout_constraintVertical_bias="0.18" />
 
     <TextView
         android:id="@+id/signin"
@@ -157,17 +148,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton"
+        app:layout_constraintVertical_bias="0.18" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="122dp"
         android:layout_height="69dp"
-        android:layout_marginStart="125dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="125dp"
-        android:layout_marginBottom="452dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
