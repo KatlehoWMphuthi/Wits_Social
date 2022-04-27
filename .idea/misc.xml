@@ -3,14 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_check_mail.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_forgot_password.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_home.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_welcome.xml" value="0.15534420289855072" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/fragment_profile.xml" value="0.12817028985507245" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/fragment_search.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/user_item.xml" value="0.16304347826086957" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_check_mail.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_forgot_password.xml" value="0.1677598385469223" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_sign_up.xml" value="0.28888888888888886" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_home.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/Wits_Social/app/src/main/res/menu/bottom_menu.xml" value="0.15885416666666666" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/Wits_Social/app/src/main/res/menu/menu.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/Katleho Mphuthi/Documents/GitHub/Wits_Social/app/src/main/res/layout/activity_forgot_password.xml" value="0.140625" />
         <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_check_mail.xml" value="0.22" />
         <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_forgot_password.xml" value="0.33" />
@@ -26,11 +33,6 @@
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.22509057971014493" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22509057971014493" />
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.22509057971014493" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.10530714584203928" />
-        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.10530714584203928" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21547669944420692" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.10530714584203928" />
-        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.21547669944420692" />
       </map>
     </option>
   </component>
