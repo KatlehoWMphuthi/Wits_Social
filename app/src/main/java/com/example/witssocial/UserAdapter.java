@@ -37,7 +37,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     public UserAdapter(Context context, List<User> users, boolean isFragment){
         mContext = context;
         mUsers = users;
-        //this.isFragment = isFragment;
+        this.isFragment = isFragment;
     }
     @NonNull
     @Override

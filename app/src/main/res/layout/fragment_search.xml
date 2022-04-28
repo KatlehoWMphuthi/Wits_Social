@@ -29,6 +29,7 @@
                 android:layout_marginLeft="10dp"
                 android:id="@+id/search_bar"
                 android:hint="Search..."
+                android:textSize="18dp"
                 android:layout_marginStart="10dp" />
 
         </androidx.appcompat.widget.Toolbar>
