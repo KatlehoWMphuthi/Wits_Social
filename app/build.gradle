@@ -70,15 +70,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
-    implementation 'com.github.CanHub:Android-Image-Cropper:4.2.1'
+    implementation 'com.github.CanHub:Android-Image-Cropper:3.3.5'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'com.github.shts:StoriesProgressView:3.0.0'
     implementation 'com.github.pwittchen:swipe-rx2:0.3.0'
+    
 
-// riskavk1102 Dependencies
-
-
-    //  Other
+    // dependency for listing recycle view
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
 
 
 

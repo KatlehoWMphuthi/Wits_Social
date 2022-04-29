@@ -62,17 +62,17 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
                     android:id="@+id/image_profile"
-                    android:src="@drawable/avatar"/>
+                    android:src="@mipmap/ic_launcher"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:paddingLeft="20dp"
                     android:paddingRight="4dp"
-                    android:layout_height="90dp">
+                    android:layout_height="95dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
