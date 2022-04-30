@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue_700">#0057b8</color>
     <color name="blue_500">#2d77c7</color>
+
+    <color name="colorPrimary">#455cde</color>
+    <color name="colorPrimaryDark">#000d3d</color>
+    <color name="colorAccent">#c2bdbf</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+
 </resources>
