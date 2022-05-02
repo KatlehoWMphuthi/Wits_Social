@@ -6,7 +6,6 @@
     <string name="confirmpassword">Confirm Password</string>
     <string name="password">Password</string>
     <string name="forgot_pass">Forgot Password?</string>
-    <string name="assistive_t"></string>
     <string name="button_text">Log In</string>
     <string name="registerbutton_text">Sign Up</string>
     <string name="new_user_si">New User?</string>
@@ -38,5 +37,7 @@
     <string name="openmail">Open email app</string>
     <string name="nomail">Didn\'t get anything?</string>
     <string name="resendmail">Resend</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
