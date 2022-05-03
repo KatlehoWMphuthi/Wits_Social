@@ -39,6 +39,11 @@ public class HomeActivity extends AppCompatActivity {
                         selectorFragment = new SearchFragment();
                         break;
 
+                    case R.id.nav_add :
+                        selectorFragment = null;
+                        startActivity(new Intent(HomeActivity.this , PostActivity.class));
+                        break;
+
                     /*case R.id.nav_add :
                         selectorFragment = null;
                         startActivity(new Intent(MainActivity.this , PostActivity.class));
