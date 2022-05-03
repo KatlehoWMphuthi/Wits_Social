@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar"
@@ -85,12 +81,3 @@
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home" />
-
-</FrameLayout>
-
