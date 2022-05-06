@@ -10,12 +10,13 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:background="@color/white"
-        android:id="@+id/appbar_layout"
+
         android:scrollbarStyle="insideInset"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
+            android:id="@+id/topVar_homeActivity"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@color/black"
             app:menu="@menu/top_app_bar"

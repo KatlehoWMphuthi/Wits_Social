@@ -78,12 +78,7 @@ public class HomeFragment extends Fragment {
                 // Do Activity menu item stuff here
                 startActivity(new Intent(getContext(),SignInActivity.class));
                 Toast.makeText(getContext(), "Log out", Toast.LENGTH_SHORT).show();
-                break;
-//            case R.id.fragment_menu_item:
-//                // Not implemented here
-//                return false;
-            default:
-                break;
+                return  true;
         }
 
         return super.onOptionsItemSelected(item);
