@@ -1,5 +1,6 @@
 package com.example.witssocial;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,7 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private MenuItem item;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -59,6 +64,23 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+
         return inflater.inflate(R.layout.fragment_home, container, false);
+
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        this.item = item;
+        switch (item.getItemId()) {
+            case R.id.favorite:
+                // Do Activity menu item stuff here
+                startActivity(new Intent(getContext(),SignInActivity.class));
+                Toast.makeText(getContext(), "Log out", Toast.LENGTH_SHORT).show();
+                return  true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

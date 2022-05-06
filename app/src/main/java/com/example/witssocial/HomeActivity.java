@@ -2,6 +2,7 @@ package com.example.witssocial;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -17,6 +18,7 @@ import com.example.witssocial.SearchFragment;
 public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    private Toolbar topBar;
     private Fragment selectorFragment;
 
     @Override
@@ -25,6 +27,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        topBar = findViewById(R.id.topVar_homeActivity);
+
+
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
@@ -40,8 +45,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_add :
-                        selectorFragment = null;
-                        startActivity(new Intent(HomeActivity.this , PostActivity.class));
+                       selectorFragment = new PostFragment();
                         break;
 
                     /*case R.id.nav_add :
@@ -79,4 +83,5 @@ public class HomeActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
         }
     }
+
 }

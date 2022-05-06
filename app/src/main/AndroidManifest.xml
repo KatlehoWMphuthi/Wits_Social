@@ -13,10 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WitsSocial">
         <activity
-            android:name=".PostActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".check_mail"
             android:exported="false"
             android:screenOrientation="portrait"/>
