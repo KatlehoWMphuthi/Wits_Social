@@ -6,6 +6,7 @@
     <string name="confirmpassword">Confirm Password</string>
     <string name="password">Password</string>
     <string name="forgot_pass">Forgot Password?</string>
+    <string name="assistive_t"></string>
     <string name="button_text">Log In</string>
     <string name="registerbutton_text">Sign Up</string>
     <string name="new_user_si">New User?</string>
