@@ -9,6 +9,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar"
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground">
@@ -32,16 +33,16 @@
                     android:layout_alignParentStart="true" />
 
                 <TextView
+                    android:id="@+id/post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:text="POST"
-                    android:id="@+id/post"
-                    android:textSize="16sp"
-                    android:layout_centerVertical="true"
                     android:textColor="@color/colorPrimary"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
@@ -51,23 +52,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginTop="16dp"
             android:scaleType="centerInside"
+            android:background="@drawable/image_border"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/ic_baseline_add_photo_alternate_24"
             android:id="@+id/image_added"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:hint="Caption"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:id="@+id/caption"
+            android:background="@null"
             android:maxLines="5"/>
 
     </LinearLayout>
