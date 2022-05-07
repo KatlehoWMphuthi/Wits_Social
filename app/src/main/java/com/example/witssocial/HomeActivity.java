@@ -2,27 +2,29 @@ package com.example.witssocial;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.example.witssocial.HomeFragment;
-import com.example.witssocial.NotificationFragment;
-import com.example.witssocial.ProfileFragment;
-import com.example.witssocial.SearchFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private Fragment selectorFragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
