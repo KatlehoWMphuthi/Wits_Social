@@ -1,66 +1,52 @@
 package com.example.witssocial;
 
-import android.content.ClipData;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.example.witssocial.databinding.ActivityHomeBinding;
 import com.example.witssocial.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private FragmentHomeBinding viewBinding;
+    private static RecyclerView recyclerView;
 
- private FirebaseAuth mFirebaseAuth;
+    String username;
+    private static ArrayList<String> images;
+
+    private FirebaseAuth mFirebaseAuth;
+    private static Context mContext;
 
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,8 +56,7 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
 
 mFirebaseAuth = FirebaseAuth.getInstance();
@@ -81,8 +66,38 @@ mFirebaseAuth = FirebaseAuth.getInstance();
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewBinding = FragmentHomeBinding.inflate(getLayoutInflater());
+        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        recyclerView = view.findViewById(R.id.recycler_view);
+        mContext = getContext();
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        username = "Michael";//user.getUid();
+
         return viewBinding.getRoot();
+
     }
+    public View onCreate(@NonNull LayoutInflater inflater, @Nullable ViewGroup containerr, @Nullable Bundle savedInstanceState) {
+//        viewBinding = FragmentHomeBinding.inflate(getLayoutInflater());
+        View view =  inflater.inflate(R.layout.fragment_home, containerr, false);
+        recyclerView = view.findViewById(R.id.recycler_view);
+        mContext = getContext();
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        username = "Michael";//user.getUid();
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                fetchImages();
+            }
+        });
+
+        return  view;
+
+    }
+
+
 
     @Override
     public void onStart() {
@@ -112,6 +127,65 @@ mFirebaseAuth = FirebaseAuth.getInstance();
                     return true;
                 default:
                     return false;
+            }
+        });
+
+    }
+    public  void fetchImages()
+    {
+
+//            rImage = findViewById(R.id.imageView);
+//        username = findViewById(R.id.textView);
+
+        // we will get the default FirebaseDatabase instance
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
+        // we will get a DatabaseReference for the database root node
+        DatabaseReference databaseReference = firebaseDatabase.getReference("User_post1614");
+        DatabaseReference getImage = databaseReference.child("image");
+
+        // this listener will triggered once
+        // with the value of the data at the location
+        getImage.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // getting a DataSnapshot for the location at the specified
+                // relative path and getting in the link variable
+                String photos = dataSnapshot.getValue(String.class);
+
+                //String link = photos.getImage();
+
+                // loading that data into rImage
+                // variable which is ImageViewll;
+                images.add(photos);
+                HelperAdapter helperAdapter = new HelperAdapter(mContext,ima    ges,username);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setAdapter(helperAdapter);
+//                Picasso.get().load(photos).into(rImage);
+
+            }
+
+            // this will called when any problem
+            // occurs in getting data
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // we are showing that error message in toast
+//                Toast.makeText(ShowActivity.this, "Error Loading Image", Toast.LENGTH_SHORT).show();
+            }
+        });
+        DatabaseReference getName = databaseReference.child("username");
+
+        getName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.getValue(String.class);
+//                username.setText(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
