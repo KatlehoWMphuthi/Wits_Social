@@ -15,6 +15,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,8 +39,10 @@ import java.util.HashMap;
 
 public class PostActivity extends AppCompatActivity {
 
-    private Button btnChoose, btnUpload;
+    private Button btnUpload;
+    private ImageButton btnRemove;
     private ImageView imageView;
+    private EditText editText;
 
     private Uri filePath;
     FirebaseStorage storage;
@@ -56,9 +59,10 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
 
         //Initialize Views
-        btnChoose = (Button) findViewById(R.id.btnChoose);
+        btnRemove = (ImageButton) findViewById(R.id.clear);
         btnUpload = (Button) findViewById(R.id.btnUpload);
         imageView = (ImageView) findViewById(R.id.imgView);
+        editText = (EditText) findViewById(R.id.caption);
 
         Database = FirebaseDatabase.getInstance();
         myRef = Database.getReference("User_post");
@@ -69,10 +73,18 @@ public class PostActivity extends AppCompatActivity {
         sp = getSharedPreferences("User_info", MODE_PRIVATE);
         String name = sp.getString("name","null");
 
-        btnChoose.setOnClickListener(new View.OnClickListener() {
+        btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageView.setImageBitmap(null);
+            }
+        });
+
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chooseImage();
+                imageView.setBackgroundResource(android.R.color.transparent);
             }
         });
 
@@ -108,12 +120,22 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
+    public String GetFileExtension(Uri uri){
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    //StorageReference storageReference1 = storageReference.child(System.currentTimeMillis()+"."+GetFileExtension(filePath));
+    //        storageReference1.putFile(filePath)
+
+
     private void uploadImage() {
 
         if (filePath != null) {
             DatabaseReference dbRef = myRef.child("image");
 
-            StorageReference riversRef = storageReference.child("images/" + filePath.getLastPathSegment());
+            StorageReference riversRef = storageReference.child("images/" +GetFileExtension(filePath));
 
             uploadTask = riversRef.putFile(filePath);
             String reference = riversRef.getPath();
