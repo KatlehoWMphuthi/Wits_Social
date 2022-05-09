@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
@@ -10,43 +9,30 @@
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_sign_up.xml" value="0.28888888888888886" />
         <entry key="..\:/Users/Katleho Mphuthi/Documents/GitHub/Wits_Social/app/src/main/res/layout/activity_forgot_password.xml" value="0.140625" />
-        <entry key="..\:/Users/Vance/Desktop/Wits_Social/app/src/main/res/layout/activity_check_mail.xml" value="0.1078125" />
-        <entry key="..\:/Users/Vance/Desktop/Wits_Social/app/src/main/res/layout/activity_home.xml" value="0.25" />
-        <entry key="..\:/Users/Vance/Desktop/Wits_Social/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Vance/Desktop/Wits_Social/app/src/main/res/layout/activity_post.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/Vance/Desktop/Wits_Social/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
-        <entry key="..\:/Users/Vance/Desktop/Wits_Social/app/src/main/res/layout/activity_welcome.xml" value="0.1078125" />
-        <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_check_mail.xml" value="0.22" />
-        <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_forgot_password.xml" value="0.33" />
-        <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_home.xml" value="0.33" />
-        <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_main.xml" value="0.161231884057971" />
-        <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
-        <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
-        <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
-      </map>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
-  
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_check_mail.xml" value="0.15833333333333333" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_forgot_password.xml" value="0.1677598385469223" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_sign_up.xml" value="0.28888888888888886" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_home.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/Wits_Social/app/src/main/res/menu/bottom_menu.xml" value="0.15885416666666666" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/Wits_Social/app/src/main/res/menu/menu.xml" value="0.15885416666666666" />
-        <entry key="..\:/Users/Katleho Mphuthi/Documents/GitHub/Wits_Social/app/src/main/res/layout/activity_forgot_password.xml" value="0.140625" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/drawable/ic_baseline_person_48.xml" value="0.2075" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/drawable/image_border.xml" value="0.106" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_check_mail.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_forgot_password.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_home.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_post.xml" value="0.33" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_welcome.xml" value="0.10916919959473151" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_newsfeed.xml" value="0.1" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_notification.xml" value="0.25" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_search.xml" value="0.10916919959473151" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_sign_out.xml" value="0.11363636363636363" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/frame_textview.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/list_adapter.xml" value="0.14719202898550723" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/post_item.xml" value="0.33" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/topbar.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/user_item.xml" value="0.33" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/menu/bottom_menu.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/menu/home_fragment_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/menu/homefragment_menu.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_check_mail.xml" value="0.22" />
         <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_forgot_password.xml" value="0.33" />
         <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_home.xml" value="0.33" />
@@ -61,11 +47,6 @@
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.22509057971014493" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22509057971014493" />
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.22509057971014493" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.10530714584203928" />
-        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.10530714584203928" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21547669944420692" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.10530714584203928" />
-        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.21547669944420692" />
       </map>
     </option>
   </component>
@@ -75,5 +56,4 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
-
 </project>
