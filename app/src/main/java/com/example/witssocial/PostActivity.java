@@ -104,8 +104,8 @@ public class PostActivity extends AppCompatActivity {
                 uploadImage();
 
                 //Go to home fragment
-                Intent intent = new Intent(PostActivity.this, HomeFragment.class);
-                startActivity(intent);
+                //Intent intent = new Intent(PostActivity.this, HomeFragment.class);
+                //startActivity(intent);
             }
         });
 
