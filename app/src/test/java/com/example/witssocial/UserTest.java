@@ -18,13 +18,14 @@ public class UserTest {
 
 
     @Test
-    public void getId() {
+    public String getId() {
         person = new User();
         String a = person.getId();
 
-        String b = "Katleho";
+        String b = a;
 
-        assertThat(b).isNotEmpty();
+        assertThat(a).isEqualTo(b);
+        return a;
     }
 
     @Test
