@@ -39,4 +39,13 @@ public class UserTest {
 
         assertThat(a).isNotEmpty();
     }
+
+    @Test
+    public void getbio(){
+        person = new User();
+        String a = person.getBio();
+        a = "Bio";
+
+        assertThat(a).isNotEmpty();
+    }
 }
