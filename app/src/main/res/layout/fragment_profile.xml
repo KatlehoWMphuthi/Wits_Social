@@ -86,62 +86,19 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/posts"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/posts"
-                                android:textColor="@color/colorPrimaryDark"
                                 android:layout_gravity="center"
+                                android:text="1"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:textSize="18sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="posts"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="35dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/followers"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:layout_gravity="center"
-                                android:textSize="18sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="followers"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="35dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:layout_gravity="center"
-                                android:textSize="18sp"
-                                android:id="@+id/following"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="following"/>
 
                         </LinearLayout>
 
@@ -216,18 +173,17 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/last_bar"
-                android:id="@+id/recycler_view"/>
+                tools:src="@tools:sample/avatars" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/last_bar"
-                android:visibility="gone"
-                android:id="@+id/recycler_view_save"/>
+                android:text="TextView" />
 
         </LinearLayout>
 

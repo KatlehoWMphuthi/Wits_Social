@@ -158,10 +158,10 @@ mFirebaseAuth = FirebaseAuth.getInstance();
                 // loading that data into rImage
                 // variable which is ImageViewll;
                 images.add(photos);
-                HelperAdapter helperAdapter = new HelperAdapter(mContext,ima    ges,username);
+                /*HelperAdapter helperAdapter = new HelperAdapter(mContext,images,username);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
                 recyclerView.setLayoutManager(linearLayoutManager);
-                recyclerView.setAdapter(helperAdapter);
+                recyclerView.setAdapter(helperAdapter);*/
 //                Picasso.get().load(photos).into(rImage);
 
             }
