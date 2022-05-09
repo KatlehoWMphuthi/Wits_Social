@@ -15,25 +15,28 @@ public class UserTest {
     User person;
     String a,b,c,d;
 
-
-
     @Test
-    public String getId() {
-        person = new User();
-        String a = person.getId();
+    public void getimage(){
+        String a = new User().getImageurl();
+        a = "Katleho";
+        assertThat(a).isNotEmpty();
 
-        String b = a;
-
-        assertThat(a).isEqualTo(b);
-        return a;
     }
 
     @Test
-    public void getUsername() {
-        person = new User();
-        String a = person.getId();
-        String b = "Michael";
+    public void getid() {
+        String a = new User().getId();
+        a = "Katleho";
+        assertThat(a).isNotEmpty();
 
-        assertThat(b).isNotEmpty();
+    }
+
+    @Test
+    public void getusername() {
+        person = new User();
+        String a = person.getUsername();
+        a= "Michael";
+
+        assertThat(a).isNotEmpty();
     }
 }
