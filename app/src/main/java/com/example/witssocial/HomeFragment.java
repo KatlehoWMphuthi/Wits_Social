@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
 
+
     private FragmentHomeBinding viewBinding;
     private static RecyclerView recyclerView;
 
@@ -51,15 +52,23 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
+    private FragmentHomeBinding viewBinding;
+    private FirebaseAuth mFirebaseAuth;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
         if (getArguments() != null) {
 
         }
 
 mFirebaseAuth = FirebaseAuth.getInstance();
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
     }
 
     @Nullable
