@@ -61,10 +61,11 @@ public class ProfileFragment extends Fragment {
         fullName = view.findViewById(R.id.fullname);
         picture = view.findViewById(R.id.imageView4);
         database = FirebaseDatabase.getInstance();
-        fullName.setText("This is my name");
+        fullName.setText("Bio");
         reference = database.getReference("User_post"+Integer.toString(number));
         users = database.getReference("Users");
         DatabaseReference getProPic = reference.child("image");
+
         getProPic.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,7 +90,9 @@ public class ProfileFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
         DatabaseReference getBio= reference.child("Caption");
+
         getBio.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -2,9 +2,11 @@ package com.example.witssocial;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,17 +25,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
+    private static final String TAG = "HomeFragmentActivity";
 
+    FirebaseDatabase database;
+    DatabaseReference reference,users,reference1;
+    FirebaseUser user;
+
+     private RecyclerView recyclerView;
+     private PostAdapter postAdapter;
+     private List<Post> postLists;
+
+     private  List<String> allUsers;
 
 
     private FragmentHomeBinding viewBinding;
-    private static RecyclerView recyclerView;
 
     String username;
-    private static ArrayList<String> images;
+    //private static ArrayList<String> images;
 
     private FirebaseAuth mFirebaseAuth;
     private static Context mContext;
@@ -52,8 +64,8 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
-    private FragmentHomeBinding viewBinding;
-    private FirebaseAuth mFirebaseAuth;
+    //private FragmentHomeBinding viewBinding;
+    //private FirebaseAuth mFirebaseAuth;
 
 
     @Override
@@ -74,22 +86,33 @@ mFirebaseAuth = FirebaseAuth.getInstance();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        viewBinding = FragmentHomeBinding.inflate(getLayoutInflater());
+        //viewBinding = FragmentHomeBinding.inflate(getLayoutInflater());
+
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
+
         recyclerView = view.findViewById(R.id.recycler_view);
-        mContext = getContext();
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        postLists = new ArrayList<>();
+        postAdapter = new PostAdapter(getContext(),postLists);
+
+       // mContext = getContext();
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        username = "Michael";//user.getUid();
-
-        return viewBinding.getRoot();
+       // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+       // username = "Michael";//user.getUid();
+        readPosts();
+        return view;
 
     }
     public View onCreate(@NonNull LayoutInflater inflater, @Nullable ViewGroup containerr, @Nullable Bundle savedInstanceState) {
 //        viewBinding = FragmentHomeBinding.inflate(getLayoutInflater());
+
         View view =  inflater.inflate(R.layout.fragment_home, containerr, false);
-        recyclerView = view.findViewById(R.id.recycler_view);
+       recyclerView = view.findViewById(R.id.recycler_view);
         mContext = getContext();
 
 
@@ -123,7 +146,7 @@ mFirebaseAuth = FirebaseAuth.getInstance();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+    /*
         viewBinding.toolbar.inflateMenu(R.menu.home_fragment_menu);
 
         viewBinding.toolbar.setOnMenuItemClickListener(item -> {
@@ -138,10 +161,40 @@ mFirebaseAuth = FirebaseAuth.getInstance();
                     return false;
             }
         });
+        */
 
+
+    }
+
+    public void readPosts(){
+        Toast.makeText(getActivity(), "reading Posts",
+                Toast.LENGTH_SHORT).show();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference1 = FirebaseDatabase.getInstance().getReference("Users");
+        reference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                postLists.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    Post post = snapshot1.getValue(Post.class);
+                    postLists.add(post);
+                    Toast.makeText(getActivity(), "reading users",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Post");
+
+                }
+
+                postAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
     public  void fetchImages()
     {
+
+
 
 //            rImage = findViewById(R.id.imageView);
 //        username = findViewById(R.id.textView);
@@ -166,7 +219,7 @@ mFirebaseAuth = FirebaseAuth.getInstance();
 
                 // loading that data into rImage
                 // variable which is ImageViewll;
-                images.add(photos);
+               // images.add(photos);
                 /*HelperAdapter helperAdapter = new HelperAdapter(mContext,images,username);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
                 recyclerView.setLayoutManager(linearLayoutManager);
