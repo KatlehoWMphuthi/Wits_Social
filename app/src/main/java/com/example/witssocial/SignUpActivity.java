@@ -52,6 +52,10 @@ public class SignUpActivity extends AppCompatActivity {
     private static ProgressDialog loadBar;
     private FirebaseAuth mAuth;
 
+    // one boolean variable to check whether all the text fields
+    // are filled by the user, properly or not.
+    boolean isAllFieldsChecked = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +78,8 @@ public class SignUpActivity extends AppCompatActivity {
         loadBar = new ProgressDialog(this);
 
 
+
+
         Button SignUp = findViewById(R.id.LoginButton);
 
         SignUp.setOnClickListener(new View.OnClickListener() {
@@ -84,12 +90,57 @@ public class SignUpActivity extends AppCompatActivity {
                 String name = name_SignUp.getText().toString();
                 String password = password_SignUp.getText().toString();
 
-                signUpUser(studentNo,name,password);
+                // store the returned value of the dedicated function which checks
+                // whether the entered data is valid or if any fields are left blank.
+               isAllFieldsChecked = CheckAllFields(studentNo,name,password);
+
+
+                // the boolean variable turns to be true then
+                // only the user must be proceed to register
+                if (isAllFieldsChecked) {
+                    loadBar.setTitle("Please wait....");
+                    loadBar.show();
+                    loadBar.setCancelable(false);
+
+                    registerAccount(name,studentNo, password);
+                }
+
+                //signUpUser(studentNo,name,password);
 
             }
         });
 
     }
+
+    // function which checks all the text fields
+    // are filled or not by the user.
+    // when user clicks on the PROCEED button
+    // this function is triggered.
+    private boolean CheckAllFields(final String studentNo,final String name,final String password) {
+
+        if (studentNo.isEmpty()) {
+            student_number.setError("This field is required");
+            return false;
+        }
+
+        if (name.isEmpty()) {
+            name_layout_u.setError("This field is required");
+            return false;
+        }
+
+        if (password.isEmpty()) {
+            Password_layout.setError("Password is required");
+            return false;
+        } else if (password.length() < 6) {
+            Password_layout.setError("Password must be minimum 6 characters");
+            return false;
+        }
+
+        // after all validation return true.
+        return true;
+    }
+
+
 
     private void signUpUser(final String studentNo,final String name,final String password) {
 
@@ -100,17 +151,16 @@ public class SignUpActivity extends AppCompatActivity {
             name_layout_u.setError("Name required");
 
         }
-        if(studentNo.isEmpty())
+        else if(studentNo.isEmpty())
         {
             student_number_layout.setError("Email required");
-
         }
-        if(password.isEmpty())
+        else if(password.isEmpty())
         {
             Password_layout.setError("Password required");
 
         }
-        if( password.length() <6)
+        else if( password.length() <6)
         {
 
             Toast.makeText(this, "Password too short", Toast.LENGTH_LONG).show();
