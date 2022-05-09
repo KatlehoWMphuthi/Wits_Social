@@ -13,8 +13,6 @@ public class Post {
         this.publisher = publisher;
     }
 
-    public Post() {
-    }
 
     public String getPostid() {
         return postid;

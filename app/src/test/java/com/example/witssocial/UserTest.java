@@ -48,4 +48,12 @@ public class UserTest {
 
         assertThat(a).isNotEmpty();
     }
+
+    @Test
+    public void setimage(){
+        User per = new User();
+        String image = per.getImageurl();
+        image = "url";
+        assertThat(image).isNotEmpty();
+    }
 }
