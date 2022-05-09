@@ -21,17 +21,18 @@ public class UserTest {
     public void getId() {
         person = new User();
         String a = person.getId();
-        String b = a;
 
-        assertThat(a).isNotEmpty();
+        String b = "Katleho";
+
+        assertThat(b).isNotEmpty();
     }
 
     @Test
     public void getUsername() {
         person = new User();
         String a = person.getId();
-        String b = a;
+        String b = "Michael";
 
-        assertThat(a).isNotEmpty();
+        assertThat(b).isNotEmpty();
     }
 }
