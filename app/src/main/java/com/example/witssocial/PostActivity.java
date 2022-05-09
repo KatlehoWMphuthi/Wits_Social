@@ -102,6 +102,10 @@ public class PostActivity extends AppCompatActivity {
                 DatabaseReference dbRef2 = myRef.child("name");
                 dbRef2.setValue(name);
                 uploadImage();
+
+                //Go to home fragment
+                Intent intent = new Intent(PostActivity.this, HomeFragment.class);
+                startActivity(intent);
             }
         });
 
@@ -152,7 +156,7 @@ public class PostActivity extends AppCompatActivity {
              username = getusername(name);
 
 
-// Register observers to listen for when the download is done or if it fails
+        // Register observers to listen for when the download is done or if it fails
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
@@ -166,12 +170,18 @@ public class PostActivity extends AppCompatActivity {
                     // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                     // ...
 
-                    Toast.makeText(PostActivity.this, "picture successfully posted", Toast.LENGTH_LONG).show();
+                    //Add load button
+
+
+
+                    //Display toast
+                   Toast.makeText(PostActivity.this, "picture successfully posted", Toast.LENGTH_LONG).show();
 
 
                     riversRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
+
                             imageUrl = task.getResult().toString();
                             DatabaseReference imageRef = dbRef.child("image");
                             DatabaseReference nameRef = dbRef.child("username");
@@ -184,6 +194,8 @@ public class PostActivity extends AppCompatActivity {
                         }
 
                     });
+
+
                     //Log.d(TAG,"Upload Successful");
                 }
             });
