@@ -29,8 +29,7 @@ public class PostTest {
 
     @Test
     public void getPostimage() {
-        String image = "url";
-        String imageurl = new Post(a,b,c,d).getPostimage();
+        String image  = postTest.getPostimage();
         assertThat(image).isNotEmpty();
     }
 
@@ -42,9 +41,8 @@ public class PostTest {
 
     @Test
     public void getCaption() {
-        String caption = new Post(a,b,c,d).getCaption();
-        caption = "Caption";
-        assertThat(caption).isEqualTo("Caption");
+        String caption = postTest.getCaption();
+        assertThat(caption).isEqualTo("caption");
     }
 
     @Test
