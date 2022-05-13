@@ -1,10 +1,12 @@
 package com.example.witssocial;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.witssocial.Model.Post;
+import com.example.witssocial.Profile.UserProfileActivity;
 import com.example.witssocial.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +35,8 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference referenceToUser,users,reference1;
     FirebaseUser user;
+
+    private ImageView profilePicture;
 
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
@@ -73,6 +79,16 @@ public class HomeFragment extends Fragment {
         //viewBinding = FragmentHomeBinding.inflate(getLayoutInflater());
 
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
+
+        profilePicture = view.findViewById(R.id.iv_home_profile_picture);
+
+        profilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);

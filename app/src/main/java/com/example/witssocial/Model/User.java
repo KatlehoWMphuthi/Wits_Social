@@ -1,4 +1,4 @@
-package com.example.witssocial;
+package com.example.witssocial.Model;
 
 public class User {
     private String id;

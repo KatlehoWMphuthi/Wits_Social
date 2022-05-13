@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="Username"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/md_theme_dark_onPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="20"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/material_on_surface_emphasis_medium"
             android:textStyle="bold" />
 
 
@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/material_on_surface_emphasis_medium" />
 
         <TextView
             android:id="@+id/comments"
@@ -105,7 +105,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:text="View All 20 Comments"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/material_on_surface_emphasis_high_type" />
 
     </LinearLayout>
 

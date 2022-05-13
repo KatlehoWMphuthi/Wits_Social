@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ProfileFragment">
+    tools:context=".Profile.ProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar"
@@ -27,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:maxLines="1"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/material_on_surface_emphasis_high_type"
                     android:textStyle="bold"
                     android:id="@+id/username"/>
 
@@ -91,7 +90,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:text="1"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:textColor="@color/material_on_surface_emphasis_high_type"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
@@ -107,11 +106,10 @@
                     <Button
                         android:id="@+id/edit_profile"
                         android:layout_width="match_parent"
-                        android:layout_height="38dp"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
-                        android:background="@drawable/button_background"
                         android:text="edit profile"
-                        android:textColor="@color/colorWhite" />
+                        />
 
                 </LinearLayout>
 
@@ -132,15 +130,16 @@
                     android:id="@+id/fullname"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/material_on_surface_emphasis_high_type"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:id="@+id/bio"
+                    android:text="@string/username"
                     android:maxLines="5"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/material_on_surface_emphasis_high_type"/>
 
             </LinearLayout>
 
