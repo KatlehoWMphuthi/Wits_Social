@@ -1,19 +1,19 @@
-package com.example.witssocial;
+package com.example.witssocial.SignOut;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.witssocial.R;
+import com.example.witssocial.SignInActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,7 +26,7 @@ public class SignOutFragment extends Fragment {
 
     private static final String TAG = "SignOutFragment";
 
-    //FIrebase
+    //Firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -79,10 +79,10 @@ public class SignOutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_out, container, false);
 
-        tvSignout = (TextView)view.findViewById(R.id.tvConfimSignout);
+
         tvSigingOut = (TextView)view.findViewById(R.id.tvSigingout);
         mProgressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        Button btnConfrimSignout = (Button) view.findViewById(R.id.btnConfrimSignout);
+
 
         //Hide visibility of progress bar and text
         mProgressBar.setVisibility(View.GONE);
@@ -90,18 +90,11 @@ public class SignOutFragment extends Fragment {
 
         setupFirebaseAuth();
 
-        btnConfrimSignout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mProgressBar.setVisibility(View.VISIBLE);
-                tvSigingOut.setVisibility(View.VISIBLE);
+        mProgressBar.setVisibility(View.VISIBLE);
+        tvSigingOut.setVisibility(View.VISIBLE);
 
-                mAuth.signOut();
-                getActivity().finish();
-            }
-        });
-
-
+        mAuth.signOut();
+        getActivity().finish();
 
         return view;
     }

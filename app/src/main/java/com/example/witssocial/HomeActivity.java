@@ -1,17 +1,15 @@
 package com.example.witssocial;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.example.witssocial.More.MoreOptionsActivity;
+import com.example.witssocial.Profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -51,12 +49,14 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this , PostActivity.class));
                         break;*/
 
-                    case R.id.nav_heart :
+                    case R.id.nav_notifications:
                         selectorFragment = new NotificationFragment();
                         break;
 
-                    case R.id.nav_profile :
-                        selectorFragment = new ProfileFragment();
+                    case R.id.nav_more:
+                        //selectorFragment = new ProfileFragment();
+                        selectorFragment = null;
+                        startActivity(new Intent(HomeActivity.this , MoreOptionsActivity.class));
                         break;
                 }
 
@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
             getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-            bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+            bottomNavigationView.setSelectedItemId(R.id.nav_more);
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
         }
