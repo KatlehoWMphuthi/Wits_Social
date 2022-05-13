@@ -16,7 +16,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -58,10 +60,22 @@ public class PostActivity extends AppCompatActivity {
     String  userCaption;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
+        // showing the back button in action bar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.bar);
+        setSupportActionBar(myToolbar);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle("Create Post");
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         //Initialize Views
         btnRemove = (ImageButton) findViewById(R.id.clear);
