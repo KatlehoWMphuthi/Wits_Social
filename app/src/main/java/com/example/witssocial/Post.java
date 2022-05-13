@@ -11,10 +11,6 @@ public class Post {
         this.username = username;
     }
 
-    public Post(String username){
-        this.username = username;
-    }
-
     public Post(){
 
     }

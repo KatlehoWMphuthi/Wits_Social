@@ -20,6 +20,9 @@ This section will talk about the features implemented thus far:
 - User can login
 - User can register
 - User can reset their password 
+- User can see their profile
+- User can now post!
+- User see their post
 - More coming soon!
 
 ## Project duration:

@@ -17,7 +17,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="148dp"
         android:layout_marginEnd="69dp"
-        android:gravity="top"
+        android:gravity="center_horizontal"
         android:lineSpacingExtra="-5sp"
         android:text="@string/checkmail"
         android:textAlignment="center"
@@ -28,7 +28,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698" />
+        app:layout_constraintVertical_bias="0.698"
+        tools:ignore="RtlCompat"/>
 
     <View
         android:id="@+id/pablo_283_1"
@@ -77,8 +78,12 @@
         android:background="@drawable/roundedcorner"
         android:text="@string/openmail"
         android:textAllCaps="false"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="569dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.861" />
 
     <TextView
         android:id="@+id/nomail"
