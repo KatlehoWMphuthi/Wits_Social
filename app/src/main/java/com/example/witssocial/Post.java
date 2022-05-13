@@ -11,9 +11,6 @@ public class Post {
         this.username = username;
     }
 
-    public Post(){
-
-    }
 
     public String getImage() {
         return image;
