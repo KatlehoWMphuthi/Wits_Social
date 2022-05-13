@@ -1,49 +1,42 @@
 package com.example.witssocial;
 
 public class Post {
-    private String postid;
-    private String postimage;
+    private String image;
     private String caption;
-    private String publisher;
+    private String username;
 
-    public Post(String postid, String postimage, String caption, String publisher) {
-        this.postid = postid;
-        this.postimage = postimage;
+    public Post(String image, String caption, String username) {
+        this.image = image;
         this.caption = caption;
-        this.publisher = publisher;
+        this.username = username;
     }
 
+    public Post(){
 
-    public String getPostid() {
-        return postid;
     }
 
-    public void setPostid(String postid) {
-        this.postid = postid;
+    public String getImage() {
+        return image;
     }
 
-    public String getPostimage() {
-        return postimage;
-    }
-
-    public void setPostimage(String postimage) {
-        this.postimage = postimage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCaption() {
         return caption;
     }
 
-    public void setDescription(String description) {
+    public void setCaption(String caption) {
         this.caption = caption;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
 

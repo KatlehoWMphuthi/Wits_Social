@@ -2,16 +2,13 @@ package com.example.witssocial;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,14 +29,14 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragmentActivity";
 
     FirebaseDatabase database;
-    DatabaseReference reference,users,reference1;
+    DatabaseReference referenceToUser,users,reference1;
     FirebaseUser user;
 
-     private RecyclerView recyclerView;
-     private PostAdapter postAdapter;
-     private List<Post> postLists;
+    private RecyclerView recyclerView;
+    private PostAdapter postAdapter;
+    private List<Post> postLists;
 
-     private  List<String> allUsers;
+    private  List<String> allUsers;
 
 
     private FragmentHomeBinding viewBinding;
@@ -68,20 +65,7 @@ public class HomeFragment extends Fragment {
     //private FirebaseAuth mFirebaseAuth;
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
-        if (getArguments() != null) {
-
-        }
-
-mFirebaseAuth = FirebaseAuth.getInstance();
-
-        mFirebaseAuth = FirebaseAuth.getInstance();
-
-    }
 
     @Nullable
     @Override
@@ -99,29 +83,26 @@ mFirebaseAuth = FirebaseAuth.getInstance();
         postLists = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(),postLists);
 
-       // mContext = getContext();
-
-
-       // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-       // username = "Michael";//user.getUid();
-        readPosts();
+       // readPosts();
         return view;
 
     }
+
+/*
     public View onCreate(@NonNull LayoutInflater inflater, @Nullable ViewGroup containerr, @Nullable Bundle savedInstanceState) {
 //        viewBinding = FragmentHomeBinding.inflate(getLayoutInflater());
 
         View view =  inflater.inflate(R.layout.fragment_home, containerr, false);
-       recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view);
         mContext = getContext();
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        username = "Michael";//user.getUid();
+       // username = "Michael";//user.getUid();
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                fetchImages();
+               // fetchImages();
             }
         });
 
@@ -129,21 +110,9 @@ mFirebaseAuth = FirebaseAuth.getInstance();
 
     }
 
+*/
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        if(mFirebaseUser != null){
-            //there is a user logged in
-
-        }else {
-
-        }
-    }
-
+/*
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     /*
@@ -161,36 +130,53 @@ mFirebaseAuth = FirebaseAuth.getInstance();
                     return false;
             }
         });
-        */
+
 
 
     }
+*/
 
-    public void readPosts(){
-        Toast.makeText(getActivity(), "reading Posts",
-                Toast.LENGTH_SHORT).show();
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference1 = FirebaseDatabase.getInstance().getReference("Users");
+    public void getRootNodes(){
+        reference1 = FirebaseDatabase.getInstance().getReference();
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                postLists.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    Post post = snapshot1.getValue(Post.class);
-                    postLists.add(post);
-                    Toast.makeText(getActivity(), "reading users",
-                            Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "Post");
-
+                    String rootNodeChild = snapshot1.getKey();
+                    if(rootNodeChild.length() > 11){
+                        referenceToUser = FirebaseDatabase.getInstance().getReference(rootNodeChild);
+                    }
                 }
-
-                postAdapter.notifyDataSetChanged();
             }
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
+
+    public void readPosts(){
+        //Toast.makeText(getActivity(), "reading Posts",
+        //        Toast.LENGTH_SHORT).show();
+
+        referenceToUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot2) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
+
+
     public  void fetchImages()
     {
 
@@ -208,6 +194,7 @@ mFirebaseAuth = FirebaseAuth.getInstance();
 
         // this listener will triggered once
         // with the value of the data at the location
+
         getImage.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -219,7 +206,7 @@ mFirebaseAuth = FirebaseAuth.getInstance();
 
                 // loading that data into rImage
                 // variable which is ImageViewll;
-               // images.add(photos);
+                // images.add(photos);
                 /*HelperAdapter helperAdapter = new HelperAdapter(mContext,images,username);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
                 recyclerView.setLayoutManager(linearLayoutManager);
@@ -250,6 +237,9 @@ mFirebaseAuth = FirebaseAuth.getInstance();
 
             }
         });
+
+
     }
+
 
 }

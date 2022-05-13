@@ -15,6 +15,10 @@ public class User {
         this.bio = bio;
     }
 
+    public User(String username){
+        this.username = username;
+    }
+
     public User() {
     }
 
