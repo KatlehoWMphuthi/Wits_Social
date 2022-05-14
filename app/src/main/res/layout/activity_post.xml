@@ -5,7 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostActivity">
+    tools:context=".CreatePost.PostActivity">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -72,7 +72,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/roundedcorner"
         android:text="Post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

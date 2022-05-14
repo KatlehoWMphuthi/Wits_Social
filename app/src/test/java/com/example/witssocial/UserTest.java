@@ -8,6 +8,8 @@ import org.junit.runners.JUnit4;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import com.example.witssocial.Model.User;
+
 
 @RunWith(JUnit4.class)
 
