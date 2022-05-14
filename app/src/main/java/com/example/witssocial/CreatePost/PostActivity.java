@@ -1,4 +1,4 @@
-package com.example.witssocial;
+package com.example.witssocial.CreatePost;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.witssocial.Model.User;
+import com.example.witssocial.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

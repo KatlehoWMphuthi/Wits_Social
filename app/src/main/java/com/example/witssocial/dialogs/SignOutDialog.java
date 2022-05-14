@@ -1,4 +1,4 @@
-package com.example.witssocial.SignOut;
+package com.example.witssocial.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;

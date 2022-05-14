@@ -1,4 +1,4 @@
-package com.example.witssocial;
+package com.example.witssocial.Search;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.witssocial.Model.User;
+import com.example.witssocial.R;
+import com.example.witssocial.Utils.UserAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

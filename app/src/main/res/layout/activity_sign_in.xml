@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:padding="24dp"
-    tools:context=".SignInActivity">
+    tools:context=".Authentication.SignInActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -43,7 +43,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/UserMail_layout_login"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="224dp"
@@ -60,7 +60,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Password_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -124,7 +124,6 @@
         android:layout_width="302dp"
         android:layout_height="53dp"
         android:layout_marginBottom="152dp"
-        android:background="@drawable/roundedcorner"
         android:onClick="registerPage"
         android:text="@string/button_text"
         android:textAllCaps="false"
@@ -147,7 +146,7 @@
         android:text="@string/new_user_si"
 
         android:textAppearance="@style/new_user_si"
-        android:textColor="@color/black"
+        android:textColor="@color/md_theme_light_onSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.976"

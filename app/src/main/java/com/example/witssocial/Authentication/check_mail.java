@@ -1,12 +1,13 @@
-package com.example.witssocial;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.witssocial.Authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.witssocial.R;
 
 public class check_mail extends AppCompatActivity {
     private Button openGmail;
