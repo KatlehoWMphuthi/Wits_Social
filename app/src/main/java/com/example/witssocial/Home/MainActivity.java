@@ -1,9 +1,12 @@
-package com.example.witssocial;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.witssocial.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.witssocial.R;
+import com.example.witssocial.WelcomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // implent splash screen
+        // implement splash screen
         Thread displayLogo = new Thread ()
         {
             public void run() {

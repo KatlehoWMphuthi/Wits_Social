@@ -1,4 +1,4 @@
-package com.example.witssocial;
+package com.example.witssocial.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.witssocial.CreatePost.PostActivity;
 import com.example.witssocial.More.MoreOptionsActivity;
+import com.example.witssocial.Notification.NotificationFragment;
 import com.example.witssocial.Profile.ProfileFragment;
+import com.example.witssocial.R;
+import com.example.witssocial.Search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {

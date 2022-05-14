@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".Home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar"
@@ -37,12 +37,12 @@
 
                 <TextView
                     android:id="@+id/textView2"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Newsfeed"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -60,17 +60,9 @@
 
 
         </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bar">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -78,9 +70,7 @@
                 android:id="@+id/recycler_view"
                 android:layout_below="@id/bar"/>
 
-        </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
 
     <!--    <ProgressBar-->
     <!--        android:id="@+id/progress_circular"-->

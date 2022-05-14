@@ -12,8 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.witssocial.R;
-import com.example.witssocial.SignOut.SignOutDialog;
 import com.example.witssocial.SignOut.SignOutFragment;
+import com.example.witssocial.dialogs.SignOutDialog;
 
 import java.util.ArrayList;
 import java.util.List;

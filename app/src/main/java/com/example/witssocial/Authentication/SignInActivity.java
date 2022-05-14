@@ -1,4 +1,4 @@
-package com.example.witssocial;
+package com.example.witssocial.Authentication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.witssocial.Home.HomeActivity;
+import com.example.witssocial.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -65,7 +67,7 @@ public class SignInActivity extends AppCompatActivity {
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignInActivity.this,ForgotPasswordActivity.class);
+                Intent intent = new Intent(SignInActivity.this, ForgotPasswordActivity.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
@@ -112,7 +114,7 @@ public class SignInActivity extends AppCompatActivity {
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         updateUI(user);
 
-                                        Intent intent = new Intent(SignInActivity.this,HomeActivity.class);
+                                        Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
                                         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
 
