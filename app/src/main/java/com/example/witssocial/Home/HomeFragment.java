@@ -1,6 +1,5 @@
 package com.example.witssocial.Home;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import com.example.witssocial.Model.Post;
 import com.example.witssocial.Profile.UserProfileActivity;
 import com.example.witssocial.R;
 import com.example.witssocial.Utils.PostAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,13 +30,10 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragmentActivity";
 
     DatabaseReference database;
-     ImageView profilePicture;
-  RecyclerView recyclerView;
-     PostAdapter postAdapter;
+    ImageView profilePicture;
+    RecyclerView recyclerView;
+    PostAdapter postAdapter;
     ArrayList<Post> list;
-
-    private FirebaseAuth mFirebaseAuth;
-    private static Context mContext;
 
 
     public HomeFragment() {
@@ -58,7 +53,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         profilePicture = view.findViewById(R.id.iv_home_profile_picture);
 
@@ -78,22 +73,22 @@ public class HomeFragment extends Fragment {
         postAdapter = new PostAdapter(getContext(), list);
         recyclerView.setAdapter(postAdapter);
 
-       database.addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot) {
-               for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                   Post post = dataSnapshot.getValue(Post.class);
-                   list.add(post);
-               }
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Post post = dataSnapshot.getValue(Post.class);
+                    list.add(post);
+                }
 
-               postAdapter.notifyDataSetChanged();
-           }
+                postAdapter.notifyDataSetChanged();
+            }
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-           }
-       });
+            }
+        });
 
         return view;
 
