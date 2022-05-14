@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view);
         database = FirebaseDatabase.getInstance().getReference("Posts");
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         list = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(), list);
