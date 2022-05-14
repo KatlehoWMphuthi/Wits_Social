@@ -38,7 +38,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.util.Random;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -59,7 +58,7 @@ public class PostActivity extends AppCompatActivity {
     // fetcing an image
     String imageUrl;
     FirebaseUser user;
-    String  userCaption;
+    String  userCaption,postkey;
 
 
 
@@ -86,7 +85,7 @@ public class PostActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.caption);
 
         Database = FirebaseDatabase.getInstance();
-        myRef = Database.getReference("User_post");
+        myRef = Database.getReference("Posts");
         users = Database.getReference("Users");
         user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -115,8 +114,7 @@ public class PostActivity extends AppCompatActivity {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference dbRef2 = myRef.child("name");
-                dbRef2.setValue(name);
+
                 uploadImage();
 
                 //Go to home fragment
@@ -161,11 +159,11 @@ public class PostActivity extends AppCompatActivity {
     private void uploadImage() {
 
         if (filePath != null) {
-            //postkey = myRef.push().getKey();
-            Random random = new Random();
+            postkey = myRef.push().getKey();
+            /*Random random = new Random();
 
-            int i = random.nextInt(6065 - 1065) + 1065;
-            DatabaseReference dbRef = Database.getReference("User_post" + Integer.toString(i));
+            int i = random.nextInt(6065 - 1065) + 1065;*/
+            DatabaseReference dbRef = myRef.child(postkey);
             StorageReference riversRef = storageReference.child("images/" + filePath.getLastPathSegment());
             uploadTask = riversRef.putFile(filePath);
             String name = user.getUid();
@@ -199,6 +197,8 @@ public class PostActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
 
                             imageUrl = task.getResult().toString();
+                            String uniqueid = user.getUid();
+                            DatabaseReference userid = dbRef.child("userid");
                             DatabaseReference imageRef = dbRef.child("image");
                             DatabaseReference nameRef = dbRef.child("username");
                             DatabaseReference captionRef = dbRef.child("Caption");
@@ -207,6 +207,7 @@ public class PostActivity extends AppCompatActivity {
                             //Toast.makeText(MainActivity.this,"The download"+imageUrl,Toast.LENGTH_LONG).show();
                             imageRef.setValue(imageUrl);
                             nameRef.setValue(username);
+                            userid.setValue(uniqueid);
                         }
 
                     });

@@ -1,67 +1,36 @@
 package com.example.witssocial;
 
-import static org.junit.Assert.*;
+import static com.google.common.truth.Truth.assertThat;
+
+import com.example.witssocial.Model.Post;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import static com.google.common.truth.Truth.assertThat;
 
 @RunWith(JUnit4.class)
 public class PostTest {
     String a,b,c,d;
 
-    Post postTest = new Post("postid","postimage","caption","publisher");
+    Post postTest = new Post("postid","postimage","caption");
 
     @Test
-    public void getPostid() {
-        a = "postid";
-        String b = postTest.getPostid();
 
-        assertThat(b).isEqualTo(a);
-    }
-
-    @Test
-    public void setPostid() {
-        String post = "postid";
-        new Post(a,b,c,d).setPostid(post);
-    }
-
-    @Test
-    public void getPostimage() {
-        String image  = postTest.getPostimage();
+    public void getImage(){
+        String image = postTest.getImage();
         assertThat(image).isNotEmpty();
     }
 
     @Test
-    public void setPostimage() {
-        String post = "postimage";
-        new Post(a,b,c,d).setPostimage(post);
+    public void getCaption(){
+        String caption  = postTest.getCaption();
+        assertThat(caption).isNotEmpty();
     }
 
     @Test
-    public void getCaption() {
-        String caption = postTest.getCaption();
-        assertThat(caption).isEqualTo("caption");
-    }
+    public void getUsername() {
+        String name = postTest.getUsername();
 
-    @Test
-    public void setDescription() {
-        String desc = "Description";
-        new Post(a,b,c,d).setDescription(desc);
-
-        String caption = "Description";
-
-        assertThat(caption).isEqualTo("Description");
-    }
-
-    @Test
-    public void getPublisher() {
-        new Post(a,b,c,d);
-    }
-
-    @Test
-    public void setPublisher() {
-        new Post(a,b,c,d);
+        assertThat(name).isNotEmpty();
     }
 }
