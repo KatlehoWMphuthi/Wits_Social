@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,10 +32,11 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference referenceToUser,users,reference1;
     FirebaseUser user;
+    String postKey;
 
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
-    private List<Post> postLists;
+    private ArrayList<Post> postLists;
 
     private  List<String> allUsers;
 
@@ -73,7 +75,7 @@ public class HomeFragment extends Fragment {
         //viewBinding = FragmentHomeBinding.inflate(getLayoutInflater());
 
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
-
+        database = FirebaseDatabase.getInstance();
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -81,9 +83,11 @@ public class HomeFragment extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         postLists = new ArrayList<>();
-        postAdapter = new PostAdapter(getContext(),postLists);
 
-       // readPosts();
+        postAdapter = new PostAdapter(getContext(),postLists);
+        readPosts();
+
+
         return view;
 
     }
@@ -159,11 +163,39 @@ public class HomeFragment extends Fragment {
     public void readPosts(){
         //Toast.makeText(getActivity(), "reading Posts",
         //        Toast.LENGTH_SHORT).show();
+        ArrayList<Post> posted = new ArrayList<>();
+        DatabaseReference postsRef= database.getReference("Posts");
 
-        referenceToUser.addValueEventListener(new ValueEventListener() {
+        postsRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot2) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot questionSnapshot : snapshot.getChildren()) {
+                    // key to the posts
+                    postKey = questionSnapshot.getKey();
+                    Toast.makeText(getActivity(),postKey,Toast.LENGTH_LONG).show();
+                    DatabaseReference postid = postsRef.child(postKey);
+                    postid.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String image = snapshot.child("image").getValue(String.class);
+                            Toast.makeText(getActivity(),image,Toast.LENGTH_LONG).show();
+                            String caption = snapshot.child("Caption").getValue(String.class);
+                            String username = snapshot.child("username").getValue(String.class);
 
+                            // All the required information is here:  please correct what must I do here.
+                            Post user_post = new Post(image,caption,username);
+                            posted.add(user_post);
+                            postLists.add(user_post);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+                }
             }
 
             @Override
@@ -171,7 +203,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
     }
 
 
