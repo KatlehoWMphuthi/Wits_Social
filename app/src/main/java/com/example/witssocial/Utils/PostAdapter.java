@@ -57,6 +57,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
            username = itemView.findViewById(R.id.username);
            caption = itemView.findViewById(R.id.caption);
            post_image = itemView.findViewById(R.id.post_image);
+           post_image.setClipToOutline(true);
        }
    }
 }

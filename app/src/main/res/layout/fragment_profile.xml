@@ -151,7 +151,6 @@
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:id="@+id/last_bar"
-                android:background="@drawable/button_background"
                 android:orientation="horizontal">
 
                 <ImageButton

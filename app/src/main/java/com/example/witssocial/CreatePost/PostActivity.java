@@ -38,7 +38,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.util.Random;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -100,7 +99,7 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imageView.setImageBitmap(null);
-                imageView.setBackgroundResource(R.drawable.photo);
+                imageView.setBackgroundResource(R.drawable.ic_profile_photo);
             }
         });
 

@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/photo" />
+            android:background="@drawable/ic_add_image" />
 
 
     </FrameLayout>
@@ -87,7 +87,7 @@
         android:backgroundTint="#80FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
-        app:srcCompat="@drawable/clear" />
+        app:srcCompat="@drawable/ic_clear_x" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier2"
