@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item android:id="@+id/logout_item"
-    android:icon="@drawable/ic_baseline_more_vert_24"
+    android:icon="@drawable/ic_more_options"
     android:title="Signout"
     app:showAsAction="never"/>
 </menu>
