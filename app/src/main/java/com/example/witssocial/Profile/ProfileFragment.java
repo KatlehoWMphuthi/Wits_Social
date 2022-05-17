@@ -14,6 +14,8 @@ import androidx.fragment.app.FragmentResultListener;
 import com.example.witssocial.R;
 
 public class ProfileFragment extends Fragment {
+    TextView profilename,biography,fullName;
+    ImageView profilepic,picture;
 
 
     @Override
@@ -23,28 +25,16 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        getParentFragmentManager().setFragmentResultListener("data_from_home_fragment", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
 
-                //Show the data from the home fragment
-                String data = result.getString("Username");
-                TextView textView = view.findViewById(R.id.tv_bio);
-                textView.setText(data);
+        profilepic = view.findViewById(R.id.image_profile);
+        profilename = view.findViewById(R.id.username);
+        biography = view.findViewById(R.id.bio);
+        fullName = view.findViewById(R.id.fullname);
+        picture = view.findViewById(R.id.imageView4);
 
+        //Do something from here
 
-            }
-        });
 
         return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        //Toolbar myToolbar = view.findViewById(R.id.toolbar);
-       // myToolbar.setNavigationIcon(R.drawable.ic_clear);
-
     }
 }
