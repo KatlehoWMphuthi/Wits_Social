@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WitsSocial">
         <activity
+            android:name=".Profile.ProfileActivity"
+            android:parentActivityName=".Home.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Profile.UserProfileActivity"
             android:exported="true"
-            android:parentActivityName=".Home.HomeActivity"/>
+            android:parentActivityName=".Home.HomeActivity" />
         <activity
             android:name=".More.MoreOptionsActivity"
             android:exported="true"
