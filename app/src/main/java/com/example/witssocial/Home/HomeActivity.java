@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import com.example.witssocial.CreatePost.PostActivity;
 import com.example.witssocial.More.MoreOptionsActivity;
 import com.example.witssocial.Notification.NotificationFragment;
-import com.example.witssocial.Profile.ProfileFragment;
 import com.example.witssocial.R;
 import com.example.witssocial.Search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -79,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
 
             getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+           // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
             bottomNavigationView.setSelectedItemId(R.id.nav_more);
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();

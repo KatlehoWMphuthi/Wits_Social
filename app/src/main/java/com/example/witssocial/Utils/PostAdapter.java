@@ -17,20 +17,21 @@ import com.example.witssocial.R;
 import java.util.ArrayList;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
-
+    private final PostRecyclerViewInterface postRecyclerViewInterface;
     Context context;
     ArrayList<Post> list;
 
-    public PostAdapter(Context context, ArrayList<Post> list) {
+    public PostAdapter(Context context, ArrayList<Post> list, PostRecyclerViewInterface postRecyclerViewInterface) {
         this.context = context;
         this.list = list;
+        this.postRecyclerViewInterface = postRecyclerViewInterface;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.post_item, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, postRecyclerViewInterface);
     }
 
     @Override
@@ -51,13 +52,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         TextView username, caption;
         ImageView post_image;
 
-       public ViewHolder(@NonNull View itemView) {
+       public ViewHolder(@NonNull View itemView, PostRecyclerViewInterface postRecyclerViewInterface) {
            super(itemView);
 
            username = itemView.findViewById(R.id.username);
            caption = itemView.findViewById(R.id.caption);
            post_image = itemView.findViewById(R.id.post_image);
            post_image.setClipToOutline(true);
+
+
+           //Attach onclick lister to the item view
+           username.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   if(postRecyclerViewInterface != null){
+                        int position = getBindingAdapterPosition();
+
+                        if(position != RecyclerView.NO_POSITION){
+                            postRecyclerViewInterface.onUsernameClick(position);
+                        }
+                   }
+               }
+           });
        }
    }
 }
