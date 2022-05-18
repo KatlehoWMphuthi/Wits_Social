@@ -14,4 +14,8 @@ public class Validator {
         }
     }
 
+    public int add(){
+        return 2;
+    }
+
 }

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Frame 16 -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frame_16"
+    android:layout_width="328dp"
+    android:layout_height="56dp"
+    android:layout_alignParentLeft="true"
+    android:layout_marginLeft="16dp"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="296dp"
+    android:background="@drawable/ic_person"
+    />
+
+
+    <!-- drawable/frame_16.xml -->
+<vector
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:aapt="http://schemas.android.com/aapt"
+android:width="328dp"
+android:height="56dp"
+android:viewportWidth="328"
+android:viewportHeight="56"
+    >
+
+<group>
+
+    <clip-path
+        android:pathData="M8 0H320C324.418 0 328 3.58172 328 8V48C328 52.4183 324.418 56 320 56H8C3.58172 56 0 52.4183 0 48V8C0 3.58172 3.58172 0 8 0Z"
+        />
+
+    <path
+        android:pathData="M0 0V56H328V0"
+        android:fillColor="#F7F3F3"
+        />
+
+</group>
+
+</vector>
+
+
+
+    <!-- 👤 Avatar -->
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/avatar"
+android:layout_width="116dp"
+android:layout_height="0dp"
+android:layout_alignParentLeft="true"
+android:layout_marginLeft="119dp"
+android:layout_alignParentTop="true"
+android:layout_alignParentBottom="true"
+android:background="@drawable/avatar"
+    />
+
+
+    <!-- drawable/avatar.xml -->
+<vector
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:aapt="http://schemas.android.com/aapt"
+android:width="116dp"
+android:height="116dp"
+android:viewportWidth="116"
+android:viewportHeight="116"
+    >
+
+<group>
+
+    <clip-path
+        android:pathData="M0 0H116V116H0V0Z"
+        />
+
+    <path
+        android:pathData="M0 0V116H116V0"
+        android:fillColor="#FFFFFF"
+        />
+
+</group>
+
+</vector>
+
+
+
+    <!-- Frame 18 -->
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/frame_18"
+android:layout_width="105dp"
+android:layout_height="35dp"
+android:layout_alignParentLeft="true"
+android:layout_marginLeft="120dp"
+android:layout_alignParentTop="true"
+android:layout_marginTop="177dp"
+android:background="@drawable/frame_18"
+    />
+
+
+    <!-- drawable/frame_18.xml -->
+<vector
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:aapt="http://schemas.android.com/aapt"
+android:width="105dp"
+android:height="35dp"
+android:viewportWidth="105"
+android:viewportHeight="35"
+    >
+
+<group>
+
+    <clip-path
+        android:pathData="M0 0H105V35H0V0Z"
+        />
+
+</group>
+
+</vector>
+
+
+
+    <!-- Frame 17 -->
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/frame_17"
+android:layout_width="328dp"
+android:layout_height="48dp"
+android:layout_alignParentLeft="true"
+android:layout_marginLeft="16dp"
+android:layout_alignParentTop="true"
+android:layout_marginTop="228dp"
+android:background="@drawable/frame_17"
+    />
+
+
+    <!-- drawable/frame_17.xml -->
+<vector
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:aapt="http://schemas.android.com/aapt"
+android:width="328dp"
+android:height="48dp"
+android:viewportWidth="328"
+android:viewportHeight="48"
+    >
+
+<group>
+
+    <clip-path
+        android:pathData="M0 0H328V48H0V0Z"
+        />
+
+</group>
+
+</vector>
+
+
+
+    <!-- 1. Top /A. Regular/a. Flat -->
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/top_a_regul"
+android:layout_width="361dp"
+android:layout_height="56dp"
+android:layout_alignParentLeft="true"
+android:layout_alignParentTop="true"
+android:layout_marginTop="-24dp"
+android:background="@drawable/top_a_regul"
+    />
+
+
+    <!-- drawable/top_a_regul.xml -->
+<vector
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:aapt="http://schemas.android.com/aapt"
+android:width="361dp"
+android:height="56dp"
+android:viewportWidth="361"
+android:viewportHeight="56"
+    >
+
+<group>
+
+    <clip-path
+        android:pathData="M0 0H361V56H0V0Z"
+        />
+
+    <path
+        android:pathData="M0 0V56H361V0"
+        android:fillColor="#FFFFFF"
+        />
+
+</group>
+
+</vector>
+

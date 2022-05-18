@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".check_mail">
 
     <TextView
@@ -16,100 +17,97 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="148dp"
         android:layout_marginEnd="69dp"
-        android:layout_marginBottom="464dp"
         android:gravity="top"
         android:lineSpacingExtra="-5sp"
         android:text="@string/checkmail"
+        android:textAlignment="center"
         android:textAppearance="@style/create_an_a"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/pablo_283_1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintVertical_bias="0.698"
+        tools:ignore="RtlCompat"/>
 
     <View
         android:id="@+id/pablo_283_1"
-        android:layout_width="189dp"
-        android:layout_height="105dp"
+        android:layout_width="177dp"
+        android:layout_height="107dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="86dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="85dp"
-        android:layout_marginBottom="335dp"
         android:background="@drawable/envelope"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/welcoming"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783" />
+        app:layout_constraintVertical_bias="0.662" />
 
     <TextView
         android:id="@+id/welcoming"
-        android:layout_width="360dp"
-        android:layout_height="67dp"
+        android:layout_width="318dp"
+        android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="26dp"
         android:layout_marginTop="329dp"
         android:layout_marginEnd="26dp"
-        android:layout_marginBottom="228dp"
         android:gravity="top"
         android:lineSpacingExtra="5sp"
         android:text="@string/we_have_sen"
         android:textAlignment="center"
         android:textAppearance="@style/welcoming"
         android:translationY="-2.62sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/CheckMailApp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739"
-        tools:ignore="RtlCompat"/>
+        app:layout_constraintVertical_bias="0.764"
+        tools:ignore="RtlCompat" />
 
     <Button
         android:id="@+id/CheckMailApp"
-        android:layout_width="328dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="456dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="136dp"
+        android:layout_width="313dp"
+        android:layout_height="52dp"
         android:background="@drawable/roundedcorner"
         android:text="@string/openmail"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.856" />
+        app:layout_constraintVertical_bias="0.598" />
 
     <TextView
         android:id="@+id/nomail"
-        android:layout_width="147dp"
-        android:layout_height="25dp"
+        android:layout_width="146dp"
+        android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="4dp"
         android:gravity="center_horizontal|center_vertical"
         android:lineSpacingExtra="4sp"
         android:text="@string/nomail"
         android:textAppearance="@style/new_user_si"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintHorizontal_bias="0.276"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94" />
+        app:layout_constraintTop_toBottomOf="@+id/CheckMailApp"
+        app:layout_constraintVertical_bias="0.064" />
 
     <TextView
         android:id="@+id/resendmail"
-        android:layout_width="104dp"
-        android:layout_height="25dp"
+        android:layout_width="105dp"
+        android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
@@ -120,25 +118,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94" />
+        app:layout_constraintTop_toBottomOf="@+id/CheckMailApp"
+        app:layout_constraintVertical_bias="0.064" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="122dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="125dp"
+        android:layout_width="121dp"
+        android:layout_height="78dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="125dp"
-        android:layout_marginBottom="452dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/checkmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/witssociallogo2" />
 
 
