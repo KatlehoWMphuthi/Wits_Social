@@ -25,13 +25,13 @@
         android:layout_marginStart="5dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="username"
             android:id="@+id/username"
+            android:layout_width="47dp"
+            android:layout_height="wrap_content"
             android:maxLines="1"
-            android:textStyle="bold"
-            android:textColor="@color/material_on_surface_emphasis_high_type"/>
+            android:text="username"
+            android:textColor="@color/material_on_surface_emphasis_high_type"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

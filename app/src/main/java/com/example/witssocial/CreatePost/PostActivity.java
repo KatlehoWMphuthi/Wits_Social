@@ -101,11 +101,7 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imageView.setImageBitmap(null);
-
                 imageView.setBackgroundResource(R.drawable.ic_add_image);
-
-                imageView.setBackgroundResource(R.drawable.ic_clear_x);
-
             }
         });
 
