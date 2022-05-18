@@ -1,6 +1,7 @@
 package com.example.witssocial.Utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.witssocial.Model.Post;
 import com.example.witssocial.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -20,6 +28,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     private final PostRecyclerViewInterface postRecyclerViewInterface;
     Context context;
     ArrayList<Post> list;
+
+    private FirebaseUser firebaseUser;
 
     public PostAdapter(Context context, ArrayList<Post> list, PostRecyclerViewInterface postRecyclerViewInterface) {
         this.context = context;
@@ -40,6 +50,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         holder.username.setText(post.getUsername());
         holder.caption.setText(post.getCaption());
         Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
+
     }
 
     @Override
@@ -49,8 +60,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView username, caption;
-        ImageView post_image;
+        TextView username, caption, likes;
+        ImageView post_image, like;
 
        public ViewHolder(@NonNull View itemView, PostRecyclerViewInterface postRecyclerViewInterface) {
            super(itemView);
@@ -59,6 +70,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
            caption = itemView.findViewById(R.id.caption);
            post_image = itemView.findViewById(R.id.post_image);
            post_image.setClipToOutline(true);
+           like = itemView.findViewById(R.id.like);
+           likes = itemView.findViewById(R.id.likes);
 
 
            //Attach onclick lister to the item view
@@ -76,4 +89,5 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
            });
        }
    }
+
 }
