@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.witssocial.Model.Post;
+import com.example.witssocial.Profile.ProfileActivity;
 import com.example.witssocial.Profile.UserProfileActivity;
 import com.example.witssocial.R;
 import com.example.witssocial.Utils.PostAdapter;
+import com.example.witssocial.Utils.PostRecyclerViewInterface;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements PostRecyclerViewInterface {
     private static final String TAG = "HomeFragmentActivity";
 
     DatabaseReference database;
@@ -68,9 +70,13 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         database = FirebaseDatabase.getInstance().getReference("Posts");
         recyclerView.setHasFixedSize(false);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
         list = new ArrayList<>();
-        postAdapter = new PostAdapter(getContext(), list);
+        postAdapter = new PostAdapter(getContext(), list, this);
         recyclerView.setAdapter(postAdapter);
 
         database.addValueEventListener(new ValueEventListener() {
@@ -92,6 +98,20 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
+
+    }
+
+    /*
+     Define on click action to go to a users profile
+     */
+    @Override
+    public void onUsernameClick(int position) {
+
+
+        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+        intent.putExtra("Username", list.get(position).getUsername());
+
+        startActivity(intent);
 
     }
 }

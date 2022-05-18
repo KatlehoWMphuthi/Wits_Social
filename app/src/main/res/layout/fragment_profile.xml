@@ -103,14 +103,6 @@
 
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/edit_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:text="edit profile"
-                        />
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -136,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:id="@+id/bio"
+                    android:id="@+id/tv_bio"
                     android:text="@string/username"
                     android:maxLines="5"
                     android:textColor="@color/material_on_surface_emphasis_high_type"/>

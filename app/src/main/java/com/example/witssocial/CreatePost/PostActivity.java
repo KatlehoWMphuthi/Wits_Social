@@ -34,10 +34,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -99,7 +101,11 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imageView.setImageBitmap(null);
+
                 imageView.setBackgroundResource(R.drawable.ic_add_image);
+
+                imageView.setBackgroundResource(R.drawable.ic_clear_x);
+
             }
         });
 
@@ -159,10 +165,8 @@ public class PostActivity extends AppCompatActivity {
     private void uploadImage() {
 
         if (filePath != null) {
-            postkey = myRef.push().getKey();
-            /*Random random = new Random();
-
-            int i = random.nextInt(6065 - 1065) + 1065;*/
+            postkey = myRef.push().getKey(); //gets the unique key
+            
             DatabaseReference dbRef = myRef.child(postkey);
             StorageReference riversRef = storageReference.child("images/" + filePath.getLastPathSegment());
             uploadTask = riversRef.putFile(filePath);
@@ -191,29 +195,53 @@ public class PostActivity extends AppCompatActivity {
                     //Display toast
                    Toast.makeText(PostActivity.this, "picture successfully posted", Toast.LENGTH_LONG).show();
 
-
+                   //gets the download link from firebase storage
                     riversRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
 
                             imageUrl = task.getResult().toString();
                             String uniqueid = user.getUid();
+
+
                             DatabaseReference userid = dbRef.child("userid");
                             DatabaseReference imageRef = dbRef.child("image");
                             DatabaseReference nameRef = dbRef.child("username");
                             DatabaseReference captionRef = dbRef.child("Caption");
+
                             userCaption = editText.getText().toString();
                             captionRef.setValue(userCaption);
                             //Toast.makeText(MainActivity.this,"The download"+imageUrl,Toast.LENGTH_LONG).show();
                             imageRef.setValue(imageUrl);
                             nameRef.setValue(username);
                             userid.setValue(uniqueid);
+
                         }
 
                     });
 
+                    // This gets timestamp: stored as utc
+                    riversRef.getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
+                        @Override
+                        public void onSuccess(StorageMetadata storageMetadata) {
+                            long time = storageMetadata.getCreationTimeMillis();
+                            //String  timestamp = Long.toString(time);
+                            DatabaseReference timeStamp = dbRef.child("time");
+                            timeStamp.setValue(time); //stored as utc
+                        }
+                    });
 
                     //Log.d(TAG,"Upload Successful");
+                }
+            });
+
+            riversRef.getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
+                @Override
+                public void onSuccess(@NonNull StorageMetadata storageMetadata) {
+                    long time = storageMetadata.getCreationTimeMillis();
+                    String timestamp = Long.toString(time);
+                    DatabaseReference timeStamp = dbRef.child("timestamp");
+                    timeStamp.setValue(timestamp);
                 }
             });
         }
