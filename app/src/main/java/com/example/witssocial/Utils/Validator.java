@@ -1,4 +1,4 @@
-package com.example.witssocial;
+package com.example.witssocial.Utils;
 
 public class Validator {
     String a;

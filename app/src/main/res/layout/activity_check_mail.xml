@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".check_mail">
+    tools:context=".Authentication.check_mail">
 
     <TextView
         android:id="@+id/checkmail"
@@ -17,7 +17,6 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="148dp"
         android:layout_marginEnd="69dp"
-        android:gravity="top"
         android:lineSpacingExtra="-5sp"
         android:text="@string/checkmail"
         android:textAlignment="center"
@@ -28,8 +27,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698"
-        tools:ignore="RtlCompat"/>
+        app:layout_constraintVertical_bias="0.698" />
 
     <View
         android:id="@+id/pablo_283_1"
@@ -75,15 +73,12 @@
         android:id="@+id/CheckMailApp"
         android:layout_width="313dp"
         android:layout_height="52dp"
-        android:background="@drawable/roundedcorner"
+        android:layout_marginTop="64dp"
         android:text="@string/openmail"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598" />
+        app:layout_constraintTop_toBottomOf="@+id/welcoming" />
 
     <TextView
         android:id="@+id/nomail"
@@ -118,7 +113,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintHorizontal_bias="0.76"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CheckMailApp"
         app:layout_constraintVertical_bias="0.064" />

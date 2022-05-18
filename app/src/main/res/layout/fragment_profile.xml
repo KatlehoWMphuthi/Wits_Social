@@ -1,194 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile.ProfileFragment">
 
-<!-- Frame 16 -->
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/frame_16"
-    android:layout_width="328dp"
-    android:layout_height="56dp"
-    android:layout_alignParentLeft="true"
-    android:layout_marginLeft="16dp"
-    android:layout_alignParentTop="true"
-    android:layout_marginTop="296dp"
-    android:background="@drawable/ic_person"
-    />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/windowBackground">
 
-    <!-- drawable/frame_16.xml -->
-<vector
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:aapt="http://schemas.android.com/aapt"
-android:width="328dp"
-android:height="56dp"
-android:viewportWidth="328"
-android:viewportHeight="56"
-    >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-<group>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:maxLines="1"
+                    android:textColor="@color/material_on_surface_emphasis_high_type"
+                    android:textStyle="bold"
+                    android:id="@+id/username"/>
 
-    <clip-path
-        android:pathData="M8 0H320C324.418 0 328 3.58172 328 8V48C328 52.4183 324.418 56 320 56H8C3.58172 56 0 52.4183 0 48V8C0 3.58172 3.58172 0 8 0Z"
-        />
+                <ImageView
+                    android:id="@+id/options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_more" />
 
-    <path
-        android:pathData="M0 0V56H328V0"
-        android:fillColor="#F7F3F3"
-        />
+            </RelativeLayout>
 
-</group>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
-</vector>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bar">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/top_bar"
+                android:padding="16dp"
+                android:orientation="horizontal">
 
-    <!-- 👤 Avatar -->
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/avatar"
-android:layout_width="116dp"
-android:layout_height="0dp"
-android:layout_alignParentLeft="true"
-android:layout_marginLeft="119dp"
-android:layout_alignParentTop="true"
-android:layout_alignParentBottom="true"
-android:background="@drawable/avatar"
-    />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
+                    android:id="@+id/image_profile"
+                    android:background="@drawable/ic_person"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="4dp"
+                    android:layout_height="95dp">
 
-    <!-- drawable/avatar.xml -->
-<vector
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:aapt="http://schemas.android.com/aapt"
-android:width="116dp"
-android:height="116dp"
-android:viewportWidth="116"
-android:viewportHeight="116"
-    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-<group>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-    <clip-path
-        android:pathData="M0 0H116V116H0V0Z"
-        />
+                            <TextView
+                                android:id="@+id/posts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="1"
+                                android:textColor="@color/material_on_surface_emphasis_high_type"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
-    <path
-        android:pathData="M0 0V116H116V0"
-        android:fillColor="#FFFFFF"
-        />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="posts"/>
 
-</group>
+                        </LinearLayout>
 
-</vector>
+                    </LinearLayout>
 
+                </LinearLayout>
 
+            </LinearLayout>
 
-    <!-- Frame 18 -->
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/frame_18"
-android:layout_width="105dp"
-android:layout_height="35dp"
-android:layout_alignParentLeft="true"
-android:layout_marginLeft="120dp"
-android:layout_alignParentTop="true"
-android:layout_marginTop="177dp"
-android:background="@drawable/frame_18"
-    />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:id="@+id/mid_bar"
+                android:layout_below="@id/top_bar"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:id="@+id/fullname"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/material_on_surface_emphasis_high_type"/>
 
-    <!-- drawable/frame_18.xml -->
-<vector
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:aapt="http://schemas.android.com/aapt"
-android:width="105dp"
-android:height="35dp"
-android:viewportWidth="105"
-android:viewportHeight="35"
-    >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tv_bio"
+                    android:text="@string/username"
+                    android:maxLines="5"
+                    android:textColor="@color/material_on_surface_emphasis_high_type"/>
 
-<group>
+            </LinearLayout>
 
-    <clip-path
-        android:pathData="M0 0H105V35H0V0Z"
-        />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mid_bar"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="-5dp"
+                android:layout_marginRight="-5dp"
+                android:id="@+id/last_bar"
+                android:orientation="horizontal">
 
-</group>
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/my_fotos"
+                    android:src="@drawable/ic_my_pictures"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_height="wrap_content" />
 
-</vector>
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/saved_fotos"
+                    android:src="@drawable/ic_save"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/buttonBarButtonStyle"/>
 
+            </LinearLayout>
 
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:src="@tools:sample/avatars" />
 
-    <!-- Frame 17 -->
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/frame_17"
-android:layout_width="328dp"
-android:layout_height="48dp"
-android:layout_alignParentLeft="true"
-android:layout_marginLeft="16dp"
-android:layout_alignParentTop="true"
-android:layout_marginTop="228dp"
-android:background="@drawable/frame_17"
-    />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
 
+        </LinearLayout>
 
-    <!-- drawable/frame_17.xml -->
-<vector
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:aapt="http://schemas.android.com/aapt"
-android:width="328dp"
-android:height="48dp"
-android:viewportWidth="328"
-android:viewportHeight="48"
-    >
+    </ScrollView>
 
-<group>
-
-    <clip-path
-        android:pathData="M0 0H328V48H0V0Z"
-        />
-
-</group>
-
-</vector>
-
-
-
-    <!-- 1. Top /A. Regular/a. Flat -->
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/top_a_regul"
-android:layout_width="361dp"
-android:layout_height="56dp"
-android:layout_alignParentLeft="true"
-android:layout_alignParentTop="true"
-android:layout_marginTop="-24dp"
-android:background="@drawable/top_a_regul"
-    />
-
-
-    <!-- drawable/top_a_regul.xml -->
-<vector
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:aapt="http://schemas.android.com/aapt"
-android:width="361dp"
-android:height="56dp"
-android:viewportWidth="361"
-android:viewportHeight="56"
-    >
-
-<group>
-
-    <clip-path
-        android:pathData="M0 0H361V56H0V0Z"
-        />
-
-    <path
-        android:pathData="M0 0V56H361V0"
-        android:fillColor="#FFFFFF"
-        />
-
-</group>
-
-</vector>
-
+</RelativeLayout>

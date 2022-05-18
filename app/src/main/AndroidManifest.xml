@@ -13,31 +13,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WitsSocial">
         <activity
-            android:name=".activity_profile"
+            android:name=".Profile.ProfileActivity"
+            android:parentActivityName=".Home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".check_mail"
-            android:exported="false"
+            android:name=".Profile.UserProfileActivity"
+            android:exported="true"
+            android:parentActivityName=".Home.HomeActivity" />
+        <activity
+            android:name=".More.MoreOptionsActivity"
+            android:exported="true"
+            android:parentActivityName=".Home.HomeActivity" />
+        <activity
+            android:name=".CreatePost.PostActivity"
+            android:exported="true"
+            android:parentActivityName=".Home.HomeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Authentication.check_mail"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="false"
+            android:name=".Authentication.ForgotPasswordActivity"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="false"
+            android:name=".Home.HomeActivity"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".Authentication.SignInActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Authentication.SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Home.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

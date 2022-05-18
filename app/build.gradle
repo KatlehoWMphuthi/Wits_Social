@@ -10,6 +10,10 @@ jacoco {
 }
 
 android {
+    buildFeatures {
+        viewBinding true
+    }
+
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
@@ -40,6 +44,10 @@ android {
 }
 
 dependencies {
+    def fragment_version = "1.4.1"
+
+    // Java language implementation
+    implementation "androidx.fragment:fragment:$fragment_version"
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
 //    material  design
@@ -56,6 +64,9 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.6.0-alpha01"
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
     implementation 'com.google.firebase:firebase-analytics'
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 
 //    Firebase
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
@@ -83,7 +94,6 @@ dependencies {
 
     //adding circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
 
 }
 
