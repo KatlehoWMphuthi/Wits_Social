@@ -14,6 +14,7 @@ These are software tools used to build the application:
 - [Android Studio](https://developer.android.com/studio) (Front End)
 - [Firebase](https://firebase.google.com/) (Backend)
 - [Material Design](https://material.io/develop/android) (user interface)
+- [Figma](https://figma.com)
 
 ## Features:
 This section will talk about the features implemented thus far:
