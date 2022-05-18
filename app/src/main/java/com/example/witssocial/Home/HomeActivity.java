@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Bundle intent = getIntent().getExtras();
+        /*Bundle intent = getIntent().getExtras();
         if (intent != null) {
             String profileId = intent.getString("publisherId");
 
@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.nav_profile);
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new HomeFragment()).commit();
-        }
+        }*/
     }
 
 }
