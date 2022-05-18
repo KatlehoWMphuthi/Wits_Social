@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,7 +29,7 @@ public class ProfileFragment extends Fragment {
 
         profilepic = view.findViewById(R.id.image_profile);
         profilename = view.findViewById(R.id.username);
-        biography = view.findViewById(R.id.bio);
+        //biography = view.findViewById(R.id.bio);
         fullName = view.findViewById(R.id.fullname);
         picture = view.findViewById(R.id.imageView4);
 
