@@ -63,7 +63,16 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-                startActivity(intent);
+               startActivity(intent);
+
+                //Open user Profile Fragment
+                /*
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragment_container, new UserProfileFragment());
+                transaction.commit();
+                */
+
             }
         });
 

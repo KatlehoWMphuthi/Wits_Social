@@ -77,6 +77,10 @@ public class SignUpActivity extends AppCompatActivity {
                 String  studentNo= student_number.getText().toString() + "@students.wits.ac.za";
                 String name = name_SignUp.getText().toString();
                 String password = password_SignUp.getText().toString();
+                String profile_photo = "";
+                String bio = "";
+
+                //Other User Settings
 
                 // store the returned value of the dedicated function which checks
                 // whether the entered data is valid or if any fields are left blank.
@@ -90,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
                     loadBar.show();
                     loadBar.setCancelable(false);
 
-                    registerAccount(name,studentNo, password);
+                    registerAccount(name,studentNo, password,profile_photo, bio);
                 }
 
                 //signUpUser(studentNo,name,password);
@@ -130,7 +134,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-    private void signUpUser(final String studentNo,final String name,final String password) {
+    private void signUpUser(final String studentNo,final String name,final String password, final String profilePhoto, final String bio) {
 
 
 
@@ -160,11 +164,11 @@ public class SignUpActivity extends AppCompatActivity {
             loadBar.show();
             loadBar.setCancelable(false);
 
-            registerAccount(name,studentNo, password);
+            registerAccount(name,studentNo, password, profilePhoto, bio);
         }
     }
 
-    private void registerAccount(String name, String email, String password)
+    private void registerAccount(String name, String email, String password, String profilePhoto, String bio)
     {
         mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -174,6 +178,9 @@ public class SignUpActivity extends AppCompatActivity {
                         User_credential.put("email", email);
                         User_credential.put("password",  password);
                         User_credential.put("username", name);
+                        User_credential.put("profile_photo", profilePhoto);
+                        User_credential.put("bio", bio);
+
 
                         User_credential.put("id", mAuth.getCurrentUser().getUid());
                         RootDatabaseReference.child(mAuth.getCurrentUser().getUid()).setValue(User_credential)
