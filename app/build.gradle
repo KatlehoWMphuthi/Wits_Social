@@ -46,6 +46,9 @@ android {
 dependencies {
     def fragment_version = "1.4.1"
 
+    //picasso Image loader
+    implementation 'com.squareup.picasso:picasso:2.8'
+
     // Java language implementation
     implementation "androidx.fragment:fragment:$fragment_version"
 
