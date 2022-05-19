@@ -3,14 +3,24 @@ package com.example.witssocial.Model;
 public class User {
     private String id;
     private String username;
-    //private String fullname;
+    private String fullname;
     private String imageurl;
     private String bio;
+
+    //Social Links
+    /*
+    private String facebook;
+    private  String instagram;
+    private  String linkedin;
+    private  String twitter;
+    private String website;
+    */
+
 
     public User(String id, String username, String fullname, String imageurl, String bio) {
         this.id = id;
         this.username = username;
-        //this.fullname = fullname;
+        this.fullname = fullname;
         this.imageurl = imageurl;
         this.bio = bio;
     }
@@ -38,13 +48,13 @@ public class User {
         this.username = username;
     }
 
-    /*public String getFullname() {
+    public String getFullname() {
         return fullname;
     }
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
-    }*/
+    }
 
     public String getImageurl() {
         return imageurl;
