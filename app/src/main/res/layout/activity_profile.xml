@@ -43,6 +43,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
 
+    <Button
+        android:id="@+id/btn_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="24dp"
+        android:text="Follow"
+        app:layout_constraintBottom_toTopOf="@+id/showbio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/showusername"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/showbio"
         android:layout_width="match_parent"
