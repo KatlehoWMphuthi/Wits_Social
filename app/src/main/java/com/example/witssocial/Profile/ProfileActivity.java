@@ -1,41 +1,31 @@
 package com.example.witssocial.Profile;
 
-import android.content.SharedPreferences;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.witssocial.R;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.witssocial.Utils.UserAdapter;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
 
     TextView profilename, showBio, showUsername;
-    private Uri filePath;
-    FirebaseStorage storage;
-    StorageReference storageReference;
-    UploadTask uploadTask;
-    FirebaseDatabase Database;
-    DatabaseReference myRef,users;
-    private final int PICK_IMAGE_REQUEST = 71;
-    SharedPreferences sp;
-    // fetcing an image
-    String imageUrl;
-    FirebaseUser user;
-    String  userCaption,postkey;
+    Button follow_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,36 +36,37 @@ public class ProfileActivity extends AppCompatActivity {
 
         // showing the back button in action bar
         //Add username as title
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.profile_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.bar);
         setSupportActionBar(myToolbar);
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("");
+        actionBar.setTitle("");   //PLEASE LEAVE IT EMPTY!!! WE ALREADY GOT THE USERNAME!!!
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        showUsername = (TextView) findViewById(R.id.showusername);
-        showUsername.setText("/@"+getIntent().getStringExtra("Username"));
+        showUsername = (TextView) findViewById(R.id.display_name);
+        showUsername.setText(getIntent().getStringExtra("Username"));
 
-        showBio = (TextView) findViewById(R.id.showbio);
+        showBio = (TextView) findViewById(R.id.bio);
         showBio.setText("Hey there! This is "+getIntent().getStringExtra("Username") + "'s bio.");
 
-        Database = FirebaseDatabase.getInstance();
-        myRef = Database.getReference("Posts");
-        users = Database.getReference("Users");
-        user = FirebaseAuth.getInstance().getCurrentUser();
 
+        follow_btn = (Button) findViewById(R.id.follow_btn);
+        follow_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(follow_btn.getText()=="Following") follow_btn.setText("Follow");
+                else follow_btn.setText("Following");
+            }
+        } );
 
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
-        sp = getSharedPreferences("User_info", MODE_PRIVATE);
-        String name = sp.getString("name", "null");
 
 
         //TODO:
         // ADD User Details : Bio, Names, DOB:
         // Add User Posts  and any other relevant info
-
-
     }
+
+
+
 }
