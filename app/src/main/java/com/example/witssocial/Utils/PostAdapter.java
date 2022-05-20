@@ -2,6 +2,7 @@ package com.example.witssocial.Utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                             postRecyclerViewInterface.onUsernameClick(position);
                         }
                    }
+               }
+           });
+
+           like.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   like.setImageResource(R.drawable.ic_baseline_favorite_24);
+                   likes.setTextColor(Color.parseColor("#0057B8"));
                }
            });
        }
