@@ -22,6 +22,7 @@ import com.example.witssocial.Model.Post;
 import com.example.witssocial.R;
 import com.example.witssocial.Utils.PostAdapter;
 import com.example.witssocial.Utils.PostRecyclerViewInterface;
+import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,16 +30,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UserProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class UserProfileFragment extends Fragment implements PostRecyclerViewInterface{
 
     private TextView mPosts , mFollowers, mFollowing, mDisplayName, mUsername, mBio;
@@ -46,63 +44,15 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
     private ProgressBar mProgressBar;
     private CircleImageView mProfilePhoto;
     private Toolbar toolbar;
+    private Chip mWebsite;
 
-    DatabaseReference database;
-    ImageView profilePicture;
     RecyclerView recyclerView;
     PostAdapter postAdapter;
     ArrayList<Post> list;
 
+    DatabaseReference postsRef,userRef;
 
 
-
-    //Firebase
-
-   // FirebaseDatabase database;
-   // DatabaseReference myRef,users;
-    FirebaseUser user, userID;
-
-
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public UserProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UserProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UserProfileFragment newInstance(String param1, String param2) {
-        UserProfileFragment fragment = new UserProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,11 +60,11 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
         mDisplayName = (TextView) view.findViewById(R.id.display_name);
-        mUsername = (TextView) view.findViewById(R.id.username);
-        mBio = (TextView) view.findViewById(R.id.tv_bio);
+        //mUsername = (TextView) view.findViewById(R.id.username);
+        mBio = (TextView) view.findViewById(R.id.description);
         mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_image);
         mProgressBar = (ProgressBar) view.findViewById(R.id.pb_profileProgressBar);
-
+        mWebsite = (Chip) view.findViewById(R.id.chip_1);
 
         //Handel the ProgressBar
         mProgressBar = view.findViewById(R.id.pb_profileProgressBar);
@@ -133,24 +83,33 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
             }
         });
 
-        //Firebase
-        //database = FirebaseDatabase.getInstance();
-        //myRef = database.getReference("Posts");
-        //users = database.getReference("Users");
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //User id
-       String userID = user.getUid();
+        String userid = CurrentUser.getUid();
 
+        postsRef = database.getReference("Posts");
+        userRef = database.getReference("Users");
 
+        DatabaseReference getProfilePicture = userRef.child(userid).child("imageurl");
 
-        //Get username and profile picture info
-       // String username = user.getDisplayName();
-        //Uri profilePhoto = user.getPhotoUrl();
+        getProfilePicture.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String url = snapshot.getValue(String.class);
+                Picasso.get().load(url).resize(100,100).centerCrop().into(mProfilePhoto);
+            }
 
-       // mDisplayName.setText(username);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
 
+        //get fullname
+        getInfo("fullname",userRef.child(userid),mDisplayName);
+        getInfo("bio",userRef.child(userid),mBio);
+        getInfo("website",userRef.child(userid).child("socials"),mWebsite);
 
         //TODO -- Set Profile Photo using picasso
        // String url = "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=";
@@ -163,7 +122,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
          */
 
         recyclerView = view.findViewById(R.id.RecyclerView_user_profile);
-        database = FirebaseDatabase.getInstance().getReference("Posts");
+        postsRef = FirebaseDatabase.getInstance().getReference("Posts");
         recyclerView.setHasFixedSize(false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
@@ -174,21 +133,36 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         postAdapter = new PostAdapter(getContext(), list, this);
         recyclerView.setAdapter(postAdapter);
 
-        database.addValueEventListener(new ValueEventListener() {
+        DatabaseReference currentUser = userRef.child(userid);
+        currentUser.child("username").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                String username = snapshot.getValue(String.class);
+                postsRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        list.clear();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    // TODO -- Filter the Posts to show one for the user only ,
-                    //  The same code  can be used when clicking for
-                    //  XML the scrolling is still buggy please fix it as well
+                            // TODO -- Filter the Posts to show one for the user only ,
+                            //  The same code  can be used when clicking for
+                            //  XML the scrolling is still buggy please fix it as well
 
-                    Post post = dataSnapshot.getValue(Post.class);
-                    list.add(post);
-                }
+                            Post post = dataSnapshot.getValue(Post.class);
 
-                postAdapter.notifyDataSetChanged();
+                            if( post.getUsername().equals(username)){list.add(post);}
+
+                        }
+
+                        postAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
 
             @Override
@@ -196,6 +170,8 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
             }
         });
+
+
 
         return view;
     }
@@ -212,5 +188,21 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
         startActivity(intent);
 
+    }
+
+    public void getInfo(String info,DatabaseReference infoRef, TextView infoTextView){
+        DatabaseReference get_info = infoRef.child(info);
+        get_info.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String info_needed = snapshot.getValue(String.class);
+                infoTextView.setText(info_needed);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -2,7 +2,7 @@ package com.example.witssocial.Utils;
 
 
 /*
-    An interface to allow user cick on elemets of a post
+    An interface to allow user click on elements of a post
  */
 public interface PostRecyclerViewInterface {
 

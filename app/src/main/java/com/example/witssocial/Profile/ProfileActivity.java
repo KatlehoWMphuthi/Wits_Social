@@ -47,18 +47,18 @@ public class ProfileActivity extends AppCompatActivity {
         showUsername = (TextView) findViewById(R.id.display_name);
         showUsername.setText(getIntent().getStringExtra("Username"));
 
-        showBio = (TextView) findViewById(R.id.bio);
+        showBio = (TextView) findViewById(R.id.showbio);
         showBio.setText("Hey there! This is "+getIntent().getStringExtra("Username") + "'s bio.");
 
 
-        follow_btn = (Button) findViewById(R.id.follow_btn);
+        /*follow_btn = (Button) findViewById(R.id.follow_btn);
         follow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(follow_btn.getText()=="Following") follow_btn.setText("Follow");
                 else follow_btn.setText("Following");
             }
-        } );
+        } );*/
 
 
 
