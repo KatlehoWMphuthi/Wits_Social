@@ -8,13 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import com.example.witssocial.Model.Post;
-
 @RunWith(JUnit4.class)
 public class PostTest {
     String a,b,c,d;
 
-    Post postTest = new Post("postid","postimage","caption");
+    Post postTest = new Post("postid","postimage","caption", "profilepicture");
 
     @Test
 
@@ -34,5 +32,11 @@ public class PostTest {
         String name = postTest.getUsername();
 
         assertThat(name).isNotEmpty();
+    }
+
+    @Test
+    public  void getProfilePicture(){
+        String image = postTest.getProfilePicture();
+        assertThat(image).isNotEmpty();
     }
 }

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toolbar;
@@ -79,6 +78,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.user_profile_container, new EditProfileFragment());
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

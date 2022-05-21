@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +25,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,7 +49,7 @@ public class EditProfileFragment extends Fragment {
     private  Uri imageUri;
     private ArrayList<String> social_links;
 
-    DatabaseReference link;
+    DatabaseReference link,  postsRef,userRef;
 
     //set up view binding
     private FragmentEditProfileBinding binding;
@@ -71,6 +75,10 @@ public class EditProfileFragment extends Fragment {
         twitter = view.findViewById(R.id.twitter);
         instagram = view.findViewById(R.id.instagram);
         linkedin =view.findViewById(R.id.linkedin);
+
+        //Set current user profile picture
+        setCurrentProfilePicture(mcircleImageView);
+
 
 
         mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
@@ -200,6 +208,33 @@ public class EditProfileFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void setCurrentProfilePicture(CircleImageView mcircleImageView) {
+
+            //Get and set profile picture on the tool bar
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+            String userid = CurrentUser.getUid();
+
+            postsRef = database.getReference("Posts");
+            userRef = database.getReference("Users");
+
+            DatabaseReference getProfilePicture = userRef.child(userid).child("imageurl");
+
+            getProfilePicture.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String url = snapshot.getValue(String.class);
+                    Picasso.get().load(url).resize(100,100).centerCrop().into((ImageView) mcircleImageView);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
     }
 
     //Add to database
