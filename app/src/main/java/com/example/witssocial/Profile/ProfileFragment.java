@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,11 +69,13 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         username = bundle.getString("username");
 
         //Bind data to viwes
-        mDisplayName = viewBinding.displayName;
-        mBio = viewBinding.bio;
-        mWebsite = viewBinding.chip1;
-        mProfilePhoto  = viewBinding.profileImage;
+       mDisplayName = viewBinding.displayName;
+       mBio = viewBinding.bio;
+       mWebsite = viewBinding.chip1;
+       mProfilePhoto  = viewBinding.profileImage;
 
+
+       mDisplayName.setText(username);
 
         //viewBinding.displayName.setText(username);
 /*
@@ -102,12 +105,13 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String imageurl = "";
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     //check if user profile clicked
                      if(username.equals(dataSnapshot.child("username").getValue().toString())){ imageurl = dataSnapshot.child("imageurl").getValue().toString();
-                       Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
+
+                         Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
+                         Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
                     }
                 }
 
@@ -120,8 +124,8 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         });
 
         //get fullname
-        getInfo("fullname",userRef.child(userid),mDisplayName);
-        getInfo("bio",userRef.child(userid),mBio);
+        getInfo("fullname",userRef.child(userid), viewBinding.displayName);
+        getInfo("bio",userRef.child(userid),viewBinding.bio);
         getInfo("website",userRef.child(userid).child("socials"),mWebsite);
 
         //TODO -- Set Profile Photo using picasso
@@ -191,6 +195,8 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        Toast.makeText(getActivity(),"hi", Toast.LENGTH_LONG);
       //  Toolbar toolbar = view.findViewById(R.id.view_profile_toolbar);
 
         //bind views and set back navigation icon

@@ -14,9 +14,6 @@
         <!-- ********************Middle Section*************************** -->
 
         <RelativeLayout
-            android:id="@+id/relLayout2"
-            android:layout_marginTop="56dp"
-            android:paddingTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
@@ -25,24 +22,23 @@
                 android:id="@+id/linLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="100dp"
+                android:minHeight="150dp"
                 android:orientation="horizontal"
+                android:paddingTop="8dp"
                 android:weightSum="100">
 
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="25dp"
-                    android:layout_weight="25">
+                    android:layout_weight="50">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerVertical="true"
+                        android:layout_width="200dp"
+                        android:layout_height="120dp"
                         app:civ_border_color="@color/md_theme_light_onSurface"
-                        app:civ_border_width="2dp" />
+                        app:civ_border_width="0dp" />
 
 
                 </RelativeLayout>
@@ -52,14 +48,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
-                    android:layout_weight="75">
+                    android:layout_weight="50">
 
                     <Button
                         android:id="@+id/btn_edit_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="-1dp"
                         android:text="Edit Profile" />
 
                 </RelativeLayout>
@@ -72,7 +67,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linLayout"
-                android:layout_marginTop="0dp"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -80,9 +74,11 @@
                     android:id="@+id/display_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:text="Mitch"
                     android:textColor="@color/md_theme_light_onSurface"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -96,7 +92,6 @@
                 <include layout="@layout/snippet_profile_counters" />
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp">
@@ -117,7 +112,6 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/relLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linLayout2"

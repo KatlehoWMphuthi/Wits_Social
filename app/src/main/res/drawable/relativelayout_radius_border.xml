@@ -9,7 +9,7 @@
                 android:width="0dp"
                 />
 
-            <corners android:radius="8dp"/>
+            <corners android:radius="10dp"/>
         </shape>
     </item>
 </selector>
