@@ -47,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         mFollowers = (TextView) findViewById(R.id.tvFollowers);
         mFollowing = (TextView) findViewById(R.id.tvFollowing);
-        follow_btn = (Button) findViewById(R.id.follow_btn);
+        follow_btn = (Button) findViewById(R.id.btn_follow);
 
         getFollowers();
         checkFollow();
