@@ -68,7 +68,6 @@
         app:srcCompat="@drawable/witssociallogo2" />
 
     <View
-        android:id="@+id/image_8"
         android:layout_width="293dp"
         android:layout_height="148dp"
         android:layout_alignParentStart="true"

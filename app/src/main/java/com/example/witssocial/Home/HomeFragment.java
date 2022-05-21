@@ -10,11 +10,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.witssocial.Model.Post;
-import com.example.witssocial.Profile.ProfileActivity;
+import com.example.witssocial.Profile.ProfileFragment;
 import com.example.witssocial.Profile.UserProfileActivity;
 import com.example.witssocial.R;
 import com.example.witssocial.Utils.PostAdapter;
@@ -149,12 +150,30 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
      */
     @Override
     public void onUsernameClick(int position) {
+        //send username to profile fragment
+        //Set up a bundle to carry
+        Bundle bundle = new Bundle();
+        String username = list.get(position).getUsername();
+        bundle.putString("username", username);
 
+        //send data
+        ProfileFragment profileFragment = new ProfileFragment();
+        profileFragment.setArguments(bundle);
 
+        //Open ProfileFragement
+        //FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, profileFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+        /*
         Intent intent = new Intent(getActivity(), ProfileActivity.class);
         intent.putExtra("Username", list.get(position).getUsername());
 
         startActivity(intent);
+
+         */
 
     }
 }

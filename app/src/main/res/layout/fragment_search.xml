@@ -14,8 +14,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
-            android:id="@+id/toolbar">
+            android:background="?android:attr/windowBackground">
 
             <ImageView
                 android:layout_width="wrap_content"

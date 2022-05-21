@@ -12,7 +12,6 @@
 
        <FrameLayout
            android:layout_width="match_parent"
-           android:id="@+id/user_profile_activity_container"
            android:layout_height="match_parent">
 
 
