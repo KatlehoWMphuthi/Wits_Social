@@ -44,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         actionBar.setTitle("");   //PLEASE LEAVE IT EMPTY!!! WE ALREADY GOT THE USERNAME!!!
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        showUsername = (TextView) findViewById(R.id.display_name);
+        showUsername = (TextView) findViewById(R.id.showusername);
         showUsername.setText(getIntent().getStringExtra("Username"));
 
         showBio = (TextView) findViewById(R.id.showbio);
