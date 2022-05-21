@@ -21,25 +21,58 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-<FrameLayout
-    android:layout_below="@id/bar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+<!--
+    <ScrollView
         android:id="@+id/user_profile_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp" tools:context=".Profile.ProfileActivity">
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/white">
+      -->
+
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_marginTop="64dp" android:layout_height="wrap_content" android:background="@color/white">
             <!--  ********Top Toolbar******  -->
             <!--  *******Middle Section**********  -->
-            <RelativeLayout android:id="@+id/relLayout2" android:layout_marginTop="56dp" android:paddingTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/white">
-                <LinearLayout android:id="@+id/linLayout" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="8dp" android:paddingBottom="8dp" android:weightSum="100">
-                    <RelativeLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginStart="25dp" android:layout_weight="25">
-                        <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/profile_image" android:layout_width="100dp" android:layout_height="100dp" android:layout_centerVertical="true" app:civ_border_color="@color/md_theme_light_onSurface" app:civ_border_width="2dp"/>
+            <RelativeLayout
+               android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/white">
+
+                <LinearLayout
+                    android:id="@+id/linLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="150sp"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:weightSum="100">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="50">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile_image"
+                            android:layout_width="200dp"
+                            android:layout_height="120dp"
+                            android:layout_centerInParent="true"
+                            app:civ_border_color="@color/md_theme_light_onSurface"
+                            app:civ_border_width="0dp" />
                     </RelativeLayout>
-                    <RelativeLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="30dp" android:layout_marginEnd="30dp" android:layout_weight="75">
-                        <Button android:id="@+id/follow_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="Following"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_weight="50">
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="Following" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -55,14 +88,17 @@
                         android:id="@+id/display_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
                         android:text="Username"
                         android:textColor="@color/md_theme_light_onSurface"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/bio"
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="Bio"
@@ -71,7 +107,6 @@
                     <include layout="@layout/snippet_profile_counters" />
 
                     <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/chipGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="8dp">
@@ -86,7 +121,8 @@
                             app:ensureMinTouchTargetSize="true" />
                     </com.google.android.material.chip.ChipGroup>
                 </LinearLayout>
-                <RelativeLayout android:id="@+id/relLayout3" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/linLayout2" android:layout_marginBottom="50dp">
+                <RelativeLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/linLayout2" android:layout_marginBottom="50dp">
                     <androidx.recyclerview.widget.RecyclerView android:id="@+id/RecyclerView_user_profile" android:layout_width="match_parent" android:layout_height="wrap_content"> </androidx.recyclerview.widget.RecyclerView>
                 </RelativeLayout>
             </RelativeLayout>
@@ -100,6 +136,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
