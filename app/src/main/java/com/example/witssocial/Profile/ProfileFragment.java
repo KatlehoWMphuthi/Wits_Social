@@ -1,22 +1,51 @@
 package com.example.witssocial.Profile;
 
+import static android.view.View.GONE;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.witssocial.Home.HomeFragment;
+import com.example.witssocial.Model.Post;
 import com.example.witssocial.R;
+import com.example.witssocial.Utils.PostAdapter;
+import com.example.witssocial.Utils.PostRecyclerViewInterface;
 import com.example.witssocial.databinding.FragmentProfileBinding;
+import com.google.android.material.chip.Chip;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
-public class ProfileFragment extends Fragment {
+import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class ProfileFragment extends Fragment implements PostRecyclerViewInterface {
     private FragmentProfileBinding viewBinding;
     private String username;
+    DatabaseReference postsRef,userRef;
+    private CircleImageView mProfilePhoto;
+
+    RecyclerView recyclerView;
+    PostAdapter postAdapter;
+    ArrayList<Post> list;
+    private Chip mWebsite;
+    private TextView mPosts , mFollowers, mFollowing, mDisplayName, mUsername, mBio;
     /*TextView profilename,biography,fullName;
     ImageView profilepic,picture;
 */
@@ -29,11 +58,23 @@ public class ProfileFragment extends Fragment {
         viewBinding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = viewBinding.getRoot();
 
+        //Hide progree bar
+        viewBinding.pbProfileProgressBar.setVisibility(GONE);
+
+
+
         //Collect Data from Parent activity
         Bundle bundle = this.getArguments();
         username = bundle.getString("username");
 
+        //Bind data to viwes
+        mDisplayName = viewBinding.displayName;
+        mBio = viewBinding.bio;
+        mWebsite = viewBinding.chip1;
+        mProfilePhoto  = viewBinding.profileImage;
 
+
+        //viewBinding.displayName.setText(username);
 /*
         profilepic = view.findViewById(R.id.image_profile);
         profilename = view.findViewById(R.id.username);
@@ -42,6 +83,105 @@ public class ProfileFragment extends Fragment {
         picture = view.findViewById(R.id.imageView4);
 */
         //Do something from here
+
+        /*
+        Geting data from the db and displaying it on users profile page
+         */
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        String userid = CurrentUser.getUid();
+
+        postsRef = database.getReference("Posts");
+        userRef = database.getReference("Users");
+
+        DatabaseReference getProfilePicture = userRef.child(userid).child("imageurl");
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String imageurl = "";
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    //check if user profile clicked
+                     if(username.equals(dataSnapshot.child("username").getValue().toString())){ imageurl = dataSnapshot.child("imageurl").getValue().toString();
+                       Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //get fullname
+        getInfo("fullname",userRef.child(userid),mDisplayName);
+        getInfo("bio",userRef.child(userid),mBio);
+        getInfo("website",userRef.child(userid).child("socials"),mWebsite);
+
+        //TODO -- Set Profile Photo using picasso
+        // String url = "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=";
+        // Picasso.get().load(url).resize(100,100).centerCrop().into(mProfilePhoto);
+
+
+
+        /*
+        Display posts on users profile
+         */
+
+        recyclerView = viewBinding.RecyclerViewUserProfile;
+        postsRef = FirebaseDatabase.getInstance().getReference("Posts");
+        recyclerView.setHasFixedSize(false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        list = new ArrayList<>();
+        postAdapter = new PostAdapter(getContext(), list, this);
+        recyclerView.setAdapter(postAdapter);
+
+        postsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                postsRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        list.clear();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                            // TODO -- Filter the Posts to show one for the user only ,
+                            //  The same code  can be used when clicking for
+                            //  XML the scrolling is still buggy please fix it as well
+
+                            Post post = dataSnapshot.getValue(Post.class);
+
+                            if( post.getUsername().equals(username)){list.add(post);}
+
+                        }
+
+                        postAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
         return view;
@@ -65,6 +205,27 @@ public class ProfileFragment extends Fragment {
                 transaction.commit();
             }
         });
+
+    }
+
+    public void getInfo(String info,DatabaseReference infoRef, TextView infoTextView){
+        DatabaseReference get_info = infoRef.child(info);
+        get_info.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String info_needed = snapshot.getValue(String.class);
+                infoTextView.setText(info_needed);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onUsernameClick(int position) {
 
     }
 }

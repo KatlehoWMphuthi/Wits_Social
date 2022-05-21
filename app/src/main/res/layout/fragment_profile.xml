@@ -30,7 +30,67 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp" tools:context=".Profile.ProfileActivity">
-        <include layout="@layout/layout_activity_profile" />
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/white">
+            <!--  ********Top Toolbar******  -->
+            <!--  *******Middle Section**********  -->
+            <RelativeLayout android:id="@+id/relLayout2" android:layout_marginTop="56dp" android:paddingTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/white">
+                <LinearLayout android:id="@+id/linLayout" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="8dp" android:paddingBottom="8dp" android:weightSum="100">
+                    <RelativeLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginStart="25dp" android:layout_weight="25">
+                        <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/profile_image" android:layout_width="100dp" android:layout_height="100dp" android:layout_centerVertical="true" app:civ_border_color="@color/md_theme_light_onSurface" app:civ_border_width="2dp"/>
+                    </RelativeLayout>
+                    <RelativeLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="30dp" android:layout_marginEnd="30dp" android:layout_weight="75">
+                        <Button android:id="@+id/follow_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="Following"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linLayout"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/display_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Username"
+                        android:textColor="@color/md_theme_light_onSurface"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Bio"
+                        android:textSize="16sp" />
+
+                    <include layout="@layout/snippet_profile_counters" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp">
+                        <!--  Chips can be declared here, or added dynamically.  -->
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_1"
+                            style="@style/Widget.Material3.Chip.Assist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Website"
+                            app:chipIcon="@drawable/ic_profile_photo"
+                            app:ensureMinTouchTargetSize="true" />
+                    </com.google.android.material.chip.ChipGroup>
+                </LinearLayout>
+                <RelativeLayout android:id="@+id/relLayout3" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/linLayout2" android:layout_marginBottom="50dp">
+                    <androidx.recyclerview.widget.RecyclerView android:id="@+id/RecyclerView_user_profile" android:layout_width="match_parent" android:layout_height="wrap_content"> </androidx.recyclerview.widget.RecyclerView>
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/pb_profileProgressBar"
