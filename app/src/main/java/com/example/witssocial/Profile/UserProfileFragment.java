@@ -1,6 +1,9 @@
 package com.example.witssocial.Profile;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +55,10 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
     DatabaseReference postsRef,userRef;
 
+    //for follow
+    FirebaseUser firebaseUser;
+    String profileid;
+
 
 
     @Override
@@ -59,12 +66,22 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        SharedPreferences prefs = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
+        profileid = prefs.getString("profileid", "none");
+
         mDisplayName = (TextView) view.findViewById(R.id.display_name);
         //mUsername = (TextView) view.findViewById(R.id.username);
         mBio = (TextView) view.findViewById(R.id.description);
         mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_image);
         mProgressBar = (ProgressBar) view.findViewById(R.id.pb_profileProgressBar);
         mWebsite = (Chip) view.findViewById(R.id.chip_1);
+        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
+        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
+
+        getFollowers();
 
         //Handel the ProgressBar
         mProgressBar = view.findViewById(R.id.pb_profileProgressBar);
@@ -205,4 +222,33 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
             }
         });
     }
+
+    private void getFollowers(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("followers");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mFollowers.setText(""+dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("following");
+        reference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mFollowing.setText(""+dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }
