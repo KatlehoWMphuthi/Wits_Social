@@ -1,16 +1,20 @@
 package com.example.witssocial.Profile;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.view.View.GONE;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,10 +52,16 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
     PostAdapter postAdapter;
     ArrayList<Post> list;
     private Chip mWebsite;
-    private TextView mPosts , mFollowers, mFollowing, mDisplayName, mUsername, mBio;
+    private TextView mPosts , mDisplayName, mUsername, mBio;
     /*TextView profilename,biography,fullName;
     ImageView profilepic,picture;
 */
+
+    //for follow
+    FirebaseUser firebaseUser;
+    String profileid;
+    private TextView mFollowers, mFollowing;
+    Button follow_btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,9 +71,28 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         viewBinding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = viewBinding.getRoot();
 
+        //follow additions
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        SharedPreferences prefs = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
+        profileid = prefs.getString("profileid", "none");
+
+        mFollowers = view.findViewById(R.id.tvFollowers);
+        mFollowing = view.findViewById(R.id.tvFollowing);
+        follow_btn = view.findViewById(R.id.btn_follows);
+
+        getFollowers();
+        checkFollow();
+
+
         //Hide progree bar
         viewBinding.pbProfileProgressBar.setVisibility(GONE);
 
+
+        //ActionBar actionBar = getSupportActionBar();
+        // assert actionBar != null;
+        //actionBar.setTitle("");   //PLEASE LEAVE IT EMPTY!!! WE ALREADY GOT THE USERNAME!!!
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         //Collect Data from Parent activity
@@ -97,6 +126,31 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         //String userid = CurrentUser.getUid();
+
+        //follow additions
+        follow_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String btn = follow_btn.getText().toString();
+
+                if (btn.equals("follow")){
+
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                            .child("following").child(profileid).setValue(true);
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
+                            .child("followers").child(firebaseUser.getUid()).setValue(true);
+                    // addNotification();
+                } else if (btn.equals("following")){
+
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                            .child("following").child(profileid).removeValue();
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
+                            .child("followers").child(firebaseUser.getUid()).removeValue();
+
+                }
+            }
+        });
+
 
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
@@ -240,7 +294,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
         //bind views and set back navigation icon
         viewBinding.viewProfileToolbar.setNavigationIcon(R.drawable.ic_back);
-        viewBinding.viewProfileToolbar.setTitle(username);
+        //viewBinding.viewProfileToolbar.setTitle(username);
         viewBinding.viewProfileToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -257,5 +311,53 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
     @Override
     public void onUsernameClick(int position) {
 
+    }
+
+    private void checkFollow(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("Follow").child(firebaseUser.getUid()).child("following");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(profileid).exists()){
+                    follow_btn.setText("following");
+                } else{
+                    follow_btn.setText("follow");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void getFollowers(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("followers");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mFollowers.setText(""+dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("following");
+        reference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mFollowing.setText(""+dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
