@@ -36,13 +36,14 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:visibility="gone"
         android:id="@+id/btn_follow"
-        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:text="follow"
+        android:textColor="@color/white"
+        android:visibility="visible" />
 
 </RelativeLayout>

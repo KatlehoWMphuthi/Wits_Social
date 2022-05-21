@@ -79,6 +79,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         mWebsite = (Chip) view.findViewById(R.id.chip_1);
         mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
         mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
+        mPosts = (TextView) view.findViewById(R.id.tvPosts) ;
 
         getFollowers();
 
@@ -167,8 +168,12 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
                             Post post = dataSnapshot.getValue(Post.class);
 
-                            if( post.getUsername().equals(username)){list.add(post);}
+                            if( post.getUsername().equals(username)){
+                                list.add(post);
 
+
+                            }
+                            mPosts.setText(Integer.toString(list.size()));
                         }
 
                         postAdapter.notifyDataSetChanged();

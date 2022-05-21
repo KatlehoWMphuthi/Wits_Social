@@ -71,10 +71,11 @@
                         android:layout_weight="50">
 
                         <Button
+                            android:id="@+id/btn_follows"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:id="@+id/btn_follows" />
+                            android:text="follow" />
                     </RelativeLayout>
                 </LinearLayout>
 

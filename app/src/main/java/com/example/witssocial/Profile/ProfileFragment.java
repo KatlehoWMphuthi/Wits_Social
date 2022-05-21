@@ -80,6 +80,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         mFollowers = view.findViewById(R.id.tvFollowers);
         mFollowing = view.findViewById(R.id.tvFollowing);
         follow_btn = view.findViewById(R.id.btn_follows);
+        mPosts = view.findViewById(R.id.tvPosts);
 
         getFollowers();
         checkFollow();
@@ -259,6 +260,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                             Post post = dataSnapshot.getValue(Post.class);
 
                             if( post.getUsername().equals(username)){list.add(post);}
+                            mPosts.setText(Integer.toString(list.size()));
 
                         }
 
