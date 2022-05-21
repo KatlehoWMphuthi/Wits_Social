@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.witssocial.Home.HomeFragment;
 import com.example.witssocial.Model.Post;
+import com.example.witssocial.Model.Social;
+import com.example.witssocial.Model.User;
 import com.example.witssocial.R;
 import com.example.witssocial.Utils.PostAdapter;
 import com.example.witssocial.Utils.PostRecyclerViewInterface;
@@ -88,30 +90,72 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         //Do something from here
 
         /*
-        Geting data from the db and displaying it on users profile page
+        Getting data from the db and displaying it on users profile page
          */
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        String userid = CurrentUser.getUid();
+        //String userid = CurrentUser.getUid();
 
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
 
-        DatabaseReference getProfilePicture = userRef.child(userid).child("imageurl");
+
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String imageurl = "";
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
+                    String user_name = bundle.getString("username");
                     //check if user profile clicked
-                     if(username.equals(dataSnapshot.child("username").getValue().toString())){ imageurl = dataSnapshot.child("imageurl").getValue().toString();
+                     if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
 
-                         Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
-                         Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
+
+                         User info = dataSnapshot.getValue(User.class);
+
+                         imageurl = info.getImageurl();
+                         if(imageurl != null){
+                             Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
+                         }
+
+                         String fullName = info.getFullname();
+
+                         if(fullName != null){
+                             mDisplayName.setText(fullName);
+                         }
+                         String bio = info.getBio();
+                         if(fullName != null){
+                             mBio.setText(bio);
+                         }
+
+                         DataSnapshot socials = dataSnapshot.child("socials");
+                         Social userSocials = socials.getValue(Social.class);
+
+                         if(userSocials != null){
+                             if(userSocials.getFacebook() != null){
+                                 mWebsite.setText(userSocials.getFacebook());
+                             }
+                             else if(userSocials.getWebsite() != null){
+                                 mWebsite.setText(userSocials.getWebsite());
+                             }else if(userSocials.getInstagram() != null){
+                                 mWebsite.setText(userSocials.getInstagram());
+                             }else if(userSocials.getLinkedin() != null){
+                                 mWebsite.setText(userSocials.getLinkedin());
+                             }else if(userSocials.getTwitter() != null){
+                                 mWebsite.setText(userSocials.getTwitter());
+                             }
+                             else{
+                                 mWebsite.setText("My links");
+                             }
+                         }
+
+
+
+
+                        // Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
+
                     }
                 }
 
@@ -122,11 +166,6 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
             }
         });
-
-        //get fullname
-        getInfo("fullname",userRef.child(userid), viewBinding.displayName);
-        getInfo("bio",userRef.child(userid),viewBinding.bio);
-        getInfo("website",userRef.child(userid).child("socials"),mWebsite);
 
         //TODO -- Set Profile Photo using picasso
         // String url = "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=";
@@ -214,21 +253,6 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
     }
 
-    public void getInfo(String info,DatabaseReference infoRef, TextView infoTextView){
-        DatabaseReference get_info = infoRef.child(info);
-        get_info.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String info_needed = snapshot.getValue(String.class);
-                infoTextView.setText(info_needed);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     @Override
     public void onUsernameClick(int position) {
