@@ -259,7 +259,12 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
                             Post post = dataSnapshot.getValue(Post.class);
 
-                            if( post.getUsername().equals(username)){list.add(post);}
+                            if(post.getUsername() != null) {
+                                if (post.getUsername().equals(username)) {
+                                    list.add(post);
+                                }
+                            }
+
                             mPosts.setText(Integer.toString(list.size()));
 
                         }
