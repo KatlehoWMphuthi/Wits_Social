@@ -6,10 +6,12 @@ import org.junit.Test;
 
 public class SocialTest {
 
+    Social UserSocialMedia = new Social("https://www.michaelmalapane.com","https://www.facebook.com/MichaelMdlaviaMalapane/","https://www.twitter.com/MichaelMdlaviaMalapane/", "https://www.linkedIn.com/MichaelMdlaviaMalapane/","https://www.instagram.com/MichaelMdlaviaMalapane/");
+
     @Test
     public void getFacebook() {
         String exp_link = "https://www.facebook.com/MichaelMdlaviaMalapane/";
-        String link = UserSocialMedia.getfaceBookLink();
+        String link = UserSocialMedia.getFacebook();
         if(!link.isEmpty()) {
             assertEquals(exp_link, link);
         }
@@ -18,7 +20,7 @@ public class SocialTest {
     @Test
     public void getInstagram() {
         String exp_link = "https://www.instagram.com/MichaelMdlaviaMalapane/";
-        String link = UserSocialMedia.getInstaLink();
+        String link = UserSocialMedia.getInstagram();
         if(!link.isEmpty()) {
             assertEquals(exp_link, link);
         }
@@ -27,7 +29,7 @@ public class SocialTest {
     @Test
     public void getLinkedin() {
         String exp_link = "https://www.linkedIn.com/MichaelMdlaviaMalapane/";;
-        String link = UserSocialMedia.getLinkedIn();
+        String link = UserSocialMedia.getLinkedin();
         if(!link.isEmpty()) {
             assertEquals(exp_link, link);
         }
@@ -36,7 +38,7 @@ public class SocialTest {
     @Test
     public void getTwitter() {
         String exp_link = "https://www.twitter.com/MichaelMdlaviaMalapane/";;
-        String link = UserSocialMedia.getTwiterlink();
+        String link = UserSocialMedia.getTwitter();
         if(!link.isEmpty()) {
             assertEquals(exp_link, link);
         }
@@ -45,13 +47,13 @@ public class SocialTest {
     @Test
     public void getWebsite() {
         String exp_link = "https://www.michaelmalapane.com";
-        String link = UserSocialMedia.getWebsiteLink();
+        String link = UserSocialMedia.getWebsite();
         if(!link.isEmpty()) {
             assertEquals(exp_link, link);
         }
     }
 }
-class  UserSocialMedia
+/*class  UserSocialMedia
 {
 
 
@@ -72,4 +74,4 @@ class  UserSocialMedia
     public static String getLinkedIn() {
         return "https://www.linkedIn.com/MichaelMdlaviaMalapane/";
     }
-}
+}*/

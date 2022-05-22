@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class UserTest {
+    User userTest = new User("UU7Opt1BRZU7efnzUwALQl5wpKv2","Michael","Michael","https://firebasestorage.googleapis.com/v0/b/wits-social-7aafb." +
+            "appspot.com/o/images%2F634?alt=media&token=d0fd443b-2116-4ff2-8d37-da22153470fd","I am tired");
 
     @Test
     public void getId() {
@@ -16,6 +18,7 @@ public class UserTest {
     @Test
     public void setId() {
         String exp_Id = "N20PXww9q6VQRI6SoLq";
+        userTest.setId(exp_Id);
         String Id = userTest.getId();
         assertEquals(exp_Id,Id);
     }
@@ -31,7 +34,8 @@ public class UserTest {
     @Test
     public void setUsername() {
         String exp_name = "hey";
-        String name = "hey";
+        userTest.setUsername(exp_name);
+        String name = userTest.getUsername();
         assertEquals(exp_name,name);
     }
 
@@ -39,7 +43,7 @@ public class UserTest {
     public void getImageurl() {
         String exp_ImgUrl = "https://firebasestorage.googleapis.com/v0/b/wits-social-7aafb." +
                 "appspot.com/o/images%2F634?alt=media&token=d0fd443b-2116-4ff2-8d37-da22153470fd";
-        String ImgUrl = userTest.getImageUrl();
+        String ImgUrl = userTest.getImageurl();
         assertEquals(exp_ImgUrl,ImgUrl);
     }
 
@@ -53,7 +57,7 @@ public class UserTest {
     @Test
     public void getBio() {
         String exp_ImgUrl = "I am tired";
-        String ImgUrl = userTest.getBio_id();
+        String ImgUrl = userTest.getBio();
         if(!ImgUrl.isEmpty()) {
             assertEquals(exp_ImgUrl, ImgUrl);
         }
@@ -66,7 +70,7 @@ public class UserTest {
         assertEquals(exp_ImgUrl, ImgUrl);
     }
 }
-class  userTest
+/*class  userTest
 {
 
 
@@ -92,4 +96,4 @@ class  userTest
     }
 
 
-}
+}*/

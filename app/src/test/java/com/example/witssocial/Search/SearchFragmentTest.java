@@ -2,7 +2,7 @@ package com.example.witssocial.Search;
 
 import static org.junit.Assert.*;
 
-import com.example.witssocial.Model.firebaseTest;
+//import com.example.witssocial.Model.firebaseTest;
 
 import org.junit.Test;
 

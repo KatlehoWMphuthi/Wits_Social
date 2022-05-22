@@ -31,4 +31,11 @@ public class SignUpActivityTest {
         assertEquals("logged in successfully",curr);
 
     }
+    @Test
+    public void CheckAllFields(){
+
+        boolean isAllFieldsChecked = false;
+
+        assertEquals(isAllFieldsChecked,false);
+    }
 }

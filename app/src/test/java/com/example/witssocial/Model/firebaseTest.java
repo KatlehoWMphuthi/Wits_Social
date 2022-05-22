@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public  class firebaseTest {
+/*public  class firebaseTest {
 
     @Test
     public void getName() {
@@ -61,4 +61,4 @@ public  class firebaseTest {
         String id = firebase.getPost_id();
         assertEquals(exp_postID,id);
     }
-}
+}*/
