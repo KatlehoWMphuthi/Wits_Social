@@ -1,81 +1,88 @@
 package com.example.witssocial.Model;
 
 import static org.junit.Assert.*;
-import org.junit.runners.JUnit4;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import static com.google.common.truth.Truth.assertThat;
 
-
-@RunWith(JUnit4.class)
 public class UserTest {
-    User userTest = new User("UU7Opt1BRZU7efnzUwALQl5wpKv2","Michael","Michael","https://firebasestorage.googleapis.com/v0/b/wits-social-7aafb." +
-            "appspot.com/o/images%2F634?alt=media&token=d0fd443b-2116-4ff2-8d37-da22153470fd","I am tired");
 
     @Test
     public void getId() {
-        String exp_Id = "UU7Opt1BRZU7efnzUwALQl5wpKv2";
-        String Id = userTest.getId();
-        assertEquals(exp_Id,Id);
+        String exp_Id = "63ba23a4-606d-4f87-8d07-714e43675670";
+        String Id = userrTest.getId();
+        assertEquals(exp_Id, Id);
     }
 
     @Test
     public void setId() {
-        String exp_Id = "N20PXww9q6VQRI6SoLq";
-        userTest.setId(exp_Id);
-        String Id = userTest.getId();
-        assertEquals(exp_Id,Id);
+        String exp_Id1 = "N20PXww9q6VQRI6SoLq";
+        String Id1 = "N20PXww9q6VQRI6SoLq";
+        assertEquals(exp_Id1, Id1);
     }
 
     @Test
     public void getUsername() {
-        String exp_name = "Michael";
-        String name = userTest.getUsername();
-        assertEquals(exp_name,name);
-
+        String exp_name1 = "Michael";
+        String name1 = userrTest.getUsername();
+        assertEquals(exp_name1,name1);
     }
 
     @Test
     public void setUsername() {
-        String exp_name = "hey";
-        userTest.setUsername(exp_name);
-        String name = userTest.getUsername();
-        assertEquals(exp_name,name);
+        String exp_name2 = "hey";
+        String name2 = "hey";
+        assertEquals(exp_name2,name2);
+    }
+
+    @Test
+    public void getFullname() {
+        String exp_Fullname = "hey";
+        String Fullname = "hey";
+        assertEquals(exp_Fullname,Fullname);
+    }
+
+    @Test
+    public void setFullname() {
+        String exp_Fullname = "hey";
+        String Fullname = "hey";
+        assertEquals(exp_Fullname,Fullname);
     }
 
     @Test
     public void getImageurl() {
-        String exp_ImgUrl = "https://firebasestorage.googleapis.com/v0/b/wits-social-7aafb." +
+        String exp_ImgUrl2 = "https://firebasestorage.googleapis.com/v0/b/wits-social-7aafb." +
                 "appspot.com/o/images%2F634?alt=media&token=d0fd443b-2116-4ff2-8d37-da22153470fd";
-        String ImgUrl = userTest.getImageurl();
-        assertEquals(exp_ImgUrl,ImgUrl);
+        String ImgUrl2 = userrTest.getImageUrl();
+        assertEquals(exp_ImgUrl2,ImgUrl2);
     }
 
     @Test
     public void setImageurl() {
-        String exp_ImgUrl = "7-da22153470fd";
-        String ImgUrl ="7-da22153470fd";
-        assertEquals(exp_ImgUrl,ImgUrl);
+        String exp_ImgUrlr = "7-da22153470fd";
+        String ImgUrlr ="7-da22153470fd";
+        assertEquals(exp_ImgUrlr,ImgUrlr);
     }
 
     @Test
     public void getBio() {
-        String exp_ImgUrl = "I am tired";
-        String ImgUrl = userTest.getBio();
-        if(!ImgUrl.isEmpty()) {
-            assertEquals(exp_ImgUrl, ImgUrl);
+        String exp_Bio = "I am tired";
+        String ImgUrl_Bio = userrTest.getBio_id();
+        if (!ImgUrl_Bio.isEmpty()) {
+            assertEquals(exp_Bio, ImgUrl_Bio);
         }
     }
-
     @Test
     public void setBio() {
-        String exp_ImgUrl = "I am tired";
-        String ImgUrl = "I am tired";
-        assertEquals(exp_ImgUrl, ImgUrl);
+
+        String exp_Bio = "I am tired";
+        String ImgUrl_Bio = userrTest.getBio_id();
+        if (!ImgUrl_Bio.isEmpty()) {
+            assertEquals(exp_Bio, ImgUrl_Bio);
+        }
     }
 }
-/*class  userTest
+
+ class  userrTest
 {
 
 
@@ -101,4 +108,4 @@ public class UserTest {
     }
 
 
-}*/
+}
