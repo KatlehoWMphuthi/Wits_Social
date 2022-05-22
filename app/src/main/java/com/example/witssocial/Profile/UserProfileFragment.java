@@ -95,7 +95,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.user_profile_container, new EditProfileFragment());
+                transaction.replace(R.id.fragment_container, new EditProfileFragment());
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

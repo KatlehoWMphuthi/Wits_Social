@@ -1,6 +1,5 @@
 package com.example.witssocial.Home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.witssocial.Model.Post;
 import com.example.witssocial.Profile.ProfileFragment;
-import com.example.witssocial.Profile.UserProfileActivity;
+import com.example.witssocial.Profile.UserProfileFragment;
 import com.example.witssocial.R;
 import com.example.witssocial.Utils.PostAdapter;
 import com.example.witssocial.Utils.PostRecyclerViewInterface;
@@ -66,8 +65,11 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 Intent intent = new Intent(getActivity(), UserProfileActivity.class);
                startActivity(intent);
+               */
+
 
                 //Open user Profile Fragment
                 /*
@@ -76,6 +78,13 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
                 transaction.replace(R.id.fragment_container, new UserProfileFragment());
                 transaction.commit();
                 */
+
+                UserProfileFragment userProfileFragment = new UserProfileFragment();
+
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, userProfileFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
 
             }
         });
