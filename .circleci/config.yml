@@ -18,15 +18,33 @@ jobs:
     # See: https://circleci.com/docs/2.0/executor-types/
     executor:
       name: android/android-machine
+      resource-class: large
 
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       # Checkout the code as the first step.
       - checkout
+      # Create an AVD named "myavd"
+      - android/create-avd:
+          avd-name: myavd
+          system-image: system-images;android-29;default;x86
+          install: true
+      # By default, after starting up the emulator, a cache will be restored,
+      # "./gradlew assembleDebugAndroidTest" will be run and then a script
+      # will be run to wait for the emulator to start up.
+      # Specify the "post-emulator-launch-assemble-command" command to override
+      # the gradle command run, or set "wait-for-emulator" to false to disable
+      # waiting for the emulator altogether.
+      - android/start-emulator:
+          avd-name: myavd
+          no-window: true
+          restore-gradle-cache-prefix: v1a
       # The next step will run the unit tests
       - android/run-tests:
           test-command: ./gradlew lint testDebug 
+      - android/run-tests:
+          test-command: ./gradlew connectedCheck
       
 
       # And finally run the release build
@@ -38,6 +56,9 @@ jobs:
             ./gradlew assembleRelease
       - codecov/upload:
           file: '/app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
+      - codecov/upload:
+          file: '/app/build/reports/coverage/androidTest/debug/report.xml'
+      
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:

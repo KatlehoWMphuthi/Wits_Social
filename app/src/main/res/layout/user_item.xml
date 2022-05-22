@@ -25,24 +25,25 @@
         android:layout_marginStart="5dp">
 
         <TextView
-            android:id="@+id/username"
-            android:layout_width="47dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:text="username"
-            android:textColor="@color/material_on_surface_emphasis_high_type"
-            android:textStyle="bold" />
+            android:id="@+id/username"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:textColor="@color/material_on_surface_emphasis_high_type"/>
 
     </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:visibility="gone"
         android:id="@+id/btn_follow"
-        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:text="follow"
+        android:textColor="@color/white"
+        android:visibility="visible" />
 
 </RelativeLayout>
