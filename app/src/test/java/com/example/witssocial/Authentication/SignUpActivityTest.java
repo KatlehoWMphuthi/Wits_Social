@@ -2,12 +2,20 @@ package com.example.witssocial.Authentication;
 
 import static org.junit.Assert.*;
 
+
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 public class SignUpActivityTest {
+
+    final String testUsername = "testUser";
+    final String testPassword = "password";
+
+
 
     @Test
     public void onCreate() {

@@ -1,9 +1,14 @@
 package com.example.witssocial.Model;
 
 import static org.junit.Assert.*;
+import org.junit.runners.JUnit4;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import static com.google.common.truth.Truth.assertThat;
 
+
+@RunWith(JUnit4.class)
 public class UserTest {
     User userTest = new User("UU7Opt1BRZU7efnzUwALQl5wpKv2","Michael","Michael","https://firebasestorage.googleapis.com/v0/b/wits-social-7aafb." +
             "appspot.com/o/images%2F634?alt=media&token=d0fd443b-2116-4ff2-8d37-da22153470fd","I am tired");
