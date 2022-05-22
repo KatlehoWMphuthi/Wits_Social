@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,8 +43,6 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment implements PostRecyclerViewInterface {
-
-
     private FragmentProfileBinding viewBinding;
     private String username;
     DatabaseReference postsRef,userRef;
@@ -82,7 +81,6 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         mFollowing = view.findViewById(R.id.tvFollowing);
         follow_btn = view.findViewById(R.id.btn_follows);
         mPosts = view.findViewById(R.id.tvPosts);
-        mDisplayName = view.findViewById(R.id.display_name);
 
         getFollowers();
         checkFollow();
@@ -103,7 +101,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         username = bundle.getString("username");
 
         //Bind data to viwes
-      // mDisplayName = viewBinding.displayName;
+       mDisplayName = viewBinding.displayName;
        mBio = viewBinding.bio;
        mWebsite = viewBinding.chip1;
        mProfilePhoto  = viewBinding.profileImage;
@@ -260,10 +258,13 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                             //  XML the scrolling is still buggy please fix it as well
 
                             Post post = dataSnapshot.getValue(Post.class);
-                            list.add(post);
 
-                            Toast.makeText(getContext(), post.getUsername(), Toast.LENGTH_SHORT).show();
-                           // if( post.getUsername().equals(username)){list.add(post);}
+                            if(post.getUsername() != null) {
+                                if (post.getUsername().equals(username)) {
+                                    list.add(post);
+                                }
+                            }
+
                             mPosts.setText(Integer.toString(list.size()));
 
                         }

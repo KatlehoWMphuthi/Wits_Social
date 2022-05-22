@@ -168,8 +168,11 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
                             Post post = dataSnapshot.getValue(Post.class);
 
-                            if( post.getUsername().equals(username)){
-                                list.add(post);
+                            if(post.getUsername() != null){
+                                if(post.getUsername().equals(username)){
+                                    list.add(post);
+                                }
+
 
 
                             }
