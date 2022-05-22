@@ -25,6 +25,16 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      - android/create-avd:
+          avd-name: myavd
+          system-image: system-images;android-30;default;x86
+          install: true
+
+      - android/start-emulator:
+          avd-name: myavd
+          no-window: true
+          restore-gradle-cache-prefix: v1a
+          
       # The next step will run the unit tests
       - android/run-tests:
           test-command: ./gradlew lint testDebug 
