@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content">
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar"
         android:layout_width="match_parent"
@@ -24,6 +26,8 @@
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
+
+
     </RelativeLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

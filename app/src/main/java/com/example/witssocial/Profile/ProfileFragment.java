@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -301,7 +300,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
         //bind views and set back navigation icon
         viewBinding.viewProfileToolbar.setNavigationIcon(R.drawable.ic_back);
-        //viewBinding.viewProfileToolbar.setTitle(username);
+        viewBinding.viewProfileToolbar.setTitle(username);
         viewBinding.viewProfileToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,6 +25,7 @@ import com.example.witssocial.Model.Post;
 import com.example.witssocial.R;
 import com.example.witssocial.Utils.PostAdapter;
 import com.example.witssocial.Utils.PostRecyclerViewInterface;
+import com.example.witssocial.databinding.FragmentUserProfileBinding;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,6 +56,8 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
     DatabaseReference postsRef,userRef;
 
+    private FragmentUserProfileBinding binding;
+
     //for follow
     FirebaseUser firebaseUser;
     String profileid;
@@ -65,6 +69,8 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
+
+        binding = FragmentUserProfileBinding.bind(view);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -201,9 +207,24 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         return view;
     }
 
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.bar.setNavigationIcon(R.drawable.ic_back);
+        binding.bar.setTitle("Your Profile");
+        binding.bar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
+    }
+
     /*
-     Define on click action to go to a users profile
-     */
+         Define on click action to go to a users profile
+         */
     @Override
     public void onUsernameClick(int position) {
 
