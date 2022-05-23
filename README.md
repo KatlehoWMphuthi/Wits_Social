@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/KatlehoWMphuthi/Wits_Social/tree/final.svg?style=svg)](https://circleci.com/gh/KatlehoWMphuthi/Wits_Social/tree/final)
 
-[![codecov](https://drive.google.com/file/d/15PHxZdco8EAO27aYNDPC-NkSEhP4TqJG/view?usp=sharing)](https://drive.google.com/file/d/15PHxZdco8EAO27aYNDPC-NkSEhP4TqJG/view?usp=sharing)
+[![codecov][(https://drive.google.com/file/d/15PHxZdco8EAO27aYNDPC-NkSEhP4TqJG/view?usp=sharing)](https://drive.google.com/file/d/15PHxZdco8EAO27aYNDPC-NkSEhP4TqJG/view?usp=sharing](https://drive.google.com/file/d/1uAQG5lHPX87D8GRoC3mEEkn8LgQBhsOj/view?usp=sharing))
 
 ## Project Overview
 We have been tasked with building and implementing a social media network inspired the already available social media platforms such as Facebook, Twitter and more.
