@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/KatlehoWMphuthi/Wits_Social/tree/final.svg?style=svg)](https://circleci.com/gh/KatlehoWMphuthi/Wits_Social/tree/final)
 
-[![codecov](https://drive.google.com/file/d/15PHxZdco8EAO27aYNDPC-NkSEhP4TqJG/view?usp=sharing)
+[![codecov](https://drive.google.com/file/d/15PHxZdco8EAO27aYNDPC-NkSEhP4TqJG/view?usp=sharing)]
 
 
 ## Project Overview
