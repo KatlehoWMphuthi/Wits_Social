@@ -50,7 +50,7 @@ jobs:
       - android/run-tests:
           test-command: ./gradlew lint testDebug 
       - android/run-tests:
-          test-command: ./gradlew connectedCheck
+          test-command: ./gradlew connectedDebugAndroidTest
       
 
       # And finally run the release build
