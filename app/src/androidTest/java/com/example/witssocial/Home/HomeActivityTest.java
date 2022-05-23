@@ -13,7 +13,7 @@ public class HomeActivityTest {
     @Rule
     public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
             new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
-    @Test
+    /*@Test
     public void onCreate() {
-    }
+    }*/
 }
