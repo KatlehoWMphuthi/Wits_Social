@@ -40,6 +40,8 @@ jobs:
           avd-name: myavd
           no-window: true
           restore-gradle-cache-prefix: v1a
+      - android/disable-animations
+      
       # The next step will run the unit tests
       - android/run-tests:
           test-command: ./gradlew lint testDebug 
