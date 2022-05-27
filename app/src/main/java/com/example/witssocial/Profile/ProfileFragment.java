@@ -3,6 +3,7 @@ package com.example.witssocial.Profile;
 import static android.content.Context.MODE_PRIVATE;
 import static android.view.View.GONE;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -192,6 +193,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                                  mWebsite.setText(userSocials.getFacebook());
                              }
                              else if(userSocials.getWebsite() != null){
+                                 Context context = mWebsite.getContext();
                                  mWebsite.setText(userSocials.getWebsite());
                              }else if(userSocials.getInstagram() != null){
                                  mWebsite.setText(userSocials.getInstagram());

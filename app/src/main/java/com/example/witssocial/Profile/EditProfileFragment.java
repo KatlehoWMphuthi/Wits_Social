@@ -83,7 +83,6 @@ public class EditProfileFragment extends Fragment {
         setCurrentProfilePicture(mcircleImageView);
 
 
-
         mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
             public void onActivityResult(Uri result) {
@@ -115,14 +114,13 @@ public class EditProfileFragment extends Fragment {
                 FirebaseStorage storage = FirebaseStorage.getInstance();
 
 
+                    // get the reference to where the profile pictures will be stored
+                    StorageReference users_info = storage.getReference();
+                    StorageReference profile_picture = users_info.child("UserProfile/Profile_Pic/" + imageUri.getLastPathSegment());
 
 
-                // get the reference to where the profile pictures will be stored
-                StorageReference users_info = storage.getReference();
-                StorageReference profile_picture = users_info.child("UserProfile/Profile_Pic/"+ imageUri.getLastPathSegment());
-
-                //Create an upload task to push to the storage on Firebase
-                UploadTask upload_profile_picture = profile_picture.putFile(imageUri);
+                    //Create an upload task to push to the storage on Firebase
+                    UploadTask upload_profile_picture = profile_picture.putFile(imageUri);
 
                 // get the id of the current user
                 String id = firebaseUser.getUid();
@@ -203,11 +201,10 @@ public class EditProfileFragment extends Fragment {
                         Toast.makeText(getActivity(),"Failed to Upload", Toast.LENGTH_LONG).show();
                     }
                 });
-
-
-
-
             }
+
+
+
         });
 
         return view;
