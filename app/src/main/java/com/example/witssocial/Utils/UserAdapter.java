@@ -3,6 +3,7 @@ package com.example.witssocial.Utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,8 +77,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                     editor.putString("profileid", user.getId());
                     editor.apply();
 
+                    //send username to profile fragment
+                    //Set up a bundle to carry
+                    Bundle bundle = new Bundle();
+                    String username = user.getUsername();
+                    bundle.putString("username", username);
+
+                    //send data
+                    ProfileFragment profileFragment = new ProfileFragment();
+                    profileFragment.setArguments(bundle);
+
                     ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new ProfileFragment()).commit();
+                            profileFragment).addToBackStack(null).commit();
                 } else {
                     Intent intent = new Intent(mContext, MainActivity.class);
                     intent.putExtra("publisherid", user.getId());

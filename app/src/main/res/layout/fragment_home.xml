@@ -11,46 +11,32 @@
         android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
         android:background="?android:attr/windowBackground">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground">
+            android:background="#F6F3F3">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-
-                <!--
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_more" />
-
--->
-
                 <TextView
-                    android:id="@+id/textView2"
+                    style="@style/TextAppearance.Material3.ActionBar.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Newsfeed"
-                    android:textSize="19sp"
-                    android:textStyle="bold"/>
+                    android:layout_centerVertical="true"
+                    android:text="Wits Social"
+
+                    />
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/iv_home_profile_picture"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="24dp"
+                    android:layout_marginRight="16dp"
                     android:background="@drawable/ic_profile_photo"
                     android:src="@drawable/ic_profile_photo"
                     app:civ_border_width="0.5dp" />
@@ -65,10 +51,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bar" />
+        android:layout_below="@id/bar"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        />
 
 
 

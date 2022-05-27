@@ -20,7 +20,6 @@
         app:srcCompat="@drawable/appicon2" />
 
     <ImageView
-        android:id="@+id/imageView3"
         android:layout_width="362dp"
         android:layout_height="170dp"
         android:layout_marginTop="144dp"
