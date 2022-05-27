@@ -3,6 +3,7 @@ package com.example.witssocial.Profile;
 import static android.content.Context.MODE_PRIVATE;
 import static android.view.View.GONE;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -193,6 +193,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                                  mWebsite.setText(userSocials.getFacebook());
                              }
                              else if(userSocials.getWebsite() != null){
+                                 Context context = mWebsite.getContext();
                                  mWebsite.setText(userSocials.getWebsite());
                              }else if(userSocials.getInstagram() != null){
                                  mWebsite.setText(userSocials.getInstagram());
@@ -301,7 +302,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
         //bind views and set back navigation icon
         viewBinding.viewProfileToolbar.setNavigationIcon(R.drawable.ic_back);
-        //viewBinding.viewProfileToolbar.setTitle(username);
+        viewBinding.viewProfileToolbar.setTitle(username);
         viewBinding.viewProfileToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

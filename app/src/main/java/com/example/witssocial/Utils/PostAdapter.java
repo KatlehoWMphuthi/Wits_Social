@@ -62,6 +62,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String postUsername = post.getUsername();
                     User user = dataSnapshot.getValue(User.class);
+
                     if( user.getUsername().equals(postUsername))
                     {
 

@@ -15,6 +15,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.witssocial.R;
@@ -64,6 +65,8 @@ public class EditProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
 
+        binding = FragmentEditProfileBinding.bind(view);
+
         //Get views
         mChangePhoto = view.findViewById(R.id.tv_change_profile_photo);
         mcircleImageView = view.findViewById(R.id.imageview_edit_profile_photo);
@@ -78,7 +81,6 @@ public class EditProfileFragment extends Fragment {
 
         //Set current user profile picture
         setCurrentProfilePicture(mcircleImageView);
-
 
 
         mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
@@ -112,14 +114,13 @@ public class EditProfileFragment extends Fragment {
                 FirebaseStorage storage = FirebaseStorage.getInstance();
 
 
+                    // get the reference to where the profile pictures will be stored
+                    StorageReference users_info = storage.getReference();
+                    StorageReference profile_picture = users_info.child("UserProfile/Profile_Pic/" + imageUri.getLastPathSegment());
 
 
-                // get the reference to where the profile pictures will be stored
-                StorageReference users_info = storage.getReference();
-                StorageReference profile_picture = users_info.child("UserProfile/Profile_Pic/"+ imageUri.getLastPathSegment());
-
-                //Create an upload task to push to the storage on Firebase
-                UploadTask upload_profile_picture = profile_picture.putFile(imageUri);
+                    //Create an upload task to push to the storage on Firebase
+                    UploadTask upload_profile_picture = profile_picture.putFile(imageUri);
 
                 // get the id of the current user
                 String id = firebaseUser.getUid();
@@ -200,14 +201,28 @@ public class EditProfileFragment extends Fragment {
                         Toast.makeText(getActivity(),"Failed to Upload", Toast.LENGTH_LONG).show();
                     }
                 });
-
-
-
-
             }
+
+
+
         });
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //handle back button
+        binding.editProfileToolbar.setNavigationIcon(R.drawable.ic_back);
+        binding.editProfileToolbar.setTitle("Edit Profile");
+        binding.editProfileToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
     }
 
     private void setCurrentProfilePicture(CircleImageView mcircleImageView) {
