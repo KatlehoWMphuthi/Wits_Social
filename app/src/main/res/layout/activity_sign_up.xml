@@ -9,7 +9,6 @@
 
 
     <TextView
-        android:id="@+id/create_an_a"
         android:layout_width="240dp"
         android:layout_height="34dp"
         android:layout_alignParentLeft="true"
@@ -44,8 +43,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Username"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:background="#ffffff" />
+            android:layout_height="wrap_content"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,13 +64,11 @@
 
             android:id="@+id/Password_editText"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:background="#ffffff"
+            android:layout_height="wrap_content"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/old_user"
         android:layout_width="149dp"
         android:layout_height="31dp"
         android:layout_alignParentLeft="true"
@@ -90,7 +87,6 @@
         app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
 
     <TextView
-        android:id="@+id/signin"
         android:layout_width="93dp"
         android:layout_height="48dp"
         android:layout_alignParentLeft="true"
@@ -120,7 +116,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.044"
-        app:srcCompat="@drawable/witssociallogo2" />
+        app:srcCompat="@drawable/ws_logo_blue" />
 
     <Button
         android:id="@+id/LoginButton"
@@ -151,8 +147,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/StudentNumber"
             android:layout_width="match_parent"
-            android:layout_height="62dp"
-            android:background="#ffffff" />
+            android:layout_height="wrap_content"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 

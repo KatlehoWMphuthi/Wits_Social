@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
 
-        app:srcCompat="@drawable/witssociallogo2" />
+        app:srcCompat="@drawable/ws_logo_blue" />
 
     <TextView
         android:layout_width="wrap_content"
