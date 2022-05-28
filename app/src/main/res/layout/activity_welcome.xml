@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WelcomeActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/background">
 
 
     <LinearLayout
@@ -33,7 +34,7 @@
             android:textAllCaps="false"
             app:cornerRadius="50dp"
             app:rippleColor="@color/md_theme_light_primary"
-            app:strokeColor="#9900F0">
+            app:strokeColor="#FFFFFF">
 
         </com.google.android.material.button.MaterialButton>
 
