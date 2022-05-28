@@ -40,6 +40,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
+                android:background="@drawable/ic_user_account_circle"
                 app:civ_border_color="@color/md_theme_light_onSurface" />
 
             <TextView

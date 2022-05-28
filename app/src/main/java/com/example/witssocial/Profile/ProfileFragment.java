@@ -81,19 +81,14 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         mFollowing = view.findViewById(R.id.tvFollowing);
         follow_btn = view.findViewById(R.id.btn_follows);
         mPosts = view.findViewById(R.id.tvPosts);
+        mUsername = view.findViewById(R.id.user_name);
 
         getFollowers();
         checkFollow();
 
 
-        //Hide progree bar
+        //Hide progrees bar
         viewBinding.pbProfileProgressBar.setVisibility(GONE);
-
-
-        //ActionBar actionBar = getSupportActionBar();
-        // assert actionBar != null;
-        //actionBar.setTitle("");   //PLEASE LEAVE IT EMPTY!!! WE ALREADY GOT THE USERNAME!!!
-        //actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         //Collect Data from Parent activity
@@ -106,8 +101,10 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
        mWebsite = viewBinding.chip1;
        mProfilePhoto  = viewBinding.profileImage;
 
-
-       mDisplayName.setText(username);
+       //setUsername
+        String displayedUsername = "@" + username;
+        mUsername.setText(displayedUsername);
+     //  mDisplayName.setText(username);
 
         //viewBinding.displayName.setText(username);
 /*
@@ -164,6 +161,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                 String imageurl = "";
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String user_name = bundle.getString("username");
+
                     //check if user profile clicked
                      if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
 

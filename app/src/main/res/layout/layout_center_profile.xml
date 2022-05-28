@@ -75,15 +75,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
+
                     android:text="Username"
                     android:textColor="@color/md_theme_light_onSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/current_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="/@username"
+                    style="@style/TextAppearance.Material3.BodySmall"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/description"
                     android:layout_width="match_parent"
+                   android:paddingTop="8dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Bio"
@@ -104,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Website"
-                        app:chipIcon="@drawable/ic_profile_photo"
+                        app:chipIcon="@drawable/ic_link"
                         app:ensureMinTouchTargetSize="true" />
                 </com.google.android.material.chip.ChipGroup>
 
