@@ -43,8 +43,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Username"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:background="#ffffff" />
+            android:layout_height="wrap_content"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,8 +64,7 @@
 
             android:id="@+id/Password_editText"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:background="#ffffff"
+            android:layout_height="wrap_content"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,7 +116,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.044"
-        app:srcCompat="@drawable/witssociallogo2" />
+        app:srcCompat="@drawable/ws_logo_blue" />
 
     <Button
         android:id="@+id/LoginButton"
@@ -148,8 +147,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/StudentNumber"
             android:layout_width="match_parent"
-            android:layout_height="62dp"
-            android:background="#ffffff" />
+            android:layout_height="wrap_content"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 
