@@ -6,28 +6,28 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:padding="24dp"
+    android:id="@+id/sign_in_background"
     tools:context=".Authentication.SignInActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="158dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="112dp"
+        android:layout_height="83dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009"
-
+        app:layout_constraintVertical_bias="0.244"
         app:srcCompat="@drawable/witssociallogo2_t" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="16dp"
         android:gravity="center_horizontal|top"
         android:lineSpacingExtra="-5sp"
         android:text="Sign in"
@@ -37,11 +37,11 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/UserMail_layout_login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.665" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/UserMail_layout_login"

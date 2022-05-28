@@ -38,7 +38,6 @@ public class WelcomeActivity extends AppCompatActivity {
         switch (nightModeFlags) {
             case Configuration.UI_MODE_NIGHT_YES:
                 Background.setBackgroundColor(Color.BLACK);
-                Logo.setImageResource(R.drawable.witssociallogo2_t);
                 WelcomeSignIn.setBackgroundColor(Color.WHITE);
                 WelcomeSignIn.setTextColor(Color.BLACK);
                 WelcomeSignUp.setTextColor(Color.WHITE);

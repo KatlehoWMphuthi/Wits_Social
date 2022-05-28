@@ -80,7 +80,7 @@
     <!--Outline Colors-->
     <color name="md_theme_dark_outline">#ffffff</color>
     <color name="md_theme_dark_inverseOnSurface">#F3F0F5</color>
-    <color name="md_theme_dark_inverseSurface">#303034</color>
+    <color name="md_theme_dark_inverseSurface">#ffffff</color>
     <color name="md_theme_dark_primaryInverse">#B8C3FF</color>
 
 

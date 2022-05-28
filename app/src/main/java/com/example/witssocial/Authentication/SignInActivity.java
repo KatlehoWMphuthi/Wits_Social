@@ -3,6 +3,8 @@ package com.example.witssocial.Authentication;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.witssocial.Home.HomeActivity;
 import com.example.witssocial.R;
@@ -62,7 +65,21 @@ public class SignInActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         SignIn = findViewById(R.id.LoginButton);
         forgot_password = findViewById(R.id.forgot_pass);
+        ConstraintLayout Background = (ConstraintLayout)findViewById(R.id.sign_in_background);
 
+
+        //Control what happens when DarkMode is turned on
+        int nightModeFlags =
+                this.getResources().getConfiguration().uiMode &
+                        Configuration.UI_MODE_NIGHT_MASK;
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                //do stuff();
+                Background.setBackgroundColor(Color.BLACK);
+                SignIn.setTextColor(Color.BLACK);
+                SignIn.setBackgroundColor(Color.WHITE);
+                break;
+        }
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override

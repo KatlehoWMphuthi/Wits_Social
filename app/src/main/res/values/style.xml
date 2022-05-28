@@ -152,13 +152,5 @@
         </item>
     </style>
 
-    <style name="dark_logo_size">
-        <item name="android:width">
-            1000dp
-        </item>
-        <item name="height">
-            1000dp
-        </item>
-    </style>
 
 </resources>
