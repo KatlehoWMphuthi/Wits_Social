@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.108"
-        app:srcCompat="@drawable/witssociallogo2" />
+        app:srcCompat="@drawable/ws_logo_blue" />
 
     <View
         android:layout_width="293dp"
