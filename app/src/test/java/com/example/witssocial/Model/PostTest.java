@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseUser;
 import org.junit.Test;
 
 public class PostTest {
-    Post post = new Post("63ba23a4-606d-4f87-8d07-714e43675670","Games","Michael","63ba23a4-606d-4f87-8d07-714e43675670");
+    Post post = new Post("postid","63ba23a4-606d-4f87-8d07-714e43675670","Games","Michael","63ba23a4-606d-4f87-8d07-714e43675670");
 
     @Test
     public void getImage() {
