@@ -26,7 +26,7 @@
     <color name="md_theme_light_onErrorContainer">#410001</color>
 
     <!--Background Colors-->
-    <color name="md_theme_light_background">#FEFBFF</color>
+    <color name="md_theme_light_background">#284DE2</color>
     <color name="md_theme_light_onBackground">#1B1B1F</color>
 
     <!--Surface Colors-->
@@ -44,21 +44,21 @@
 
     <!--Stuff for the Dark Mode below-->
     <!--Primary Colors-->
-    <color name="md_theme_dark_primary">#284DE2</color>
+    <color name="md_theme_dark_primary">#000000</color>
     <color name="md_theme_dark_onPrimary">#FFFFFF</color>
     <color name="md_theme_dark_primaryContainer">#DDE1FF</color>
-    <color name="md_theme_dark_onPrimaryContainer">#00105C</color>
+    <color name="md_theme_dark_onPrimaryContainer">#000000</color>
 
     <!--Secondary Colors-->
     <color name="md_theme_dark_secondary">#FFFFFF</color>
     <color name="md_theme_dark_onSecondary">#FFFFFF</color>
     <color name="md_theme_dark_secondaryContainer">#FFFFFF</color>
-    <color name="md_theme_dark_onSecondaryContainer">#000000</color>
+    <color name="md_theme_dark_onSecondaryContainer">#ffffff</color>
 
     <!--Tertiary Colors-->
     <color name="md_theme_dark_tertiary">#76546E</color>
     <color name="md_theme_dark_onTertiary">#FFFFFF</color>
-    <color name="md_theme_dark_tertiaryContainer">#070707</color>
+    <color name="md_theme_dark_tertiaryContainer">#ffffff</color>
     <color name="md_theme_dark_onTertiaryContainer">#2C1228</color>
 
     <!--Error Colors-->
@@ -78,7 +78,7 @@
     <color name="md_theme_dark_onSurfaceVariant">#45464F</color>
 
     <!--Outline Colors-->
-    <color name="md_theme_dark_outline">#76767F</color>
+    <color name="md_theme_dark_outline">#ffffff</color>
     <color name="md_theme_dark_inverseOnSurface">#F3F0F5</color>
     <color name="md_theme_dark_inverseSurface">#303034</color>
     <color name="md_theme_dark_primaryInverse">#B8C3FF</color>
