@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements PostRecyclerViewInterface {
     private static final String TAG = "HomeFragmentActivity";
 
-    DatabaseReference database, postsRef,userRef;
+    DatabaseReference database, postsRef,userRef,getProfilePicture;
     ImageView profilePicture;
     RecyclerView recyclerView;
     PostAdapter postAdapter;
@@ -144,12 +144,15 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // getting the user's unique id in Database
-        if (CurrentUser != null){userid = CurrentUser.getUid();}
+        if (CurrentUser != null){
+            userid = CurrentUser.getUid();
+            getProfilePicture = userRef.child(userid).child("imageurl");
+        }
 
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
 
-        DatabaseReference getProfilePicture = userRef.child(userid).child("imageurl");
+
 
         getProfilePicture.addValueEventListener(new ValueEventListener() {
             @Override
