@@ -35,11 +35,12 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements PostRecyclerViewInterface {
     private static final String TAG = "HomeFragmentActivity";
 
-    DatabaseReference database, postsRef,userRef;
+    DatabaseReference database, postsRef,userRef,getProfilePicture;
     ImageView profilePicture;
     RecyclerView recyclerView;
     PostAdapter postAdapter;
     ArrayList<Post> list;
+    String userid;
 
 
     public HomeFragment() {
@@ -141,26 +142,28 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         //Get and set profile picture on the tool bar
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        String userid = CurrentUser.getUid();
-
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
 
-        DatabaseReference getProfilePicture = userRef.child(userid).child("imageurl");
+        // getting the user's unique id in Database
+        if (CurrentUser != null){
+            userid = CurrentUser.getUid();
+            getProfilePicture = userRef.child(userid).child("imageurl");
 
-        getProfilePicture.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String url = snapshot.getValue(String.class);
-                Picasso.get().load(url).resize(100,100).centerCrop().into((ImageView) ProfilePhoto);
-            }
+            getProfilePicture.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String url = snapshot.getValue(String.class);
+                    Picasso.get().load(url).resize(100,100).centerCrop().into((ImageView) ProfilePhoto);
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+
+        }
     }
 
     /*
