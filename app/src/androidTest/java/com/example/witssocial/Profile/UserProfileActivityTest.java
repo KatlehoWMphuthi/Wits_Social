@@ -25,7 +25,7 @@ public class UserProfileActivityTest {
 
 
     @Test
-    public void fragment_can_be_instantiated() {
+    public void onCreate() {
         userProfileActivityActivityScenarioRule.getScenario().
     onActivity(activity -> {Runnable runnable = new Runnable() {
         @Override
