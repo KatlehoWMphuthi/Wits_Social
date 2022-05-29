@@ -104,9 +104,18 @@ public class SearchFragment extends Fragment {
                 if (search_bar.getText().toString().equals("")) {
                     userList.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        User user = snapshot.getValue(User.class);
+                        if(snapshot.getKey() != null){
+                            String username = snapshot.child("username").getValue(String.class);
+                            String id = snapshot.child("id").getValue(String.class);
+                            String fullname = snapshot.child("fullname").getValue(String.class);
+                            String imageurl = snapshot.child("imageurl").getValue(String.class);
+                            String bio = snapshot.child("bio").getValue(String.class);
+                            User user = new User(id,username,fullname,imageurl,bio);
 
-                        userList.add(user);
+
+                            userList.add(user);
+                        }
+
 
                     }
 
