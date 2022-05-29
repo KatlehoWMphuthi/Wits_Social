@@ -108,9 +108,13 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = "";
+        if (firebaseUser != null){
+            userid = firebaseUser.getUid();
+        }
 
-        String userid = CurrentUser.getUid();
+
+
 
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
