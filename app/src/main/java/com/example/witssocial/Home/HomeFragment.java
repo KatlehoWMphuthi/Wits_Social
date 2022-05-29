@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // getting the user's unique id in Database
-        if (CurrentUser.getUid() != null){userid = CurrentUser.getUid();}
+        if (CurrentUser != null){userid = CurrentUser.getUid();}
 
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
