@@ -40,6 +40,7 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
     RecyclerView recyclerView;
     PostAdapter postAdapter;
     ArrayList<Post> list;
+    String userid;
 
 
     public HomeFragment() {
@@ -142,7 +143,8 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        String userid = CurrentUser.getUid();
+        // getting the user's unique id in Database
+        if (CurrentUser.getUid() != null){userid = CurrentUser.getUid();}
 
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
