@@ -142,30 +142,28 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         //Get and set profile picture on the tool bar
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        postsRef = database.getReference("Posts");
+        userRef = database.getReference("Users");
 
         // getting the user's unique id in Database
         if (CurrentUser != null){
             userid = CurrentUser.getUid();
             getProfilePicture = userRef.child(userid).child("imageurl");
+
+            getProfilePicture.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String url = snapshot.getValue(String.class);
+                    Picasso.get().load(url).resize(100,100).centerCrop().into((ImageView) ProfilePhoto);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
         }
-
-        postsRef = database.getReference("Posts");
-        userRef = database.getReference("Users");
-
-
-
-        getProfilePicture.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String url = snapshot.getValue(String.class);
-                Picasso.get().load(url).resize(100,100).centerCrop().into((ImageView) ProfilePhoto);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     /*
