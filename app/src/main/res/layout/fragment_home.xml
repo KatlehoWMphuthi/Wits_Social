@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
-    android:background="#F6F3F3"
+    android:background="?attr/background_color"
     android:layout_height="match_parent"
     tools:context=".Home.HomeFragment">
 
@@ -11,12 +11,12 @@
         android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground">
+        android:background="?attr/bar_color">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F6F3F3">
+            android:background="?attr/toolbar_color">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -28,8 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="Wits Social"
-
-                    />
+                    android:textColor="?attr/text_color" />
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/iv_home_profile_picture"
@@ -40,6 +39,15 @@
                     android:background="@drawable/ic_profile_photo"
                     android:src="@drawable/ic_profile_photo"
                     app:civ_border_width="0.5dp" />
+
+                <Switch
+                    android:id="@+id/theme_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginTop="7dp"
+                    android:text="Change Theme"
+                    android:theme="@style/SwitchColor"/>
             </RelativeLayout>
 
 
@@ -56,8 +64,7 @@
         android:layout_below="@id/bar"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        />
+        android:layout_marginBottom="16dp" />
 
 
 
