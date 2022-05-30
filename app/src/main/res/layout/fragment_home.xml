@@ -39,6 +39,7 @@
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_profile_photo"
                     android:src="@drawable/ic_profile_photo"
+                    app:civ_border_color="#666666"
                     app:civ_border_width="0.5dp" />
             </RelativeLayout>
 
