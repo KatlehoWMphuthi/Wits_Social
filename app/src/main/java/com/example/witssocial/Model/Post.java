@@ -1,13 +1,16 @@
 package com.example.witssocial.Model;
 
 public class Post {
+
     private String image;
     private String Caption;
     private String username;
     private String postid;
-    private  String profilePicture;
+    private String time;
+    private String profilePicture;
 
-    public Post(String postid, String image, String caption, String username, String profilePicture) {
+
+    public Post(String postid, String image, String caption, String username, String profilePicture, String time) {
         this.image = image;
         this.Caption = caption;
         this.username = username;
@@ -16,6 +19,8 @@ public class Post {
     }
 
     public Post(){}
+
+
 
     public String getImage() {
         return image;
@@ -39,6 +44,9 @@ public class Post {
 
     public String getProfilePicture(){return profilePicture;};
 
+    public String getTime() {
+        return time;
+    }
 
 }
 

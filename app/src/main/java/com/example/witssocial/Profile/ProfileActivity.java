@@ -160,7 +160,6 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mFollowing.setText(""+dataSnapshot.getChildrenCount());
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

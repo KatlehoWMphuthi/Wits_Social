@@ -27,29 +27,41 @@
                 android:src="@drawable/ic_profile_photo"
                 app:civ_border_width="0dp" />
 
+
             <TextView
                 android:id="@+id/username"
                 android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"
-                android:textColor="@color/material_on_surface_emphasis_high_type"
-                android:text="Username"
                 android:layout_marginLeft="8dp"
-                android:textStyle="bold"
-                 />
+                android:layout_marginRight="8dp"
+                android:text="Username"
+                android:textColor="@color/material_on_surface_emphasis_high_type"
+                android:textStyle="bold" />
+
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Time Posted"
+            android:textColor="@color/material_on_surface_emphasis_high_type"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/caption"
+            style="@style/TextAppearance.Material3.BodySmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:paddingRight="16dp"
-            style="@style/TextAppearance.Material3.BodySmall"
-            android:paddingBottom="16dp"
+            android:paddingBottom="5dp"
             android:text="This is a caption of a Post"
             android:textColor="@color/material_on_surface_emphasis_medium"
             android:textSize="14sp" />
@@ -57,12 +69,12 @@
 
         <ImageView
             android:id="@+id/post_image"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:adjustViewBounds="true"
             android:background="@drawable/image_border"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"

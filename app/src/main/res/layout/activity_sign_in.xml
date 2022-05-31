@@ -57,7 +57,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/stu_mail_login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="2332271" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -68,6 +69,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="196dp"
         android:hint="@string/password"
+        android:text="yrmmpatel"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@+id/LoginButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,6 +81,7 @@
             android:id="@+id/EditText_login_Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="yrmmpatel"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
