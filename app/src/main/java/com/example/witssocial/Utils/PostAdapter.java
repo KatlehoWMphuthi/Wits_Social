@@ -61,13 +61,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String postUsername = post.getUsername();
-                    User user = dataSnapshot.getValue(User.class);
+                    String username = dataSnapshot.child("username").getValue(String.class);
 
-                    if( user.getUsername().equals(postUsername))
+                    if( username != null)
                     {
+                        if( username.equals(postUsername))
+                        {
 
-                        Glide.with(holder.itemView).load(user.getImageurl()).into(holder.profile_picture);
+                            Glide.with(holder.itemView).load(dataSnapshot.child("imageurl").getValue(String.class))
+                                    .into(holder.profile_picture);
+                        }
                     }
+
                 }
             }
 

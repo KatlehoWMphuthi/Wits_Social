@@ -108,9 +108,13 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = "";
+        if (firebaseUser != null){
+            userid = firebaseUser.getUid();
+        }
 
-        String userid = CurrentUser.getUid();
+
+
 
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
@@ -228,7 +232,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
     public void onUsernameClick(int position) {
 
 
-        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+        Intent intent = new Intent(getActivity(), ProfileFragment.class);
         intent.putExtra("Username", list.get(position).getUsername());
 
         startActivity(intent);
@@ -285,5 +289,6 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
             }
         });
     }
+
 
 }

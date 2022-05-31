@@ -23,8 +23,10 @@
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:layout_marginRight="8dp"
-                android:background="@drawable/ic_user_account_circle"
-                app:civ_border_width="0dp" />
+                android:background="@drawable/ic_profile_photo"
+                android:src="@drawable/ic_profile_photo"
+                app:civ_border_color="#666666"
+                app:civ_border_width="0.6dp" />
 
             <TextView
                 android:id="@+id/username"
@@ -99,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="64dp"
                 android:layout_toRightOf="@id/like"
+                android:text="20K"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Share"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -123,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="64dp"
                 android:layout_toRightOf="@id/like"
+                android:text="20K"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/like"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -148,6 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/Share"
+                android:text="20"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

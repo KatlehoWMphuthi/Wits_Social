@@ -79,16 +79,18 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
         mFollowers = view.findViewById(R.id.tvFollowers);
         mFollowing = view.findViewById(R.id.tvFollowing);
-        follow_btn = view.findViewById(R.id.btn_follows);
+        follow_btn = view.findViewById(R.id.btn_follow);
         mPosts = view.findViewById(R.id.tvPosts);
-        mUsername = view.findViewById(R.id.user_name);
 
         getFollowers();
         checkFollow();
 
 
-        //Hide progrees bar
-        viewBinding.pbProfileProgressBar.setVisibility(GONE);
+
+        //ActionBar actionBar = getSupportActionBar();
+        // assert actionBar != null;
+        //actionBar.setTitle("");   //PLEASE LEAVE IT EMPTY!!! WE ALREADY GOT THE USERNAME!!!
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         //Collect Data from Parent activity
@@ -101,24 +103,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
        mWebsite = viewBinding.chip1;
        mProfilePhoto  = viewBinding.profileImage;
 
-       //setUsername
-        String displayedUsername = "@" + username;
-        mUsername.setText(displayedUsername);
-     //  mDisplayName.setText(username);
-
-        //viewBinding.displayName.setText(username);
-/*
-        profilepic = view.findViewById(R.id.image_profile);
-        profilename = view.findViewById(R.id.username);
-        //biography = view.findViewById(R.id.bio);
-        fullName = view.findViewById(R.id.fullname);
-        picture = view.findViewById(R.id.imageView4);
-*/
-        //Do something from here
-
-        /*
-        Getting data from the db and displaying it on users profile page
-         */
+       mDisplayName.setText(username);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -161,7 +146,6 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                 String imageurl = "";
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String user_name = bundle.getString("username");
-
                     //check if user profile clicked
                      if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
 
