@@ -1,6 +1,9 @@
 package com.example.witssocial.Home;
 
+import android.icu.util.Calendar;
 import android.os.Bundle;
+
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +32,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class HomeFragment extends Fragment implements PostRecyclerViewInterface {
@@ -67,20 +74,6 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-               startActivity(intent);
-               */
-
-
-                //Open user Profile Fragment
-                /*
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragment_container, new UserProfileFragment());
-                transaction.commit();
-                */
-
                 UserProfileFragment userProfileFragment = new UserProfileFragment();
 
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
@@ -112,15 +105,33 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Post post = dataSnapshot.getValue(Post.class);
+                    //Post post = dataSnapshot.getValue(Post.class);
+                    String postid = dataSnapshot.getKey();
+                    String image  = dataSnapshot.child("image").getValue(String.class);
+                    String caption  = dataSnapshot.child("Caption").getValue(String.class);
+                    String username  = dataSnapshot.child("username").getValue(String.class);
 
+
+
+                    Post post = new Post(postid,image,caption,username);
 
                     /*TODO : @Michael this is line to get the actual post
-                    You can implement the like button here.
-                     */
+                    You can implement the like button here.type java.lang.String to long
+                  */
 
-                    String postid = dataSnapshot.getKey();
-
+                    if(dataSnapshot.child("time").getValue() != null){
+                        if(dataSnapshot.child("time").getValue() instanceof Long){
+                            long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
+                            String time = getDate(timeINT);
+                            post.setTime(time);
+                        }
+                        else{
+                            String timestamp = dataSnapshot.child("time").getValue(String.class);
+                            long timeINT =Long.parseLong(timestamp);
+                            String time = getDate(timeINT);
+                            post.setTime(time);
+                            }
+                        }
                     list.add(post);
                 }
 
@@ -164,6 +175,16 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
             });
 
         }
+    }
+
+    //TODO: The time is behind by at least 2 hours, must be fixed here!
+
+    private String getDate(long time) {
+        Date date1 = new Date(time);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String date = simpleDateFormat.format(date1);
+        return date;
     }
 
     /*
