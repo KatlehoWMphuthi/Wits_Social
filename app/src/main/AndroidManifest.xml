@@ -32,10 +32,6 @@
             android:name=".More.MoreOptions.AppSettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".Profile.ProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".Home.HomeActivity" />
-        <activity
             android:name=".Profile.UserProfileActivity"
             android:exported="true"
             android:parentActivityName=".Home.HomeActivity" />
