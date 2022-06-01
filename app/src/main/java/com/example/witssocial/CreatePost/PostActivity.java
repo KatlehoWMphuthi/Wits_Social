@@ -24,6 +24,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.witssocial.Home.HomeActivity;
 import com.example.witssocial.Model.User;
 import com.example.witssocial.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -135,9 +136,7 @@ public class PostActivity extends AppCompatActivity {
 
                 uploadImage();
 
-                //Go to home fragment
-                //Intent intent = new Intent(PostActivity.this, HomeFragment.class);
-                //startActivity(intent);
+
             }
         });
 
@@ -210,6 +209,9 @@ public class PostActivity extends AppCompatActivity {
                     //Display toast
                    Toast.makeText(PostActivity.this, "picture successfully posted", Toast.LENGTH_LONG).show();
 
+                    //go to homepage
+                    goToHomeActivity();
+
                    //gets the download link from firebase storage
                     riversRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
@@ -260,6 +262,14 @@ public class PostActivity extends AppCompatActivity {
                 }
             });
         }
+
+    }
+
+    private void goToHomeActivity() {
+        //Go to home fragment
+        Intent intent = new Intent(PostActivity.this, HomeActivity.class);
+        finish();
+        startActivity(intent);
     }
 
     public String getusername(String userid){
