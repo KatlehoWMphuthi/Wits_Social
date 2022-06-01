@@ -82,7 +82,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         profileid = prefs.getString("profileid", "none");
 
         mDisplayName = (TextView) view.findViewById(R.id.display_name);
-        //mUsername = (TextView) view.findViewById(R.id.username);
+        mUsername = (TextView) view.findViewById(R.id.current_username);
         mBio = (TextView) view.findViewById(R.id.description);
         mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_image);
         mProgressBar = (ProgressBar) view.findViewById(R.id.pb_profileProgressBar);
@@ -139,6 +139,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         });
 
         //get fullname
+        getInfo("username",userRef.child(userid),mUsername);
         getInfo("fullname",userRef.child(userid),mDisplayName);
         getInfo("bio",userRef.child(userid),mBio);
         getInfo("website",userRef.child(userid).child("socials"),mWebsite);
@@ -210,8 +211,6 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
                                     list.add(post);
                                 }
 
-
-
                             }
                             mPosts.setText(Integer.toString(list.size()));
                         }
@@ -273,6 +272,13 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String info_needed = snapshot.getValue(String.class);
+
+                //When setting username put the @ symbol before the username
+                if(info.equals("username")){
+                    String displayUsername = "@" + info_needed;
+                    infoTextView.setText(displayUsername);
+                }
+
                 infoTextView.setText(info_needed);
             }
 
