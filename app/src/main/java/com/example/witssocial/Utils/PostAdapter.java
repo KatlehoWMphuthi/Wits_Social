@@ -20,9 +20,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     private final PostRecyclerViewInterface postRecyclerViewInterface;
@@ -47,9 +49,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Post post = list.get(position);
+
+        holder.time.setText(post.getTime());
         holder.username.setText(post.getUsername());
         holder.caption.setText(post.getCaption());
+/*
+        DatabaseReference finalTime = FirebaseDatabase.getInstance().getReference().child("Posts").child("-N3Khiit9DZyjpHUWTTQ").child("time");
+        finalTime.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String data = snapshot.getRef().getParent().getKey();
+                    Objects.requireNonNull(holder).time.setText(data);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
         Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
 
 
@@ -93,7 +114,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView username, caption, likes;
+        TextView username, caption, likes, time;
         ImageView post_image, like, profile_picture;
 
        public ViewHolder(@NonNull View itemView, PostRecyclerViewInterface postRecyclerViewInterface) {
@@ -106,6 +127,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
            like = itemView.findViewById(R.id.like);
            likes = itemView.findViewById(R.id.likes);
            profile_picture = itemView.findViewById(R.id.image_profile);
+           time = itemView.findViewById(R.id.time);
+
+
+
 
 
            //Attach onclick lister to the item view
