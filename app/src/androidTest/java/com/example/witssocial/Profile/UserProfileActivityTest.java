@@ -1,7 +1,9 @@
 package com.example.witssocial.Profile;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
@@ -27,19 +29,20 @@ public class UserProfileActivityTest {
     @Test
     public void onCreate() {
         userProfileActivityActivityScenarioRule.getScenario().
-    onActivity(activity -> {Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            FragmentTransaction transaction= activity.getSupportFragmentManager().beginTransaction();
-            UserProfileFragment userProfileFragment = new UserProfileFragment();
-            transaction.add(userProfileFragment,"userProfileFragment");
-            transaction.commit();
-        }
+    onActivity(activity -> {Runnable runnable = () -> {
+        FragmentTransaction transaction= activity.getSupportFragmentManager().beginTransaction();
+        UserProfileFragment userProfileFragment = new UserProfileFragment();
+        transaction.add(userProfileFragment,"userProfileFragment");
+        transaction.commit();
     };
     });
         // Then use Espresso to test the Fragment
         onView(withId(R.id.bar)).check(matches(isDisplayed()));
+        onView(withId(R.id.btn_edit_profile)).check(matches(isCompletelyDisplayed()));
+
     }
+
+
 
 
 }
