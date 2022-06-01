@@ -24,6 +24,8 @@
     <string name="openmail">Open email app</string>
     <string name="nomail">Didn\'t get anything?</string>
     <string name="resendmail">Resend</string>
+    <string name="night_mode_off">NIGHT MODE OFF</string>
+    <string name="night_mode_on">NIGHT MODE ON</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

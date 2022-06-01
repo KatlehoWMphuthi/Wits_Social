@@ -27,4 +27,18 @@
     <color name="md_theme_light_inverseOnSurface">#F2F0F4</color>
     <color name="md_theme_light_inverseSurface">#303033</color>
     <color name="md_theme_light_primaryInverse">#ADC6FF</color>
+    <!--Primary colors of the application-->
+    <color name="green_200">#98d5b0</color>
+    <color name="green_light">#e5f5eb</color>
+    <color name="green_500">#18ad62</color>
+    <color name="green_700">#008c4c</color>
+
+    <!--Secondary brand color of the application-->
+    <color name="red_200">#eb8baf</color>
+    <color name="red_700">#b31058</color>
+
+    <!--Other surface colors and red for error color-->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#B00020</color>
 </resources>

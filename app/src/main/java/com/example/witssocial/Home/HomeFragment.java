@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        switchCompat = view.findViewById(R.id.theme_switch);
+        /*switchCompat = view.findViewById(R.id.theme_switch);
 
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
             }
-        });
+        });*/
 
         profilePicture = view.findViewById(R.id.iv_home_profile_picture);
 

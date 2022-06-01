@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-
-
     <!--Welcome Message Text-->
     <style name="welcome_mes">
 
@@ -146,7 +144,4 @@
     </style>
     <!--EndOf Forgot Password Text-->
 
-    <style name="SwitchColor">
-        <item name="colorControlActivated">@color/md_theme_light_secondaryContainer</item>
-    </style>
 </resources>
