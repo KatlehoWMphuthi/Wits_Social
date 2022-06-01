@@ -38,7 +38,7 @@ public class UserProfileActivityTest {
     });
         // Then use Espresso to test the Fragment
         onView(withId(R.id.bar)).check(matches(isDisplayed()));
-        onView(withId(R.id.btn_edit_profile)).check(matches(isCompletelyDisplayed()));
+
 
     }
 
