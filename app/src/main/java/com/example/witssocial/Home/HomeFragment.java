@@ -7,11 +7,15 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,10 +53,11 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
     ArrayList<Post> list;
     String userid;
 
+    SwitchCompat switchCompat;
 
-    public HomeFragment() {
-        // Required empty public constructor
-    }
+//    public HomeFragment() {
+//        // Required empty public constructor
+//    }
 
 
     public static HomeFragment newInstance(String param1, String param2) {
@@ -68,6 +73,20 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        /*switchCompat = view.findViewById(R.id.theme_switch);
+
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        });*/
 
         profilePicture = view.findViewById(R.id.iv_home_profile_picture);
 
