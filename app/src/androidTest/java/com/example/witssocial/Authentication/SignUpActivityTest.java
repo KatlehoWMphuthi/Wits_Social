@@ -41,8 +41,6 @@ public class SignUpActivityTest {
     @Test
     public void onCreate() {
 
-        onView(withId(R.id.Username)).check(matches(withHint("Username")));
-        onView(withId(R.id.LoginButton)).perform(click());
     }
 
 
