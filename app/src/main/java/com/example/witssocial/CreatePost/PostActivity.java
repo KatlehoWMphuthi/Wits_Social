@@ -88,6 +88,7 @@ public class PostActivity extends AppCompatActivity {
 
         Database = FirebaseDatabase.getInstance();
         myRef = Database.getReference("Posts");
+        myRef = Database.getReference("Likes");
         users = Database.getReference("Users");
         user = FirebaseAuth.getInstance().getCurrentUser();
 
