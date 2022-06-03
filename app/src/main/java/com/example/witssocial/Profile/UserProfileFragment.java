@@ -63,7 +63,6 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
     String profileid;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -233,7 +232,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
     public void onUsernameClick(int position) {
 
 
-        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+        Intent intent = new Intent(getActivity(), ProfileFragment.class);
         intent.putExtra("Username", list.get(position).getUsername());
 
         startActivity(intent);

@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static android.view.View.GONE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,6 +73,8 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         viewBinding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = viewBinding.getRoot();
 
+        //mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_image);
+
         //follow additions
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -83,8 +87,13 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         mPosts = view.findViewById(R.id.tvPosts);
 
         getFollowers();
-        checkFollow();
+        //checkFollow();
 
+        if (profileid.equals(firebaseUser.getUid())){
+            follow_btn.setText("Edit Profile");
+        } else {
+            checkFollow();
+        }
 
         //Hide progree bar
         viewBinding.pbProfileProgressBar.setVisibility(GONE);
@@ -100,7 +109,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         Bundle bundle = this.getArguments();
         username = bundle.getString("username");
 
-        //Bind data to viwes
+        //Bind data to views
        mDisplayName = viewBinding.displayName;
        mBio = viewBinding.bio;
        mWebsite = viewBinding.chip1;
@@ -126,7 +135,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //String userid = CurrentUser.getUid();
+        String userid = CurrentUser.getUid();
 
         //follow additions
         follow_btn.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +143,31 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
             public void onClick(View view) {
                 String btn = follow_btn.getText().toString();
 
-                if (btn.equals("follow")){
+                if (btn.equals("Edit Profile")) {
+
+                    FragmentManager fragmentManager = getParentFragmentManager();
+                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, new EditProfileFragment());
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
+
+                    DatabaseReference getProfilePicture = userRef.child(userid).child("imageurl");
+
+                    getProfilePicture.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String url = snapshot.getValue(String.class);
+                            Picasso.get().load(url).resize(100,100).centerCrop().into(mProfilePhoto);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                } else if (btn.equals("follow")){
 
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
                             .child("following").child(profileid).setValue(true);
@@ -153,10 +186,9 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         });
 
 
+
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
-
-
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -291,6 +323,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
         return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

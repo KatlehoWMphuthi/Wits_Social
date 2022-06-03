@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.witssocial.Home.HomeActivity;
 import com.example.witssocial.Home.MainActivity;
 import com.example.witssocial.Model.User;
 import com.example.witssocial.Profile.ProfileFragment;
@@ -93,7 +94,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                     ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             profileFragment).addToBackStack(null).commit();
                 } else {
-                    Intent intent = new Intent(mContext, MainActivity.class);
+                    Intent intent = new Intent(mContext, HomeActivity.class);
                     intent.putExtra("publisherid", user.getId());
                     mContext.startActivity(intent);
                 }
