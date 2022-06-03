@@ -30,9 +30,10 @@ import java.util.Objects;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     private final PostRecyclerViewInterface postRecyclerViewInterface;
     Context context;
-    ArrayList<Post> list;
+    static ArrayList<Post> list;
     DatabaseReference database, postsRef,userRef;
     static int  clicked = 0;
+    String postid;
 
     private FirebaseUser firebaseUser;
 
@@ -54,7 +55,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
         Post post = list.get(position);
 
-//        holder.time.setText(post.getTime());
+        holder.time.setText(post.getTime());
         holder.username.setText(post.getUsername());
         holder.caption.setText(post.getCaption());
 /*
@@ -72,7 +73,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             }
         });*/
         Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
-
+        //setting a like
+        postid= post.getPostid();
+        DatabaseReference tempData = FirebaseDatabase.getInstance().getReference("tempData");
+        tempData.setValue(postid);
 
         //setProfile picture for each user
 
@@ -91,6 +95,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
                             Glide.with(holder.itemView).load(dataSnapshot.child("imageurl").getValue(String.class))
                                     .into(holder.profile_picture);
+
                         }
                     }
 
@@ -132,7 +137,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
 
 
-
             //Attach onclick lister to the item view
             username.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -150,7 +154,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    int position = getBindingAdapterPosition();
                     if(clicked ==1)
                     {
                         Log.i("clicked is ==1, check ifs 1 ", Integer.toString(clicked));
@@ -162,6 +166,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                         likes.setText(Integer.toString(clicked));
                         likes.setTextColor(Color.parseColor("#0057B8"));
 
+
                     }
                     Log.i("clicked is < 0, check ifs 2 ", Integer.toString(clicked));
                     if(clicked<1)
@@ -172,7 +177,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                         likes.setText(Integer.toString(clicked));
                         likes.setTextColor(Color.parseColor("#0057B8"));
                     }
+
                 }
+
+
             });
 
 
