@@ -115,14 +115,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long number_of_likes = snapshot.getChildrenCount();
-                String currentUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
-                holder.likes.setText(Integer.toString(Math.toIntExact(number_of_likes)));
 
-                if(snapshot.child(currentUser).exists()){
-                    if(snapshot.child(currentUser).getValue(Boolean.class)){
-                        holder.like.setImageResource(R.drawable.ic_baseline_favorite_24);
+                holder.likes.setText(Integer.toString(Math.toIntExact(number_of_likes)));
+                if(FirebaseAuth.getInstance().getCurrentUser() != null){
+                    String currentUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    if(snapshot.child(currentUser).exists()){
+                        if(snapshot.child(currentUser).getValue(Boolean.class)){
+                            holder.like.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        }
                     }
                 }
+
 
             }
 
