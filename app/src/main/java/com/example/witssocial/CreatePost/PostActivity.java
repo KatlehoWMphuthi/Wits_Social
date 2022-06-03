@@ -92,6 +92,7 @@ public class PostActivity extends AppCompatActivity {
 
         Database = FirebaseDatabase.getInstance();
         myRef = Database.getReference("Posts");
+        myRef = Database.getReference("Likes");
         users = Database.getReference("Users");
         user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -173,9 +174,6 @@ public class PostActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    //StorageReference storageReference1 = storageReference.child(System.currentTimeMillis()+"."+GetFileExtension(filePath));
-    //        storageReference1.putFile(filePath)
-
     private void uploadImage() {
 
         if (filePath != null) {
@@ -249,16 +247,6 @@ public class PostActivity extends AppCompatActivity {
                     });
 
                     //Log.d(TAG,"Upload Successful");
-                }
-            });
-
-            riversRef.getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
-                @Override
-                public void onSuccess(@NonNull StorageMetadata storageMetadata) {
-                    long time = storageMetadata.getCreationTimeMillis();
-                    String timestamp = Long.toString(time);
-                    DatabaseReference timeStamp = dbRef.child("timestamp");
-                    timeStamp.setValue(timestamp);
                 }
             });
         }

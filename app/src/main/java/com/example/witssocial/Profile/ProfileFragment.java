@@ -151,54 +151,64 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String user_name = bundle.getString("username");
                     //check if user profile clicked
-                     if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
+                    if(dataSnapshot.child("username").getValue(String.class) != null){
+                        if (dataSnapshot.child("username").getValue() instanceof String){
+                            if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
 
 
-                         User info = dataSnapshot.getValue(User.class);
+                                User info = dataSnapshot.getValue(User.class);
 
-                         imageurl = info.getImageurl();
-                         if(imageurl != null){
-                             Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
-                         }
+                                imageurl = info.getImageurl();
+                                if(imageurl != null){
+                                    Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
+                                }
 
-                         String fullName = info.getFullname();
+                                String fullName = info.getFullname();
 
-                         if(fullName != null){
-                             mDisplayName.setText(fullName);
-                         }
-                         String bio = info.getBio();
-                         if(fullName != null){
-                             mBio.setText(bio);
-                         }
+                                if(fullName != null){
+                                    mDisplayName.setText(fullName);
+                                }
+                                String bio = info.getBio();
+                                if(fullName != null){
+                                    mBio.setText(bio);
+                                }
 
-                         DataSnapshot socials = dataSnapshot.child("socials");
-                         Social userSocials = socials.getValue(Social.class);
+                                DataSnapshot socials = dataSnapshot.child("socials");
+                                Social userSocials = socials.getValue(Social.class);
 
-                         if(userSocials != null){
-                             if(userSocials.getFacebook() != null){
-                                 mWebsite.setText(userSocials.getFacebook());
-                             }
-                             else if(userSocials.getWebsite() != null){
-                                 Context context = mWebsite.getContext();
-                                 mWebsite.setText(userSocials.getWebsite());
-                             }else if(userSocials.getInstagram() != null){
-                                 mWebsite.setText(userSocials.getInstagram());
-                             }else if(userSocials.getLinkedin() != null){
-                                 mWebsite.setText(userSocials.getLinkedin());
-                             }else if(userSocials.getTwitter() != null){
-                                 mWebsite.setText(userSocials.getTwitter());
-                             }
-                             else{
-                                 mWebsite.setText("My links");
-                             }
-                         }
-
-
+                                if(userSocials != null){
+                                    if(userSocials.getFacebook() != null){
+                                        mWebsite.setText(userSocials.getFacebook());
+                                    }
+                                    else if(userSocials.getWebsite() != null){
+                                        Context context = mWebsite.getContext();
+                                        mWebsite.setText(userSocials.getWebsite());
+                                    }else if(userSocials.getInstagram() != null){
+                                        mWebsite.setText(userSocials.getInstagram());
+                                    }else if(userSocials.getLinkedin() != null){
+                                        mWebsite.setText(userSocials.getLinkedin());
+                                    }else if(userSocials.getTwitter() != null){
+                                        mWebsite.setText(userSocials.getTwitter());
+                                    }
+                                    else{
+                                        mWebsite.setText("My links");
+                                    }
+                                }
 
 
-                        // Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
+
+
+                                // Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
+
+                            }
+                        }
+                        else{
+
+                        }
+
 
                     }
+
                 }
 
             }
