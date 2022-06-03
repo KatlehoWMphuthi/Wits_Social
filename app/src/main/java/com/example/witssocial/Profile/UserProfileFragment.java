@@ -36,7 +36,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -177,7 +181,30 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
                             //  The same code  can be used when clicking for
                             //  XML the scrolling is still buggy please fix it as well
 
-                            Post post = dataSnapshot.getValue(Post.class);
+                            //Post post = dataSnapshot.getValue(Post.class);
+
+                            String postid = dataSnapshot.getKey();
+                            String image  = dataSnapshot.child("image").getValue(String.class);
+                            String caption  = dataSnapshot.child("Caption").getValue(String.class);
+                            String username1  = dataSnapshot.child("username").getValue(String.class);
+
+
+
+                            Post post = new Post(postid,image,caption,username1);
+
+                            if(dataSnapshot.child("time").getValue() != null){
+                                if(dataSnapshot.child("time").getValue() instanceof Long){
+                                    long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
+                                    String time = getDate(timeINT);
+                                    post.setTime(time);
+                                }
+                                else{
+                                    String timestamp = dataSnapshot.child("time").getValue(String.class);
+                                    long timeINT =Long.parseLong(timestamp);
+                                    String time = getDate(timeINT);
+                                    post.setTime(time);
+                                }
+                            }
 
                             if(post.getUsername() != null){
                                 if(post.getUsername().equals(username)){
@@ -288,6 +315,16 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
             }
         });
+    }
+
+    //TODO: The time is behind by at least 2 hours, must be fixed here!
+
+    private String getDate(long time) {
+        Date date1 = new Date(time);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String date = simpleDateFormat.format(date1);
+        return date;
     }
 
 

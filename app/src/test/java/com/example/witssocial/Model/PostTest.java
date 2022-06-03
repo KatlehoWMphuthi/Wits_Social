@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseUser;
 import org.junit.Test;
 
 public class PostTest {
-    Post post = new Post("postid","63ba23a4-606d-4f87-8d07-714e43675670","Games","Michael","63ba23a4-606d-4f87-8d07-714e43675670");
+    Post post = new Post("postid","63ba23a4-606d-4f87-8d07-714e43675670","Games","Michael");
 
     @Test
     public void getImage() {
@@ -18,12 +18,14 @@ public class PostTest {
         assertEquals(exp_imgUrl,imgUrl);
     }
 
+
     @Test
     public void getCaption() {
         String exp_imgCaption = "Games";
         String imgCaption = post.getCaption();
         assertEquals(exp_imgCaption,imgCaption);
     }
+
 
     @Test
     public void getUsername() {
@@ -34,12 +36,27 @@ public class PostTest {
     }
 
     @Test
+    public void setTime() {
+        post.setTime("time");
+        assertEquals("time",post.getTime());
+    }
+
+    @Test
+    public void getTime() {
+        String time = post.getTime();
+        long wrongtime = 1;
+        assertThat(wrongtime).isNotEqualTo(time);
+    }
+
+
+    /*@Test
     public void getProfilePicture() {
         String exp_postID = "N2OoFRT7r_3iY_Ixl2K";
-        String id = post.getProfilePicture();
+        //String id = post.getProfilePicture();
         assertThat(exp_postID).isNotEqualTo(id);
 
-    }
+    }*/
+
 
 }
 
