@@ -2,6 +2,7 @@ package com.example.witssocial.Utils;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +21,19 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     private final PostRecyclerViewInterface postRecyclerViewInterface;
     Context context;
-    ArrayList<Post> list;
+    static ArrayList<Post> list;
     DatabaseReference database, postsRef,userRef;
+    static int  clicked = 0;
+    String postid;
 
     private FirebaseUser firebaseUser;
 
@@ -47,11 +52,31 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Post post = list.get(position);
+
+        holder.time.setText(post.getTime());
         holder.username.setText(post.getUsername());
         holder.caption.setText(post.getCaption());
+/*
+        DatabaseReference finalTime = FirebaseDatabase.getInstance().getReference().child("Posts").child("-N3Khiit9DZyjpHUWTTQ").child("time");
+        finalTime.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String data = snapshot.getRef().getParent().getKey();
+                    Objects.requireNonNull(holder).time.setText(data);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });*/
         Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
-
+        //setting a like
+        postid= post.getPostid();
+        DatabaseReference tempData = FirebaseDatabase.getInstance().getReference("tempData");
+        tempData.setValue(postid);
 
         //setProfile picture for each user
 
@@ -70,6 +95,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
                             Glide.with(holder.itemView).load(dataSnapshot.child("imageurl").getValue(String.class))
                                     .into(holder.profile_picture);
+
                         }
                     }
 
@@ -93,43 +119,73 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView username, caption, likes;
+        TextView username, caption, likes, time;
         ImageView post_image, like, profile_picture;
 
-       public ViewHolder(@NonNull View itemView, PostRecyclerViewInterface postRecyclerViewInterface) {
-           super(itemView);
+        public ViewHolder(@NonNull View itemView, PostRecyclerViewInterface postRecyclerViewInterface) {
+            super(itemView);
 
-           username = itemView.findViewById(R.id.username);
-           caption = itemView.findViewById(R.id.caption);
-           post_image = itemView.findViewById(R.id.post_image);
-           post_image.setClipToOutline(true);
-           like = itemView.findViewById(R.id.like);
-           likes = itemView.findViewById(R.id.likes);
-           profile_picture = itemView.findViewById(R.id.image_profile);
+            username = itemView.findViewById(R.id.username);
+            caption = itemView.findViewById(R.id.caption);
+            post_image = itemView.findViewById(R.id.post_image);
+            post_image.setClipToOutline(true);
+            like = itemView.findViewById(R.id.like);
+            likes = itemView.findViewById(R.id.likes);
+            profile_picture = itemView.findViewById(R.id.image_profile);
+            time = itemView.findViewById(R.id.time);
 
 
-           //Attach onclick lister to the item view
-           username.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View view) {
-                   if(postRecyclerViewInterface != null){
+
+
+            //Attach onclick lister to the item view
+            username.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(postRecyclerViewInterface != null){
                         int position = getBindingAdapterPosition();
 
                         if(position != RecyclerView.NO_POSITION){
                             postRecyclerViewInterface.onUsernameClick(position);
                         }
-                   }
-               }
-           });
+                    }
+                }
+            });
+       
+            like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getBindingAdapterPosition();
+                    if(clicked ==1)
+                    {
+                        Log.i("clicked is ==1, check ifs 1 ", Integer.toString(clicked));
 
-           like.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View view) {
-                   like.setImageResource(R.drawable.ic_baseline_favorite_24);
-                   likes.setTextColor(Color.parseColor("#0057B8"));
-               }
-           });
-       }
-   }
+                        clicked -=1;
+                        Log.i("clicked is decreased by 1, check ifs 1 ", Integer.toString(clicked));
+
+                        like.setImageResource(R.drawable.ic_like);
+                        likes.setText(Integer.toString(clicked));
+                        likes.setTextColor(Color.parseColor("#0057B8"));
+
+
+                    }
+                    Log.i("clicked is < 0, check ifs 2 ", Integer.toString(clicked));
+                    if(clicked<1)
+                    {
+                        clicked +=1;
+                        Log.i("clicked is == 1, now inside ifs 2 ", Integer.toString(clicked));
+                        like.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        likes.setText(Integer.toString(clicked));
+                        likes.setTextColor(Color.parseColor("#0057B8"));
+                    }
+
+                }
+
+
+            });
+
+
+        }
+
+    }
 
 }

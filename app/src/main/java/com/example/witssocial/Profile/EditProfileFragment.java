@@ -2,6 +2,7 @@ package com.example.witssocial.Profile;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfileFragment extends Fragment {
 
+    private static final String LOG_TAG = EditProfileFragment.class.getSimpleName();
+
     TextView mChangePhoto;
     EditText name,bio,website, facebook,twitter,instagram,linkedin;
     CircleImageView mcircleImageView;
@@ -61,6 +64,8 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
@@ -81,6 +86,7 @@ public class EditProfileFragment extends Fragment {
 
         //Set current user profile picture
         setCurrentProfilePicture(mcircleImageView);
+        showAllUserData();
 
 
         mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
@@ -105,6 +111,8 @@ public class EditProfileFragment extends Fragment {
         mSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Log.d(LOG_TAG, "Saving Data");
                 // TODO -- Push to firebase : imageURI
                 //get the current user
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -209,6 +217,12 @@ public class EditProfileFragment extends Fragment {
 
         return view;
     }
+
+    private void showAllUserData() {
+        //Get data from a bundle and display
+
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

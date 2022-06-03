@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
-    android:background="#F6F3F3"
     android:layout_height="match_parent"
     tools:context=".Home.HomeFragment">
 
@@ -16,7 +15,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F6F3F3">
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -39,6 +38,7 @@
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_profile_photo"
                     android:src="@drawable/ic_profile_photo"
+                    app:civ_border_color="#666666"
                     app:civ_border_width="0.5dp" />
             </RelativeLayout>
 
@@ -48,23 +48,36 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+<com.facebook.shimmer.ShimmerFrameLayout
+    android:id="@+id/shimmer_view_container"
+    android:layout_marginTop="64dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/shimmer_effect_post_item" />
+        <include layout="@layout/shimmer_effect_post_item" />
+        <include layout="@layout/shimmer_effect_post_item"/>
+        <include layout="@layout/shimmer_effect_post_item"/>
+        <include layout="@layout/shimmer_effect_post_item"/>
+
+    </LinearLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/bar"
+        android:visibility="gone"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         />
-
-
-
-    <!--    <ProgressBar-->
-    <!--        android:id="@+id/progress_circular"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_centerInParent="true" />-->
 
 </RelativeLayout>
