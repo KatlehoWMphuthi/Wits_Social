@@ -117,6 +117,7 @@ public class SignInActivity extends AppCompatActivity {
                                         Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
                                         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
+                                        finish();
 
 
                                     }
