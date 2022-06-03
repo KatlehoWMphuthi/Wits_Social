@@ -21,9 +21,12 @@ public class WelcomeActivity extends AppCompatActivity {
     public void goToSignUpActivity(View view) {
 
         startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+        finish();
     }
 
     public void goToSignInActivity(View view) {
         startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+        finish();
     }
+
 }
