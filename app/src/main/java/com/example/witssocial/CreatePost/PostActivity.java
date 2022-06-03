@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -51,6 +52,7 @@ public class PostActivity extends AppCompatActivity {
     private ImageButton btnRemove;
     private ImageView imageView;
     private EditText editText;
+    private ProgressBar progressBar;
     String username;
 
     private Uri filePath;
@@ -89,6 +91,7 @@ public class PostActivity extends AppCompatActivity {
         btnUpload = (Button) findViewById(R.id.btnUpload);
         imageView = (ImageView) findViewById(R.id.imgView);
         editText = (EditText) findViewById(R.id.caption);
+        progressBar = (ProgressBar) findViewById(R.id.pb_createPost);
 
         Database = FirebaseDatabase.getInstance();
         myRef = Database.getReference("Posts");
@@ -103,6 +106,9 @@ public class PostActivity extends AppCompatActivity {
 
         //initally disable the post button
         btnUpload.setEnabled(false);
+
+        //Hide Progress bar
+        progressBar.setVisibility(View.GONE);
 
         btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +142,6 @@ public class PostActivity extends AppCompatActivity {
 
                 uploadImage();
 
-
             }
         });
 
@@ -152,6 +157,8 @@ public class PostActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             filePath = data.getData();
@@ -192,6 +199,7 @@ public class PostActivity extends AppCompatActivity {
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
+
                     // Handle unsuccessful uploads
                     Toast.makeText(PostActivity.this, "Failed", Toast.LENGTH_LONG).show();
                     //Log.d(TAG,"Upload failed.");
@@ -203,7 +211,6 @@ public class PostActivity extends AppCompatActivity {
                     // ...
 
                     //Add load button
-
 
 
                     //Display toast
@@ -262,7 +269,6 @@ public class PostActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     private void goToHomeActivity() {
