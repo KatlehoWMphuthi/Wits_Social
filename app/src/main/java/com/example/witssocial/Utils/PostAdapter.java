@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.witssocial.Model.Post;
 import com.example.witssocial.Model.User;
 import com.example.witssocial.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -73,10 +75,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             }
         });*/
         Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
-        //setting a like
-        postid= post.getPostid();
-        DatabaseReference tempData = FirebaseDatabase.getInstance().getReference("tempData");
-        tempData.setValue(postid);
+
 
         //setProfile picture for each user
 
@@ -100,6 +99,31 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                     }
 
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        // getting the number of likes for each post
+        DatabaseReference likeRef  = FirebaseDatabase.getInstance().getReference("Liked");
+        DatabaseReference likedPost = likeRef.child(post.getPostid());
+        DatabaseReference likeschild = likedPost.child("likes");
+        likeschild.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long number_of_likes = snapshot.getChildrenCount();
+                String currentUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                holder.likes.setText(Integer.toString(Math.toIntExact(number_of_likes)));
+
+                if(snapshot.child(currentUser).exists()){
+                    if(snapshot.child(currentUser).getValue(Boolean.class)){
+                        holder.like.setImageResource(R.drawable.ic_baseline_favorite_24);
+                    }
+                }
+
             }
 
             @Override
@@ -150,13 +174,30 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                     }
                 }
             });
-       
+
+            //Like button function
             like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    like.setImageResource(R.drawable.ic_baseline_favorite_24);
+
                     int position = getBindingAdapterPosition();
-                    if(clicked ==1)
+                    Post post = list.get(position);
+                    //get the current user to store their userid
+                    FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+                    //Getting a likes reference
+                    DatabaseReference likeRef  = FirebaseDatabase.getInstance().getReference("Liked");
+                    DatabaseReference likedPost = likeRef.child(post.getPostid());
+
+                    DatabaseReference likeschild = likedPost.child("likes");
+
+                    DatabaseReference userLikedPost = likeschild.child(current_user.getUid());
+                    userLikedPost.setValue(true);
+                    /*if(clicked ==1)
                     {
+
+                        //Toast.makeText(like.getContext(), post.getPostid() + " has been unliked", Toast.LENGTH_SHORT).show();
                         Log.i("clicked is ==1, check ifs 1 ", Integer.toString(clicked));
 
                         clicked -=1;
@@ -176,7 +217,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                         like.setImageResource(R.drawable.ic_baseline_favorite_24);
                         likes.setText(Integer.toString(clicked));
                         likes.setTextColor(Color.parseColor("#0057B8"));
-                    }
+                    }*/
 
                 }
 
