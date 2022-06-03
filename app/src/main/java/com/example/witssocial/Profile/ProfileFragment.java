@@ -347,23 +347,26 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
     }
 
     private void checkFollow(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child("Follow").child(firebaseUser.getUid()).child("following");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(profileid).exists()){
-                    follow_btn.setText("following");
-                } else{
-                    follow_btn.setText("follow");
+        if(firebaseUser != null){
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                    .child("Follow").child(firebaseUser.getUid()).child("following");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(profileid).exists()){
+                        follow_btn.setText("following");
+                    } else{
+                        follow_btn.setText("follow");
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
+
     }
 
     private void getFollowers(){
