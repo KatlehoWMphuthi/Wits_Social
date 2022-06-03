@@ -1,13 +1,17 @@
 package com.example.witssocial.CreatePost;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +24,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.witssocial.Home.HomeActivity;
 import com.example.witssocial.Model.User;
 import com.example.witssocial.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,7 +44,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -98,10 +102,16 @@ public class PostActivity extends AppCompatActivity {
         sp = getSharedPreferences("User_info", MODE_PRIVATE);
         String name = sp.getString("name", "null");
 
+        //initally disable the post button
+        btnUpload.setEnabled(false);
+
         btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 imageView.setImageBitmap(null);
+
+                //disable the post button
+                btnUpload.setEnabled(false);
                 imageView.setBackgroundResource(R.drawable.ic_add_image);
             }
         });
@@ -109,8 +119,15 @@ public class PostActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                //if Image exists
+                if(imageView.getDrawable() != null){
+                    imageView.setBackgroundResource(android.R.color.transparent);
+                }
+
                 chooseImage();
-                imageView.setBackgroundResource(android.R.color.transparent);
+
             }
         });
 
@@ -120,9 +137,7 @@ public class PostActivity extends AppCompatActivity {
 
                 uploadImage();
 
-                //Go to home fragment
-                //Intent intent = new Intent(PostActivity.this, HomeFragment.class);
-                //startActivity(intent);
+
             }
         });
 
@@ -141,6 +156,9 @@ public class PostActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             filePath = data.getData();
+
+            //enable the button
+            btnUpload.setEnabled(true);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.setImageBitmap(bitmap);
@@ -155,9 +173,6 @@ public class PostActivity extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
-
-    //StorageReference storageReference1 = storageReference.child(System.currentTimeMillis()+"."+GetFileExtension(filePath));
-    //        storageReference1.putFile(filePath)
 
     private void uploadImage() {
 
@@ -191,6 +206,9 @@ public class PostActivity extends AppCompatActivity {
 
                     //Display toast
                    Toast.makeText(PostActivity.this, "picture successfully posted", Toast.LENGTH_LONG).show();
+
+                    //go to homepage
+                    goToHomeActivity();
 
                    //gets the download link from firebase storage
                     riversRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -231,17 +249,15 @@ public class PostActivity extends AppCompatActivity {
                     //Log.d(TAG,"Upload Successful");
                 }
             });
-
-            riversRef.getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
-                @Override
-                public void onSuccess(@NonNull StorageMetadata storageMetadata) {
-                    long time = storageMetadata.getCreationTimeMillis();
-                    String timestamp = Long.toString(time);
-                    DatabaseReference timeStamp = dbRef.child("timestamp");
-                    timeStamp.setValue(timestamp);
-                }
-            });
         }
+
+    }
+
+    private void goToHomeActivity() {
+        //Go to home fragment
+        Intent intent = new Intent(PostActivity.this, HomeActivity.class);
+        finish();
+        startActivity(intent);
     }
 
     public String getusername(String userid){
@@ -258,5 +274,25 @@ public class PostActivity extends AppCompatActivity {
             }
         });
         return username;
+    }
+
+    /**
+     * Clear focus on touch outside for all EditText inputs.
+     */
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent( event );
     }
 }

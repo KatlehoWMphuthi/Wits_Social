@@ -92,16 +92,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:text="Username"
+                        android:paddingBottom="4dp"
+                        android:text="Display Name"
                         android:textColor="@color/md_theme_light_onSurface"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="/@username"
+                        style="@style/TextAppearance.Material3.BodySmall"
+                        android:textStyle="bold" />
+
+                    <TextView
                         android:id="@+id/bio"
                         android:layout_width="match_parent"
-
+                        android:paddingTop="8dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="Bio"

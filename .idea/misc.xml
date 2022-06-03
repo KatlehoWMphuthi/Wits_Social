@@ -3,32 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/drawable/relativelayout_radius_border.xml" value="0.124" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_about.xml" value="0.11302083333333333" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_account.xml" value="0.11302083333333333" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_app_settings.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_friend_invitation.xml" value="0.11302083333333333" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_help_and_support.xml" value="0.11302083333333333" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_more_options.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_profile.xml" value="0.11302083333333333" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_user_profile.xml" value="0.11302083333333333" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/activity_welcome.xml" value="0.11302083333333333" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/fragment_home.xml" value="0.10729166666666666" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/fragment_profile.xml" value="0.21875" />
-        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/fragment_user_profile.xml" value="0.21875" />
+        <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/fragment_user_profile.xml" value="0.18703241895261846" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/layout_activity_profile.xml" value="0.24456521739130435" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/layout_center_profile.xml" value="0.1875" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/more_options_list_item.xml" value="0.21875" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/post_item.xml" value="0.24456521739130435" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/snippet_profile_counters.xml" value="0.1875" />
         <entry key="..\:/AndroidStudioProjects/Wits_Social/app/src/main/res/layout/user_item.xml" value="0.12135416666666667" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_home.xml" value="0.10552536231884058" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/activity_user_profile.xml" value="0.10552536231884058" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/fragment_edit_profile.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/fragment_home.xml" value="0.10552536231884058" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/fragment_notification.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/fragment_profile.xml" value="0.18" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/fragment_sign_out.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/fragment_user_profile.xml" value="0.10552536231884058" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/layout_activity_profile.xml" value="0.1" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/layout_center_profile.xml" value="0.10552536231884058" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/notification_item.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/post_item.xml" value="0.9357429718875502" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/snippet_profile_counters.xml" value="0.22" />
-        <entry key="..\:/Users/DELL/StudioProjects/Wits_Social/app/src/main/res/layout/user_item.xml" value="0.1" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_check_mail.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_forgot_password.xml" value="0.1677598385469223" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/WitsSocial/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -74,7 +68,7 @@
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_search.xml" value="0.21" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_sign_out.xml" value="0.25" />
-        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_user_profile.xml" value="0.11514052583862194" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_user_profile.xml" value="0.25" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/frame_textview.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/layout_center_profile.xml" value="0.25" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/list_adapter.xml" value="0.14719202898550723" />

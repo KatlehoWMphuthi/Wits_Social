@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="Theme.WitsSocial" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:navigationBarColor">
             @android:color/transparent
@@ -58,5 +58,7 @@
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
+        <item name="background_color">#FFFFFF</item>
+        <item name="text_color">#000000</item>
     </style>
 </resources>

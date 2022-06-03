@@ -38,7 +38,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -147,54 +151,64 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String user_name = bundle.getString("username");
                     //check if user profile clicked
-                     if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
+                    if(dataSnapshot.child("username").getValue(String.class) != null){
+                        if (dataSnapshot.child("username").getValue() instanceof String){
+                            if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
 
 
-                         User info = dataSnapshot.getValue(User.class);
+                                User info = dataSnapshot.getValue(User.class);
 
-                         imageurl = info.getImageurl();
-                         if(imageurl != null){
-                             Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
-                         }
+                                imageurl = info.getImageurl();
+                                if(imageurl != null){
+                                    Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
+                                }
 
-                         String fullName = info.getFullname();
+                                String fullName = info.getFullname();
 
-                         if(fullName != null){
-                             mDisplayName.setText(fullName);
-                         }
-                         String bio = info.getBio();
-                         if(fullName != null){
-                             mBio.setText(bio);
-                         }
+                                if(fullName != null){
+                                    mDisplayName.setText(fullName);
+                                }
+                                String bio = info.getBio();
+                                if(fullName != null){
+                                    mBio.setText(bio);
+                                }
 
-                         DataSnapshot socials = dataSnapshot.child("socials");
-                         Social userSocials = socials.getValue(Social.class);
+                                DataSnapshot socials = dataSnapshot.child("socials");
+                                Social userSocials = socials.getValue(Social.class);
 
-                         if(userSocials != null){
-                             if(userSocials.getFacebook() != null){
-                                 mWebsite.setText(userSocials.getFacebook());
-                             }
-                             else if(userSocials.getWebsite() != null){
-                                 Context context = mWebsite.getContext();
-                                 mWebsite.setText(userSocials.getWebsite());
-                             }else if(userSocials.getInstagram() != null){
-                                 mWebsite.setText(userSocials.getInstagram());
-                             }else if(userSocials.getLinkedin() != null){
-                                 mWebsite.setText(userSocials.getLinkedin());
-                             }else if(userSocials.getTwitter() != null){
-                                 mWebsite.setText(userSocials.getTwitter());
-                             }
-                             else{
-                                 mWebsite.setText("My links");
-                             }
-                         }
-
-
+                                if(userSocials != null){
+                                    if(userSocials.getFacebook() != null){
+                                        mWebsite.setText(userSocials.getFacebook());
+                                    }
+                                    else if(userSocials.getWebsite() != null){
+                                        Context context = mWebsite.getContext();
+                                        mWebsite.setText(userSocials.getWebsite());
+                                    }else if(userSocials.getInstagram() != null){
+                                        mWebsite.setText(userSocials.getInstagram());
+                                    }else if(userSocials.getLinkedin() != null){
+                                        mWebsite.setText(userSocials.getLinkedin());
+                                    }else if(userSocials.getTwitter() != null){
+                                        mWebsite.setText(userSocials.getTwitter());
+                                    }
+                                    else{
+                                        mWebsite.setText("My links");
+                                    }
+                                }
 
 
-                        // Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
+
+
+                                // Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
+
+                            }
+                        }
+                        else{
+
+                        }
+
 
                     }
+
                 }
 
             }
@@ -240,16 +254,40 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                             //  The same code  can be used when clicking for
                             //  XML the scrolling is still buggy please fix it as well
 
-                            Post post = dataSnapshot.getValue(Post.class);
+                            //Post post = dataSnapshot.getValue(Post.class);
 
-                            if(post.getUsername() != null) {
-                                if (post.getUsername().equals(username)) {
-                                    list.add(post);
+                            String postid = dataSnapshot.getKey();
+                            String image  = dataSnapshot.child("image").getValue(String.class);
+                            String caption  = dataSnapshot.child("Caption").getValue(String.class);
+                            String username1  = dataSnapshot.child("username").getValue(String.class);
+
+
+
+                            Post post = new Post(postid,image,caption,username1);
+
+                            if(dataSnapshot.child("time").getValue() != null){
+                                if(dataSnapshot.child("time").getValue() instanceof Long){
+                                    long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
+                                    String time = getDate(timeINT);
+                                    post.setTime(time);
+                                }
+                                else{
+                                    String timestamp = dataSnapshot.child("time").getValue(String.class);
+                                    long timeINT =Long.parseLong(timestamp);
+                                    String time = getDate(timeINT);
+                                    post.setTime(time);
                                 }
                             }
 
-                            mPosts.setText(Integer.toString(list.size()));
+                            if(post.getUsername() != null){
+                                if(post.getUsername().equals(username)){
+                                    list.add(post);
+                                }
 
+
+
+                            }
+                            mPosts.setText(Integer.toString(list.size()));
                         }
 
                         postAdapter.notifyDataSetChanged();
@@ -349,5 +387,13 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
             }
         });
+    }
+
+    private String getDate(long time) {
+        Date date1 = new Date(time);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String date = simpleDateFormat.format(date1);
+        return date;
     }
 }
