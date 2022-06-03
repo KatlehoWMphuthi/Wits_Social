@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+
 import android.widget.Switch;
 import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +29,7 @@ import com.example.witssocial.Profile.UserProfileFragment;
 import com.example.witssocial.R;
 import com.example.witssocial.Utils.PostAdapter;
 import com.example.witssocial.Utils.PostRecyclerViewInterface;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,6 +52,7 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
     DatabaseReference database, postsRef,userRef,getProfilePicture;
     ImageView profilePicture;
     RecyclerView recyclerView;
+    ShimmerFrameLayout shimmerContainer;
     PostAdapter postAdapter;
     ArrayList<Post> list;
     String userid;
@@ -74,6 +78,10 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+        shimmerContainer = view.findViewById(R.id.shimmer_view_container);
+        shimmerContainer.startShimmer();
+
         /*switchCompat = view.findViewById(R.id.theme_switch);
 
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -87,6 +95,7 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
                 }
             }
         });*/
+
 
         profilePicture = view.findViewById(R.id.iv_home_profile_picture);
 
@@ -108,6 +117,7 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
 
 
         recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setVisibility(View.GONE);
         database = FirebaseDatabase.getInstance().getReference("Posts");
         recyclerView.setHasFixedSize(false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -122,6 +132,9 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                shimmerContainer.stopShimmer();
+                shimmerContainer.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     //Post post = dataSnapshot.getValue(Post.class);

@@ -59,6 +59,9 @@ dependencies {
 
     def fragment_version = "1.4.1"
 
+    //Shimmer effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
     //picasso Image loader
     implementation 'com.squareup.picasso:picasso:2.8'
 
