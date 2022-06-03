@@ -18,10 +18,10 @@
         <item name="colorPrimaryContainer">@color/black</item>
         <item name="colorOnSurfaceVariant">@color/black</item>
         <item name="colorPrimaryInverse">@color/black</item>
-        <item name="colorSecondaryContainer">@color/black</item>
         <item name="colorTertiary">#0325CC</item>
         <item name="colorTertiaryContainer">@color/black</item>
         <item name="colorOnTertiary">@color/black</item>
+        <item name="colorOnSurface">#737687</item>
 
 
         <!-- Customize text. -->
