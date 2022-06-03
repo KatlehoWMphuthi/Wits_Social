@@ -59,7 +59,7 @@
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_user_profile.xml" value="0.1" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25" />
-        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_newsfeed.xml" value="0.1" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_notification.xml" value="0.25" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
@@ -71,6 +71,7 @@
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/list_adapter.xml" value="0.14719202898550723" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/more_options_list_item.xml" value="0.2" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/post_item.xml" value="0.25" />
+        <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/shimmer_effect_post_item.xml" value="0.22" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/snippet_profile_counters.xml" value="0.11065006915629322" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/topbar.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Kgotso/Documents/COMS 3/COMS3009A_SD/Project/app/src/main/res/layout/user_item.xml" value="0.33" />
@@ -84,6 +85,7 @@
         <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
         <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/Vance/Downloads/WitsSocial/WitsSocial/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_app_settings.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_check_mail.xml" value="0.22509057971014493" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.22509057971014493" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22509057971014493" />
