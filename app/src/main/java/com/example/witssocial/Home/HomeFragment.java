@@ -202,13 +202,6 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
 
     //TODO: The time is behind by at least 2 hours, must be fixed here!
 
-    private String getDate(long time) {
-        Date date1 = new Date(time);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String date = simpleDateFormat.format(date1);
-        return date;
-    }
 
     /*
      Define on click action to go to a users profile
