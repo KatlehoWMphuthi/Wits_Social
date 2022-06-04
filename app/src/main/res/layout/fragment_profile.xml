@@ -21,21 +21,14 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-
-<!--
-    <ScrollView
-        android:id="@+id/user_profile_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp" tools:context=".Profile.ProfileActivity">
-      -->
-
         <RelativeLayout android:layout_width="match_parent"
-            android:layout_marginTop="64dp" android:layout_height="wrap_content" android:background="@color/white">
-            <!--  ********Top Toolbar******  -->
-            <!--  *******Middle Section**********  -->
+            android:layout_marginTop="64dp"
+            android:padding="8dp"
+            android:layout_height="wrap_content">
+
             <RelativeLayout
-               android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/white">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:id="@+id/linLayout"
@@ -56,10 +49,8 @@
                             android:layout_width="200dp"
                             android:layout_height="120dp"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/ic_profile_photo"
-                            app:civ_border_color="#666666"
-                            app:civ_border_width="0.7dp"
-                            tools:src="@drawable/ic_profile_photo" />
+                            android:src="@drawable/ic_user_account_circle"
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -100,18 +91,18 @@
 
                     <TextView
                         android:id="@+id/user_name"
+                        style="@style/TextAppearance.Material3.BodySmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="/@username"
-                        style="@style/TextAppearance.Material3.BodySmall"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/bio"
                         android:layout_width="match_parent"
-                        android:paddingTop="8dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:paddingTop="8dp"
                         android:text="Bio"
                         android:textSize="16sp" />
 
@@ -132,11 +123,18 @@
                             app:ensureMinTouchTargetSize="true" />
                     </com.google.android.material.chip.ChipGroup>
                 </LinearLayout>
+
                 <RelativeLayout
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/linLayout2" android:layout_marginBottom="50dp">
-                    <androidx.recyclerview.widget.RecyclerView android:id="@+id/RecyclerView_user_profile" android:layout_width="match_parent" android:layout_height="wrap_content"> </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linLayout2"
+                    android:layout_marginBottom="50dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RecyclerView_user_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
-
 </RelativeLayout>
