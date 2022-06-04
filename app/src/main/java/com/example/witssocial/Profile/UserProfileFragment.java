@@ -195,14 +195,14 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
                             if(dataSnapshot.child("time").getValue() != null){
                                 if(dataSnapshot.child("time").getValue() instanceof Long){
                                     long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+                                   // String time = getDate(timeINT);
+                                    post.setTime(timeINT);
                                 }
                                 else{
                                     String timestamp = dataSnapshot.child("time").getValue(String.class);
                                     long timeINT =Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+                                    //String time = getDate(timeINT);
+                                    post.setTime(timeINT);
                                 }
                             }
 

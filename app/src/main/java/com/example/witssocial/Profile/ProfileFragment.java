@@ -1,7 +1,6 @@
 package com.example.witssocial.Profile;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.view.View.GONE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -268,14 +267,14 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                             if(dataSnapshot.child("time").getValue() != null){
                                 if(dataSnapshot.child("time").getValue() instanceof Long){
                                     long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+                                   // String time = getDate(timeINT);
+                                    post.setTime(timeINT);
                                 }
                                 else{
                                     String timestamp = dataSnapshot.child("time").getValue(String.class);
                                     long timeINT =Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+                                    //String time = getDate(timeINT);
+                                    post.setTime(timeINT);
                                 }
                             }
 

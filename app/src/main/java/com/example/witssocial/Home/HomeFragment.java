@@ -1,22 +1,13 @@
 package com.example.witssocial.Home;
 
-import android.icu.util.Calendar;
 import android.os.Bundle;
-
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-
-import android.widget.Switch;
-import android.widget.Toast;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -154,14 +145,14 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
                     if(dataSnapshot.child("time").getValue() != null){
                         if(dataSnapshot.child("time").getValue() instanceof Long){
                             long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
-                            String time = getDate(timeINT);
-                            post.setTime(time);
+                            //String time = getDate(timeINT);
+                            post.setTime(timeINT);
                         }
                         else{
                             String timestamp = dataSnapshot.child("time").getValue(String.class);
                             long timeINT =Long.parseLong(timestamp);
-                            String time = getDate(timeINT);
-                            post.setTime(time);
+                            //String time = getDate(timeINT);
+                            post.setTime(timeINT);
                             }
                         }
                     list.add(post);

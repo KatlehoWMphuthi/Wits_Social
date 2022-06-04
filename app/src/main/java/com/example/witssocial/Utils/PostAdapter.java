@@ -1,21 +1,17 @@
 package com.example.witssocial.Utils;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.witssocial.Model.Post;
-import com.example.witssocial.Model.User;
 import com.example.witssocial.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,11 +19,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     private final PostRecyclerViewInterface postRecyclerViewInterface;
@@ -54,10 +48,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Post post = list.get(position);
 
-        holder.time.setText(post.getTime());
+        String timeAgo = TimeAgo.getTimeAgo(post.getTime());
+
+        //Get time stamp
+        holder.time.setText(timeAgo);
         holder.username.setText(post.getUsername());
         holder.caption.setText(post.getCaption());
 /*
@@ -74,7 +70,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });*/
-        Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
+
+        if(!post.getImage().equals("")){
+            Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
+        }
 
 
         //setProfile picture for each user

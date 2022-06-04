@@ -6,7 +6,7 @@ public class Post {
     private String Caption;
     private String username;
     private String postid;
-    private String timeStamp;
+    private long timeStamp;
 
 
     public Post(String postid, String image, String caption, String username) {
@@ -42,9 +42,9 @@ public class Post {
     }
 
 
-    public void setTime(String time){this.timeStamp = time;}
+    public void setTime(long time){this.timeStamp = time;}
 
-    public String getTime() {
+    public long getTime() {
         return this.timeStamp;
     }
 
