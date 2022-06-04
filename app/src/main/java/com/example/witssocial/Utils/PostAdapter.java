@@ -71,7 +71,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             }
         });*/
 
-        if(!post.getImage().equals("")){
+        if (!post.getImage().equals("")) {
             Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
         }
 
@@ -86,10 +86,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                     String postUsername = post.getUsername();
                     String username = dataSnapshot.child("username").getValue(String.class);
 
-                    if( username != null)
-                    {
-                        if( username.equals(postUsername))
-                        {
+                    if (username != null) {
+                        if (username.equals(postUsername)) {
 
                             Glide.with(holder.itemView).load(dataSnapshot.child("imageurl").getValue(String.class))
                                     .into(holder.profile_picture);
@@ -107,19 +105,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         });
 
         // getting the number of likes for each post
-        DatabaseReference likeRef  = FirebaseDatabase.getInstance().getReference("Liked");
+        DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference("Liked");
         DatabaseReference likedPost = likeRef.child(post.getPostid());
         DatabaseReference likeschild = likedPost.child("likes");
         likeschild.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long number_of_likes = snapshot.getChildrenCount();
-                if(FirebaseAuth.getInstance().getCurrentUser() != null){
-                    String currentUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                    String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     holder.likes.setText(Integer.toString(Math.toIntExact(number_of_likes)));
 
-                    if(snapshot.child(currentUser).exists()){
-                        if(snapshot.child(currentUser).getValue(Boolean.class)){
+                    if (snapshot.child(currentUser).exists()) {
+                        if (snapshot.child(currentUser).getValue(Boolean.class)) {
                             holder.like.setImageResource(R.drawable.ic_baseline_favorite_24);
                         }
                     }
@@ -135,8 +133,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         });
 
 
-
     }
+
 
     @Override
     public int getItemCount() {
