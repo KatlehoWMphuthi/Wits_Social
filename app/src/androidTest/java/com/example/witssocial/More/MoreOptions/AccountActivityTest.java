@@ -6,7 +6,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.*;
 
-import androidx.annotation.ContentView;
+import android.app.UiAutomation;
+
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -17,13 +18,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
-public class AppSettingsActivityTest {
+public class AccountActivityTest {
 
     @Rule
-    public ActivityScenarioRule<AppSettingsActivity> appSettingsActivityActivityScenarioRule =
-            new ActivityScenarioRule<>(AppSettingsActivity.class);
+    public ActivityScenarioRule<AccountActivity> accountActivityActivityScenarioRule =
+            new ActivityScenarioRule<AccountActivity>(AccountActivity.class);
+
     @Test
-    public void onCreate() {
-        onView(withId(R.id.Switch)).check(matches(isDisplayed()));
+    public void test_PageinView(){
+        onView(withId(R.id.profileActivity)).check(matches(isDisplayed()));
+        onView(withId(R.id.forgotPassActivity)).check(matches(isDisplayed()));
     }
 }
