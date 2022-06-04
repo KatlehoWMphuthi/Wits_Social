@@ -37,13 +37,13 @@ public class PostTest {
 
     @Test
     public void setTime() {
-        post.setTime("time");
-        assertEquals("time",post.getTime());
+        post.setTime(0);
+        assertEquals(0,post.getTime());
     }
 
     @Test
     public void getTime() {
-        String time = post.getTime();
+        long time = post.getTime();
         long wrongtime = 1;
         assertThat(wrongtime).isNotEqualTo(time);
     }

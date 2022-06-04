@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.witssocial.R;
 import com.example.witssocial.databinding.FragmentEditProfileBinding;
@@ -121,7 +122,7 @@ public class EditProfileFragment extends Fragment {
                 //get the storage instance
                 FirebaseStorage storage = FirebaseStorage.getInstance();
 
-
+                if(imageUri != null){
                     // get the reference to where the profile pictures will be stored
                     StorageReference users_info = storage.getReference();
                     StorageReference profile_picture = users_info.child("UserProfile/Profile_Pic/" + imageUri.getLastPathSegment());
@@ -130,85 +131,139 @@ public class EditProfileFragment extends Fragment {
                     //Create an upload task to push to the storage on Firebase
                     UploadTask upload_profile_picture = profile_picture.putFile(imageUri);
 
-                // get the id of the current user
-                String id = firebaseUser.getUid();
-                upload_profile_picture.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //do something when upload is successful
-                        Toast.makeText(getActivity(),"Profile updated", Toast.LENGTH_LONG).show();
+                    // get the id of the current user
+                    String id = firebaseUser.getUid();
+                    upload_profile_picture.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //do something when upload is successful
+                            Toast.makeText(getActivity(),"Profile updated", Toast.LENGTH_LONG).show();
 
-                        //Get a download url that will stored in the database
-                        profile_picture.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                //gets the url
-                                String profile_picURL = task.getResult().toString();
-                                // use database reference to save or update user information
-                                DatabaseReference userRef = database.getReference("Users").child(id);
+                            //Get a download url that will stored in the database
+                            profile_picture.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    //gets the url
+                                    String profile_picURL = task.getResult().toString();
+                                    // use database reference to save or update user information
+                                    DatabaseReference userRef = database.getReference("Users").child(id);
 
-                                // TODO -- change username(on the XML)
-                                //update  the username
-                               /* DatabaseReference usernameRef = userRef.child("username");
-                                String user_name = name.getText().toString();
-                                usernameRef.setValue(user_name);*/
+                                    //update  the name
+                                    DatabaseReference nameRef = userRef.child("fullname");
+                                    String full_name = name.getText().toString();
 
-                                //update  the name
-                                DatabaseReference nameRef = userRef.child("fullname");
-                                String full_name = name.getText().toString();
+                                    if(!full_name.isEmpty()){
+                                        nameRef.setValue(full_name);
+                                    }
+                                    //update the bio
+                                    DatabaseReference bioRef  = userRef.child("bio");
+                                    String biography = bio.getText().toString();
+                                    if(!biography.isEmpty()){
+                                        bioRef.setValue(biography);
+                                    }
+                                    //add the social links
+                                    DatabaseReference socials = userRef.child("socials");
+                                    social_links =new ArrayList<>();
+                                    social_links.add(website.getText().toString());
+                                    social_links.add(facebook.getText().toString());
+                                    social_links.add(twitter.getText().toString());
+                                    social_links.add(instagram.getText().toString());
+                                    social_links.add(linkedin.getText().toString());
 
-                                if(!full_name.isEmpty()){
-                                    nameRef.setValue(full_name);
+                                    if(!social_links.isEmpty()){
+
+
+                                        if(!(website.getText().toString()).isEmpty()){
+                                            addToDatabase(link,"website",socials,website.getText().toString());
+                                        }
+                                        if(!(facebook.getText().toString()).isEmpty()){
+                                            addToDatabase(link,"facebook",socials,facebook.getText().toString());
+                                        }
+                                        if(!twitter.getText().toString().isEmpty()){
+                                            addToDatabase(link,"twitter",socials,twitter.getText().toString());
+                                        }
+                                        if(!instagram.getText().toString().isEmpty()){
+                                            addToDatabase(link,"instagram",socials,instagram.getText().toString());
+                                        }if (!linkedin.getText().toString().isEmpty()){
+                                            addToDatabase(link,"linkedin",socials,linkedin.getText().toString());
+                                        }
+                                    }
+
+                                    //update the user's profile picture
+                                    DatabaseReference profilepic = userRef.child("imageurl");
+
+                                    profilepic.setValue(profile_picURL);
+
                                 }
-                                //update the bio
-                                DatabaseReference bioRef  = userRef.child("bio");
-                                String biography = bio.getText().toString();
-                                if(!biography.isEmpty()){
-                                    bioRef.setValue(biography);
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    //do something when upload is not successful
+                                    Toast.makeText(getActivity(),"Failed to Upload", Toast.LENGTH_LONG).show();
                                 }
-                                //add the social links
-                                DatabaseReference socials = userRef.child("socials");
-                                social_links =new ArrayList<>();
-                                social_links.add(website.getText().toString());
-                                social_links.add(facebook.getText().toString());
-                                social_links.add(twitter.getText().toString());
-                                social_links.add(instagram.getText().toString());
-                                social_links.add(linkedin.getText().toString());
+                            });
+                }else if(imageUri == null){
+                    Toast.makeText(getActivity(),"Profile updated", Toast.LENGTH_LONG).show();
+                    // use database reference to save or update user information
+                    if(firebaseUser != null ){
+                        DatabaseReference userRef = database.getReference("Users").child(firebaseUser.getUid());
 
-                                if(!social_links.isEmpty()){
+                        //update  the name
+                        DatabaseReference nameRef = userRef.child("fullname");
+                        String full_name = name.getText().toString();
+
+                        if(!full_name.isEmpty()){
+                            nameRef.setValue(full_name);
+                        }
+                        //update the bio
+                        DatabaseReference bioRef  = userRef.child("bio");
+                        String biography = bio.getText().toString();
+                        if(!biography.isEmpty()){
+                            bioRef.setValue(biography);
+                        }
+                        //add the social links
+                        DatabaseReference socials = userRef.child("socials");
+                        social_links =new ArrayList<>();
+                        social_links.add(website.getText().toString());
+                        social_links.add(facebook.getText().toString());
+                        social_links.add(twitter.getText().toString());
+                        social_links.add(instagram.getText().toString());
+                        social_links.add(linkedin.getText().toString());
+
+                        if(!social_links.isEmpty()){
 
 
-                                    if(!(website.getText().toString()).isEmpty()){
-                                        addToDatabase(link,"website",socials,website.getText().toString());
-                                    }
-                                    if(!(facebook.getText().toString()).isEmpty()){
-                                        addToDatabase(link,"facebook",socials,facebook.getText().toString());
-                                    }
-                                    if(!twitter.getText().toString().isEmpty()){
-                                        addToDatabase(link,"twitter",socials,twitter.getText().toString());
-                                    }
-                                    if(!instagram.getText().toString().isEmpty()){
-                                        addToDatabase(link,"instagram",socials,instagram.getText().toString());
-                                    }if (!linkedin.getText().toString().isEmpty()){
-                                        addToDatabase(link,"linkedin",socials,linkedin.getText().toString());
-                                    }
-                                }
-
-                                //update the user's profile picture
-                                DatabaseReference profilepic = userRef.child("imageurl");
-
-                                profilepic.setValue(profile_picURL);
-
+                            if(!(website.getText().toString()).isEmpty()){
+                                addToDatabase(link,"website",socials,website.getText().toString());
                             }
-                        });
+                            if(!(facebook.getText().toString()).isEmpty()){
+                                addToDatabase(link,"facebook",socials,facebook.getText().toString());
+                            }
+                            if(!twitter.getText().toString().isEmpty()){
+                                addToDatabase(link,"twitter",socials,twitter.getText().toString());
+                            }
+                            if(!instagram.getText().toString().isEmpty()){
+                                addToDatabase(link,"instagram",socials,instagram.getText().toString());
+                            }if (!linkedin.getText().toString().isEmpty()){
+                                addToDatabase(link,"linkedin",socials,linkedin.getText().toString());
+                            }
+                        }
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        //do something when upload is not successful
-                        Toast.makeText(getActivity(),"Failed to Upload", Toast.LENGTH_LONG).show();
-                    }
-                });
+
+                    UserProfileFragment userProfileFragment = new UserProfileFragment();
+
+                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, userProfileFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }else{
+                    Toast.makeText(getActivity(), "Failed To Update Profile", Toast.LENGTH_LONG).show();
+                }
+
+
+
             }
 
 

@@ -5,7 +5,8 @@
 
 
             <stroke
-                android:width="0dp"
+                android:width="0.5dp"
+                android:color="@color/md_theme_light_surfaceVariant"
                 />
 
             <corners android:radius="10dp"/>

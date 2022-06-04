@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Profile.UserProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +23,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/user_profile_container"
         android:layout_width="match_parent"
+        android:padding="8dp"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         tools:context=".Profile.UserProfileActivity">

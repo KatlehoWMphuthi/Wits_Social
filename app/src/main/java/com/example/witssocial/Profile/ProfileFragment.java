@@ -1,9 +1,9 @@
 package com.example.witssocial.Profile;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.view.View.GONE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,13 +58,10 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
     ArrayList<Post> list;
     private Chip mWebsite;
     private TextView mPosts , mDisplayName, mUsername, mBio;
-    /*TextView profilename,biography,fullName;
-    ImageView profilepic,picture;
-*/
 
     //for follow
     FirebaseUser firebaseUser;
-    String profileid;
+    String profileid,home_profileid;
     private TextView mFollowers, mFollowing;
     Button follow_btn;
 
@@ -74,6 +72,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         // Inflate the layout for this fragment
         viewBinding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = viewBinding.getRoot();
+
 
         //follow additions
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -86,25 +85,16 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         follow_btn = view.findViewById(R.id.btn_follow);
         mPosts = view.findViewById(R.id.tvPosts);
 
-        getFollowers();
-        checkFollow();
-
-
-
-        //ActionBar actionBar = getSupportActionBar();
-        // assert actionBar != null;
-        //actionBar.setTitle("");   //PLEASE LEAVE IT EMPTY!!! WE ALREADY GOT THE USERNAME!!!
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-
 
         //Collect Data from Parent activity
         Bundle bundle = this.getArguments();
         if(bundle != null){
             username = bundle.getString("username");
+            profileid = bundle.getString("profileid");
+
         }
 
-
-        //Bind data to viwes
+        //Bind data to views
        mDisplayName = viewBinding.displayName;
        mBio = viewBinding.bio;
        mWebsite = viewBinding.chip1;
@@ -113,39 +103,11 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
        mDisplayName.setText(username);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        FirebaseUser CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        //String userid = CurrentUser.getUid();
 
         //follow additions
-        follow_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String btn = follow_btn.getText().toString();
-
-                if (btn.equals("follow")){
-
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("following").child(profileid).setValue(true);
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
-                            .child("followers").child(firebaseUser.getUid()).setValue(true);
-                    // addNotification();
-                } else if (btn.equals("following")){
-
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("following").child(profileid).removeValue();
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
-                            .child("followers").child(firebaseUser.getUid()).removeValue();
-
-                }
-            }
-        });
-
 
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
-
-
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -159,7 +121,8 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                         if(dataSnapshot.child("username").getValue(String.class) != null){
                             if (dataSnapshot.child("username").getValue() instanceof String){
                                 if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
-
+                                    checkFollow(dataSnapshot.getKey());
+                                    getFollowers(dataSnapshot.getKey());
 
                                     User info = dataSnapshot.getValue(User.class);
 
@@ -199,42 +162,27 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                                             mWebsite.setText("My links");
                                         }
                                     }
-
-
-
-
-                                    // Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
+                                     home_profileid = dataSnapshot.getKey();
 
                                 }
                             }
-
-
                         }
                     }
-
-
-
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
-
-        //TODO -- Set Profile Photo using picasso
-        // String url = "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=";
-        // Picasso.get().load(url).resize(100,100).centerCrop().into(mProfilePhoto);
-
-
 
         /*
         Display posts on users profile
          */
 
         recyclerView = viewBinding.RecyclerViewUserProfile;
+        recyclerView.setVisibility(View.GONE);
         postsRef = FirebaseDatabase.getInstance().getReference("Posts");
         recyclerView.setHasFixedSize(false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -252,6 +200,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                 postsRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        recyclerView.setVisibility(View.VISIBLE);
                         list.clear();
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
@@ -273,14 +222,13 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                             if(dataSnapshot.child("time").getValue() != null){
                                 if(dataSnapshot.child("time").getValue() instanceof Long){
                                     long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+
+                                    post.setTime(timeINT);
                                 }
                                 else{
                                     String timestamp = dataSnapshot.child("time").getValue(String.class);
                                     long timeINT =Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+                                    post.setTime(timeINT);
                                 }
                             }
 
@@ -288,9 +236,6 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                                 if(post.getUsername().equals(username)){
                                     list.add(post);
                                 }
-
-
-
                             }
                             mPosts.setText(Integer.toString(list.size()));
                         }
@@ -300,7 +245,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -308,7 +253,27 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
 
+
+        // follow button function logic
+        follow_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String btn = follow_btn.getText().toString();
+
+                if (btn.equals("follow")){
+                    followHelper(home_profileid);
+                    follow_btn.setText("following");
+                    // addNotification();
+                }
+
+                if (btn.equals("following")){
+                    unfollowHelper(home_profileid);
+                    follow_btn.setText("follow");
+                }
             }
         });
 
@@ -316,6 +281,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
         return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -342,66 +308,70 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
 
     @Override
-    public void onUsernameClick(int position) {
+    public void onUsernameClick(int position) { }
 
-    }
-
-    private void checkFollow(){
-        if(firebaseUser != null){
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                    .child("Follow").child(firebaseUser.getUid()).child("following");
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(profileid).exists()){
+    private void checkFollow(String profileid){
+        DatabaseReference followRef = FirebaseDatabase.getInstance().getReference("Follow");
+        DatabaseReference FollowUser = followRef.child(profileid);
+        DatabaseReference followers = FollowUser.child("followers");
+        followers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(FirebaseAuth.getInstance().getCurrentUser() != null){
+                    if(snapshot.child(firebaseUser.getUid()).exists()){
                         follow_btn.setText("following");
-                    } else{
-                        follow_btn.setText("follow");
                     }
                 }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-        }
-
-    }
-
-    private void getFollowers(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("followers");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mFollowers.setText(""+dataSnapshot.getChildrenCount());
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
 
+    }
+
+    private void getFollowers(String profileid){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("followers");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mFollowers.setText(Long.toString(dataSnapshot.getChildrenCount()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getActivity(),databaseError.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
 
         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("following");
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mFollowing.setText(""+dataSnapshot.getChildrenCount());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mFollowing.setText(Long.toString(snapshot.getChildrenCount()));
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
 
-    private String getDate(long time) {
-        Date date1 = new Date(time);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String date = simpleDateFormat.format(date1);
-        return date;
+    private void followHelper(String profileid){
+        FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                .child("following").child(profileid).setValue(true);
+        FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
+                .child("followers").child(firebaseUser.getUid()).setValue(true);
     }
+
+    private void unfollowHelper(String profileid){
+        FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                .child("following").child(profileid).removeValue();
+        FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
+                .child("followers").child(firebaseUser.getUid()).removeValue();
+    }
+
 }
