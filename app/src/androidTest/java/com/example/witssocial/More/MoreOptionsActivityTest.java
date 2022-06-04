@@ -2,10 +2,12 @@ package com.example.witssocial.More;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 public class MoreOptionsActivityTest {
-    ActivityScenarioRule<MoreOptionsActivity> moreOptionsActivityActivityScenarioRule=
+    @Rule
+    public ActivityScenarioRule<MoreOptionsActivity> moreOptionsActivityActivityScenarioRule=
             new ActivityScenarioRule<MoreOptionsActivity>(MoreOptionsActivity.class);
 
     @Test

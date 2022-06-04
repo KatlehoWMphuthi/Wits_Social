@@ -30,6 +30,7 @@ public class HomeActivityTest {
     @Rule
     public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
             new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
+
     @BeforeClass
     public static void dismissANRSystemDialog() throws UiObjectNotFoundException {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
@@ -49,6 +50,4 @@ public class HomeActivityTest {
     public void onCreate() {
         onView(withId(R.id.bottom_navigation)).check(matches(isDisplayed()));
     }
-
-
 }
