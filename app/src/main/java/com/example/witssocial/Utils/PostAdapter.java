@@ -49,90 +49,80 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = list.get(position);
+        if(post != null){
+            String timeAgo = TimeAgo.getTimeAgo(post.getTime());
 
-        String timeAgo = TimeAgo.getTimeAgo(post.getTime());
+            //Get time stamp
+            holder.time.setText(timeAgo);
+            holder.username.setText(post.getUsername());
+            holder.caption.setText(post.getCaption());
+            holder.like.setImageResource(R.drawable.ic_like);
 
-        //Get time stamp
-        holder.time.setText(timeAgo);
-        holder.username.setText(post.getUsername());
-        holder.caption.setText(post.getCaption());
-/*
-        DatabaseReference finalTime = FirebaseDatabase.getInstance().getReference().child("Posts").child("-N3Khiit9DZyjpHUWTTQ").child("time");
-        finalTime.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String data = snapshot.getRef().getParent().getKey();
-                    Objects.requireNonNull(holder).time.setText(data);
+
+            if (post.getImage() != null) {
+                Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
+            }
+
+            //setProfile picture for each user
+
+            database = FirebaseDatabase.getInstance().getReference("Users");
+            database.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                        String postUsername = post.getUsername();
+                        if(dataSnapshot.child("username").getValue() != null){
+                            String username = dataSnapshot.child("username").getValue(String.class);
+
+                            if (username != null) {
+                                if (username.equals(postUsername)) {
+
+                                    Glide.with(holder.itemView).load(dataSnapshot.child("imageurl").getValue(String.class))
+                                            .into(holder.profile_picture);
+
+                                }
+                            }
+                        }
+
+
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });*/
 
-        if (!post.getImage().equals("")) {
-            Glide.with(holder.itemView).load(list.get(position).getImage()).into(holder.post_image);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            // getting the number of likes for each post
+            DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference("Liked");
+            DatabaseReference likedPost = likeRef.child(post.getPostid());
+            DatabaseReference likeschild = likedPost.child("likes");
+            likeschild.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    long number_of_likes = snapshot.getChildrenCount();
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        holder.likes.setText(Integer.toString(Math.toIntExact(number_of_likes)));
+
+                        if (snapshot.child(currentUser).exists()) {
+                            if (snapshot.child(currentUser).getValue(Boolean.class)) {
+                                holder.like.setImageResource(R.drawable.ic_baseline_favorite_24);
+                            }
+                        }
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
-
-
-        //setProfile picture for each user
-
-        database = FirebaseDatabase.getInstance().getReference("Users");
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String postUsername = post.getUsername();
-                    String username = dataSnapshot.child("username").getValue(String.class);
-
-                    if (username != null) {
-                        if (username.equals(postUsername)) {
-
-                            Glide.with(holder.itemView).load(dataSnapshot.child("imageurl").getValue(String.class))
-                                    .into(holder.profile_picture);
-
-                        }
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        // getting the number of likes for each post
-        DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference("Liked");
-        DatabaseReference likedPost = likeRef.child(post.getPostid());
-        DatabaseReference likeschild = likedPost.child("likes");
-        likeschild.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long number_of_likes = snapshot.getChildrenCount();
-                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                    String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    holder.likes.setText(Integer.toString(Math.toIntExact(number_of_likes)));
-
-                    if (snapshot.child(currentUser).exists()) {
-                        if (snapshot.child(currentUser).getValue(Boolean.class)) {
-                            holder.like.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        }
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
     }
 
 

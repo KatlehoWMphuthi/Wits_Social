@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -116,9 +117,6 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
             userid = firebaseUser.getUid();
         }
 
-
-
-
         postsRef = database.getReference("Posts");
         userRef = database.getReference("Users");
 
@@ -133,7 +131,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -142,12 +140,6 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
         getInfo("fullname",userRef.child(userid),mDisplayName);
         getInfo("bio",userRef.child(userid),mBio);
         getInfo("website",userRef.child(userid).child("socials"),mWebsite);
-
-        //TODO -- Set Profile Photo using picasso
-       // String url = "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=";
-       // Picasso.get().load(url).resize(100,100).centerCrop().into(mProfilePhoto);
-
-
 
         /*
         Display posts on users profile
@@ -285,14 +277,18 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getActivity(),error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void getFollowers(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("followers");
-        reference.addValueEventListener(new ValueEventListener() {
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            String profileid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            //getting the followers
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow")
+                .child(profileid).child("followers");
+            reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mFollowers.setText(""+dataSnapshot.getChildrenCount());
@@ -303,30 +299,25 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
 
             }
         });
+            //getting the users that current user is following
+            DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Follow")
+                    .child(profileid).child("following");
+            reference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    mFollowing.setText(""+dataSnapshot.getChildrenCount());
+                }
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("following");
-        reference1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mFollowing.setText(""+dataSnapshot.getChildrenCount());
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(getActivity(),databaseError.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-    }
 
-    //TODO: The time is behind by at least 2 hours, must be fixed here!
-
-    private String getDate(long time) {
-        Date date1 = new Date(time);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String date = simpleDateFormat.format(date1);
-        return date;
-    }
 
 
 }
