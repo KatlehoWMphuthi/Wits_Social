@@ -22,7 +22,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
         <RelativeLayout android:layout_width="match_parent"
-            android:layout_marginTop="64dp" android:layout_height="wrap_content">
+            android:layout_marginTop="64dp" android:padding="8dp" android:layout_height="wrap_content">
             <!--  ********Top Toolbar******  -->
             <!--  *******Middle Section**********  -->
             <RelativeLayout
@@ -49,10 +49,8 @@
                             android:layout_width="200dp"
                             android:layout_height="120dp"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/ic_profile_photo"
-                            app:civ_border_color="#666666"
-                            app:civ_border_width="0.7dp"
-                            tools:src="@drawable/ic_profile_photo" />
+                            android:src="@drawable/ic_user_account_circle"
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout
