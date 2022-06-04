@@ -19,6 +19,7 @@ import com.example.witssocial.Home.HomeActivity;
 import com.example.witssocial.Home.MainActivity;
 import com.example.witssocial.Model.User;
 import com.example.witssocial.Profile.ProfileFragment;
+import com.example.witssocial.Profile.UserProfileFragment;
 import com.example.witssocial.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -77,22 +78,39 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             @Override
             public void onClick(View view) {
                 if (isFragment) {
+
                     SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
                     editor.putString("profileid", user.getId());
                     editor.apply();
+                    if(firebaseUser != null){
+                        if(user.getId().equals(firebaseUser.getUid())){
+                            //Change to the current user profile page
+                            UserProfileFragment userProfileFragment= new UserProfileFragment();
+                            ((FragmentActivity) mContext).getSupportFragmentManager()
+                                    .beginTransaction().
+                                    replace(R.id.fragment_container, userProfileFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }else{
+                            //send username to profile fragment
+                            //Set up a bundle to carry
+                            Bundle bundle = new Bundle();
+                            String username = user.getUsername();
+                            bundle.putString("username", username);
 
-                    //send username to profile fragment
-                    //Set up a bundle to carry
-                    Bundle bundle = new Bundle();
-                    String username = user.getUsername();
-                    bundle.putString("username", username);
+                            //send data
+                            ProfileFragment profileFragment = new ProfileFragment();
+                            profileFragment.setArguments(bundle);
+                            //Change to the profile of the user clicked
+                            ((FragmentActivity) mContext).getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragment_container, profileFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }
+                    }
 
-                    //send data
-                    ProfileFragment profileFragment = new ProfileFragment();
-                    profileFragment.setArguments(bundle);
 
-                    ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            profileFragment).addToBackStack(null).commit();
                 } else {
                     Intent intent = new Intent(mContext, HomeActivity.class);
                     intent.putExtra("publisherid", user.getId());

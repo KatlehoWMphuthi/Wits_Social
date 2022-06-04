@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,9 +47,8 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
     ShimmerFrameLayout shimmerContainer;
     PostAdapter postAdapter;
     ArrayList<Post> list;
-    String userid;
+    String userid,currentUserName;
 
-    SwitchCompat switchCompat;
 
 //    public HomeFragment() {
 //        // Required empty public constructor
@@ -72,21 +72,6 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
 
         shimmerContainer = view.findViewById(R.id.shimmer_view_container);
         shimmerContainer.startShimmer();
-
-        /*switchCompat = view.findViewById(R.id.theme_switch);
-
-        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
-            }
-        });*/
-
 
         profilePicture = view.findViewById(R.id.iv_home_profile_picture);
 
@@ -182,6 +167,7 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         // getting the user's unique id in Database
         if (CurrentUser != null){
             userid = CurrentUser.getUid();
+
             getProfilePicture = userRef.child(userid).child("imageurl");
 
             getProfilePicture.addValueEventListener(new ValueEventListener() {
@@ -212,26 +198,42 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         //Set up a bundle to carry
         Bundle bundle = new Bundle();
         String username = list.get(position).getUsername();
-        bundle.putString("username", username);
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            userRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("username")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            currentUserName = snapshot.getValue(String.class);
+                            if(username.equals(currentUserName)){
+                                UserProfileFragment userProfileFragment = new UserProfileFragment();
 
-        //send data
-        ProfileFragment profileFragment = new ProfileFragment();
-        profileFragment.setArguments(bundle);
+                                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                                transaction.replace(R.id.fragment_container, userProfileFragment);
+                                transaction.addToBackStack(null);
+                                transaction.commit();
+                            }
+                            else{
+                                bundle.putString("username", username);
 
-        //Open ProfileFragement
-        //FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, profileFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+                                //send data
+                                ProfileFragment profileFragment = new ProfileFragment();
+                                profileFragment.setArguments(bundle);
 
-        /*
-        Intent intent = new Intent(getActivity(), ProfileActivity.class);
-        intent.putExtra("Username", list.get(position).getUsername());
+                                //Open ProfileFragement
+                                //FragmentManager fragmentManager = getParentFragmentManager();
+                                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                                transaction.replace(R.id.fragment_container, profileFragment);
+                                transaction.addToBackStack(null);
+                                transaction.commit();
+                            }
+                        }
 
-        startActivity(intent);
-
-         */
-
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 }

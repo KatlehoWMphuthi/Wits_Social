@@ -1,5 +1,7 @@
 package com.example.witssocial.CreatePost;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -94,7 +97,7 @@ public class PostActivity extends AppCompatActivity {
 
         Database = FirebaseDatabase.getInstance();
         myRef = Database.getReference("Posts");
-        myRef = Database.getReference("Likes");
+
         users = Database.getReference("Users");
         user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -200,7 +203,7 @@ public class PostActivity extends AppCompatActivity {
 
                     // Handle unsuccessful uploads
                     Toast.makeText(PostActivity.this, "Failed", Toast.LENGTH_LONG).show();
-                    //Log.d(TAG,"Upload failed.");
+                    Log.d(TAG,"Upload failed.");
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override

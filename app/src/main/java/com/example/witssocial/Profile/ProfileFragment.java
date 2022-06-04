@@ -90,7 +90,6 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         Bundle bundle = this.getArguments();
         if(bundle != null){
             username = bundle.getString("username");
-            profileid = bundle.getString("profileid");
 
         }
 
@@ -128,7 +127,11 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
                                     imageurl = info.getImageurl();
                                     if(imageurl != null){
-                                        Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
+                                        Picasso.get()
+                                                .load(imageurl)
+                                                .resize(100,100)
+                                                .centerCrop()
+                                                .into(mProfilePhoto);
                                     }
 
                                     String fullName = info.getFullname();
