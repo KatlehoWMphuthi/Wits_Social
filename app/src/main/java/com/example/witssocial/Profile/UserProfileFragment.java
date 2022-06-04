@@ -154,6 +154,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
          */
 
         recyclerView = view.findViewById(R.id.RecyclerView_user_profile);
+        recyclerView.setVisibility(View.GONE);
         postsRef = FirebaseDatabase.getInstance().getReference("Posts");
         recyclerView.setHasFixedSize(false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -170,6 +171,7 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String username = snapshot.getValue(String.class);
+                recyclerView.setVisibility(View.VISIBLE);
                 postsRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -194,14 +196,14 @@ public class UserProfileFragment extends Fragment implements PostRecyclerViewInt
                             if(dataSnapshot.child("time").getValue() != null){
                                 if(dataSnapshot.child("time").getValue() instanceof Long){
                                     long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+                                   // String time = getDate(timeINT);
+                                    post.setTime(timeINT);
                                 }
                                 else{
                                     String timestamp = dataSnapshot.child("time").getValue(String.class);
                                     long timeINT =Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+                                    //String time = getDate(timeINT);
+                                    post.setTime(timeINT);
                                 }
                             }
 

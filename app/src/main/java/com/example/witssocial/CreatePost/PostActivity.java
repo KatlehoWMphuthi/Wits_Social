@@ -45,6 +45,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -67,8 +68,6 @@ public class PostActivity extends AppCompatActivity {
     String imageUrl;
     FirebaseUser user;
     String  userCaption,postkey;
-
-
 
 
     @Override
@@ -106,7 +105,7 @@ public class PostActivity extends AppCompatActivity {
         String name = sp.getString("name", "null");
 
         //initally disable the post button
-        btnUpload.setEnabled(false);
+        //btnUpload.setEnabled(false);
 
         //Hide Progress bar
         progressBar.setVisibility(View.GONE);
@@ -117,7 +116,7 @@ public class PostActivity extends AppCompatActivity {
                 imageView.setImageBitmap(null);
 
                 //disable the post button
-                btnUpload.setEnabled(false);
+                //btnUpload.setEnabled(false);
                 imageView.setBackgroundResource(R.drawable.ic_add_image);
             }
         });
@@ -159,13 +158,12 @@ public class PostActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             filePath = data.getData();
 
             //enable the button
-            btnUpload.setEnabled(true);
+            //btnUpload.setEnabled(true);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.setImageBitmap(bitmap);
@@ -183,14 +181,16 @@ public class PostActivity extends AppCompatActivity {
 
     private void uploadImage() {
 
+        //gets the unique key
+        postkey = myRef.push().getKey();
+        DatabaseReference dbRef = myRef.child(postkey);
+        String name = user.getUid();
+        username = getusername(name);
+
         if (filePath != null) {
-            postkey = myRef.push().getKey(); //gets the unique key
-            
-            DatabaseReference dbRef = myRef.child(postkey);
+
             StorageReference riversRef = storageReference.child("images/" + filePath.getLastPathSegment());
             uploadTask = riversRef.putFile(filePath);
-            String name = user.getUid();
-             username = getusername(name);
 
 
         // Register observers to listen for when the download is done or if it fails
@@ -205,12 +205,6 @@ public class PostActivity extends AppCompatActivity {
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                    // ...
-
-                    //Add load button
-
-
                     //Display toast
                    Toast.makeText(PostActivity.this, "picture successfully posted", Toast.LENGTH_LONG).show();
 
@@ -233,7 +227,6 @@ public class PostActivity extends AppCompatActivity {
 
                             userCaption = editText.getText().toString();
                             captionRef.setValue(userCaption);
-                            //Toast.makeText(MainActivity.this,"The download"+imageUrl,Toast.LENGTH_LONG).show();
                             imageRef.setValue(imageUrl);
                             nameRef.setValue(username);
                             userid.setValue(uniqueid);
@@ -256,6 +249,29 @@ public class PostActivity extends AppCompatActivity {
                     //Log.d(TAG,"Upload Successful");
                 }
             });
+        }else{
+            String uniqueid = user.getUid();
+
+
+            DatabaseReference userid = dbRef.child("userid");
+            DatabaseReference imageRef = dbRef.child("image");
+            DatabaseReference nameRef = dbRef.child("username");
+            DatabaseReference captionRef = dbRef.child("Caption");
+
+            userCaption = editText.getText().toString();
+            captionRef.setValue(userCaption);
+            imageRef.setValue("");
+            nameRef.setValue(username);
+            userid.setValue(uniqueid);
+
+            //Getting the current date
+            Date date = new Date();
+
+            long time = date.getTime();
+            DatabaseReference timeStamp = dbRef.child("time");
+            timeStamp.setValue(time); //stored as utc
+
+            Toast.makeText(PostActivity.this,userCaption,Toast.LENGTH_LONG).show();
         }
     }
 

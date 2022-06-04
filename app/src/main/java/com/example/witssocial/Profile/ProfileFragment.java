@@ -1,7 +1,6 @@
 package com.example.witssocial.Profile;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.view.View.GONE;
 
 import android.content.Context;
 import android.content.Intent;
@@ -108,7 +107,10 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
 
         //Collect Data from Parent activity
         Bundle bundle = this.getArguments();
-        username = bundle.getString("username");
+        if(bundle != null){
+            username = bundle.getString("username");
+        }
+
 
         //Bind data to views
        mDisplayName = viewBinding.displayName;
@@ -181,65 +183,67 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String imageurl = "";
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String user_name = bundle.getString("username");
-                    //check if user profile clicked
-                    if(dataSnapshot.child("username").getValue(String.class) != null){
-                        if (dataSnapshot.child("username").getValue() instanceof String){
-                            if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
+
+                    if(bundle != null){
+                        String user_name = bundle.getString("username");
+                        //check if user profile clicked
+                        if(dataSnapshot.child("username").getValue(String.class) != null){
+                            if (dataSnapshot.child("username").getValue() instanceof String){
+                                if(user_name.equals(dataSnapshot.child("username").getValue(String.class))){
 
 
-                                User info = dataSnapshot.getValue(User.class);
+                                    User info = dataSnapshot.getValue(User.class);
 
-                                imageurl = info.getImageurl();
-                                if(imageurl != null){
-                                    Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
-                                }
-
-                                String fullName = info.getFullname();
-
-                                if(fullName != null){
-                                    mDisplayName.setText(fullName);
-                                }
-                                String bio = info.getBio();
-                                if(fullName != null){
-                                    mBio.setText(bio);
-                                }
-
-                                DataSnapshot socials = dataSnapshot.child("socials");
-                                Social userSocials = socials.getValue(Social.class);
-
-                                if(userSocials != null){
-                                    if(userSocials.getFacebook() != null){
-                                        mWebsite.setText(userSocials.getFacebook());
+                                    imageurl = info.getImageurl();
+                                    if(imageurl != null){
+                                        Picasso.get().load(imageurl).resize(100,100).centerCrop().into(mProfilePhoto);
                                     }
-                                    else if(userSocials.getWebsite() != null){
-                                        Context context = mWebsite.getContext();
-                                        mWebsite.setText(userSocials.getWebsite());
-                                    }else if(userSocials.getInstagram() != null){
-                                        mWebsite.setText(userSocials.getInstagram());
-                                    }else if(userSocials.getLinkedin() != null){
-                                        mWebsite.setText(userSocials.getLinkedin());
-                                    }else if(userSocials.getTwitter() != null){
-                                        mWebsite.setText(userSocials.getTwitter());
+
+                                    String fullName = info.getFullname();
+
+                                    if(fullName != null){
+                                        mDisplayName.setText(fullName);
                                     }
-                                    else{
-                                        mWebsite.setText("My links");
+                                    String bio = info.getBio();
+                                    if(fullName != null){
+                                        mBio.setText(bio);
                                     }
+
+                                    DataSnapshot socials = dataSnapshot.child("socials");
+                                    Social userSocials = socials.getValue(Social.class);
+
+                                    if(userSocials != null){
+                                        if(userSocials.getFacebook() != null){
+                                            mWebsite.setText(userSocials.getFacebook());
+                                        }
+                                        else if(userSocials.getWebsite() != null){
+                                            Context context = mWebsite.getContext();
+                                            mWebsite.setText(userSocials.getWebsite());
+                                        }else if(userSocials.getInstagram() != null){
+                                            mWebsite.setText(userSocials.getInstagram());
+                                        }else if(userSocials.getLinkedin() != null){
+                                            mWebsite.setText(userSocials.getLinkedin());
+                                        }else if(userSocials.getTwitter() != null){
+                                            mWebsite.setText(userSocials.getTwitter());
+                                        }
+                                        else{
+                                            mWebsite.setText("My links");
+                                        }
+                                    }
+
+
+
+
+                                    // Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
+
                                 }
-
-
-
-
-                                // Toast.makeText(getActivity(), mDisplayName.toString(), Toast.LENGTH_LONG);
-
                             }
+
+
                         }
-                        else{
-
-                        }
-
-
                     }
+
+
 
                 }
 
@@ -262,6 +266,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
          */
 
         recyclerView = viewBinding.RecyclerViewUserProfile;
+        recyclerView.setVisibility(View.GONE);
         postsRef = FirebaseDatabase.getInstance().getReference("Posts");
         recyclerView.setHasFixedSize(false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -279,6 +284,7 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                 postsRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        recyclerView.setVisibility(View.VISIBLE);
                         list.clear();
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
@@ -300,14 +306,13 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                             if(dataSnapshot.child("time").getValue() != null){
                                 if(dataSnapshot.child("time").getValue() instanceof Long){
                                     long timeINT = dataSnapshot.child("time").getValue(long.class);//Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+
+                                    post.setTime(timeINT);
                                 }
                                 else{
                                     String timestamp = dataSnapshot.child("time").getValue(String.class);
                                     long timeINT =Long.parseLong(timestamp);
-                                    String time = getDate(timeINT);
-                                    post.setTime(time);
+                                    post.setTime(timeINT);
                                 }
                             }
 
@@ -375,23 +380,26 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
     }
 
     private void checkFollow(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child("Follow").child(firebaseUser.getUid()).child("following");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(profileid).exists()){
-                    follow_btn.setText("following");
-                } else{
-                    follow_btn.setText("follow");
+        if(firebaseUser != null){
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                    .child("Follow").child(firebaseUser.getUid()).child("following");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(profileid).exists()){
+                        follow_btn.setText("following");
+                    } else{
+                        follow_btn.setText("follow");
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
+
     }
 
     private void getFollowers(){
@@ -422,11 +430,4 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
         });
     }
 
-    private String getDate(long time) {
-        Date date1 = new Date(time);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String date = simpleDateFormat.format(date1);
-        return date;
-    }
 }
