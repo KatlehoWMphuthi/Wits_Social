@@ -1,11 +1,12 @@
 package com.example.witssocial.CreatePost;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import com.example.witssocial.Authentication.SignUpActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,7 +44,11 @@ public class PostActivityTest {
 
     @Test
     public void getusername() {
-        String userid = "N20PXww9q6VQRI6SoLq";
+        ActivityScenario<PostActivity> postActivityActivityScenario =
+                postActivityActivityScenarioRule.getScenario();
+        postActivityActivityScenario.onActivity(activity -> {
+            assertNull(activity.getusername("EIXQIQxbEmNm7lvqalB19fu14jz1"));
+        });
 
     }
 }

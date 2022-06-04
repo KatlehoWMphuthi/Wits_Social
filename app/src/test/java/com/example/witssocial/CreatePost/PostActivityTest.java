@@ -2,9 +2,24 @@ package com.example.witssocial.CreatePost;
 
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.robolectric.Robolectric;
+import static com.google.common.truth.Truth.assertThat;
 
+import android.app.Instrumentation;
+import android.provider.ContactsContract;
+
+import androidx.test.core.app.ActivityScenario;
+
+
+
+@RunWith(JUnit4.class)
 public class PostActivityTest {
+
+
 
     @Test
     public void onCreate() {
@@ -29,8 +44,7 @@ public class PostActivityTest {
 
     @Test
     public void getusername() {
-        String exp_ImgUrl = "Dylan";
-        String ImgUrl = "Dylan";
-        assertEquals(exp_ImgUrl, ImgUrl);
+
+
     }
 }
