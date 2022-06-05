@@ -68,10 +68,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         Glide.with(mContext).load(user.getImageurl()).into(holder.image_profile);
 
         if (user.getId() != null){
-            String userid = firebaseUser.getUid();
-            if (user.getId().equals(userid)){
-                holder.btn_follow.setVisibility(View.GONE);
+            if (firebaseUser != null) {
+                String userid = firebaseUser.getUid();
+                if (user.getId().equals(userid)){
+                    holder.btn_follow.setVisibility(View.GONE);
+                }
             }
+
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
