@@ -3,6 +3,7 @@ package com.example.witssocial.Authentication;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
@@ -78,7 +79,7 @@ public class SignUpActivityTest {
         });
     }
 
-    @BeforeClass
+
     public static void dismissANRSystemDialog() throws UiObjectNotFoundException {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         // If the device is running in English Locale
@@ -95,6 +96,11 @@ public class SignUpActivityTest {
         waitButton = device.findObject(new UiSelector().textContains("ok"));
         if (waitButton.exists()) {
             waitButton.click();
+        }
+
+        waitButton = device.findObject(new UiSelector().textContains("Please Wait"));
+        if(waitButton.exists()){
+            device.pressBack();
         }
 
     }
@@ -114,12 +120,13 @@ public class SignUpActivityTest {
 
 
     @Test
-    public void test4_RegisterUser() {
+    public void test4_RegisterUser() throws UiObjectNotFoundException {
 
         onView(withId(R.id.Username)).perform(typeText(testUsername));
         onView(withId(R.id.StudentNumber)).perform(typeText(testUsername), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.Password_editText)).perform(typeText(testPassword), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.LoginButton)).perform(click());
+        dismissANRSystemDialog();
 
     }
 
