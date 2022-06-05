@@ -133,6 +133,11 @@ public class SignUpActivityTest {
     @Test
     public void test1_noinfoprovided(){
         onView(withId(R.id.LoginButton)).perform(click());
+        try {
+            dismissANRSystemDialog();
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -140,6 +145,7 @@ public class SignUpActivityTest {
         onView(withId(R.id.Username)).perform(typeText(testUsername),closeSoftKeyboard());
         onView(withId(R.id.StudentNumber)).perform(typeText(testUsername), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.LoginButton)).perform(click());
+        pressBack();
     }
 
     @Test
@@ -147,6 +153,7 @@ public class SignUpActivityTest {
         onView(withId(R.id.Username)).perform(typeText(testUsername),ViewActions.closeSoftKeyboard());
         onView(withId(R.id.Password_editText)).perform(typeText(testPassword), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.LoginButton)).perform(click());
+        pressBack();
     }
 
 

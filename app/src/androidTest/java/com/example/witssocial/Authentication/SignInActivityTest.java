@@ -1,6 +1,7 @@
 package com.example.witssocial.Authentication;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
@@ -91,6 +92,7 @@ public class SignInActivityTest {
         onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
         onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
         onView(withId(R.id.LoginButton)).perform(click());
+        pressBack();
     }
 
     @Test
@@ -98,18 +100,21 @@ public class SignInActivityTest {
         onView(withId(R.id.stu_mail_login)).perform(typeText("TestUser001"),closeSoftKeyboard());
         onView(withId(R.id.EditText_login_Password)).perform(typeText(" "),closeSoftKeyboard());
         onView(withId(R.id.stu_mail_login)).perform(click());
+        pressBack();
     }
 
 
     @Test
     public void test2_Signinwithnoinfo(){
         onView(withId(R.id.LoginButton)).perform(click());
+        pressBack();
     }
 
 
      public void test_gotoForgetpasswordActivity(){
         onView(allOf(withId(R.id.forgot_pass))).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
         onView(withId(R.id.forgot_pass)).perform(click());
+        pressBack();
 
     }
 }
