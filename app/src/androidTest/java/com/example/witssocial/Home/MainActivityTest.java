@@ -19,7 +19,5 @@ public class MainActivityTest {
     public void onCreate() {
     }
 
-    @Test
-    public void onPause() {
-    }
+
 }

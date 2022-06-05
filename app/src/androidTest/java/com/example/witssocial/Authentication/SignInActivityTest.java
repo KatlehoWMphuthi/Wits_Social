@@ -66,6 +66,8 @@ public class SignInActivityTest {
             }
 
         });
+
+
     }
 
 
@@ -81,6 +83,10 @@ public class SignInActivityTest {
         if (waitButton.exists()) {
             waitButton.click();
         }
+        waitButton = device.findObject(new UiSelector().textContains("Please wait"));
+        if(waitButton.exists()){
+            device.pressBack();}
+
     }
 
     @Test
@@ -92,7 +98,7 @@ public class SignInActivityTest {
         onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
         onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
         onView(withId(R.id.LoginButton)).perform(click());
-        pressBack();
+
     }
 
     @Test
@@ -100,14 +106,14 @@ public class SignInActivityTest {
         onView(withId(R.id.stu_mail_login)).perform(typeText("TestUser001"),closeSoftKeyboard());
         onView(withId(R.id.EditText_login_Password)).perform(typeText(" "),closeSoftKeyboard());
         onView(withId(R.id.stu_mail_login)).perform(click());
-        pressBack();
+
     }
 
 
     @Test
     public void test2_Signinwithnoinfo(){
         onView(withId(R.id.LoginButton)).perform(click());
-        pressBack();
+
     }
 
 
