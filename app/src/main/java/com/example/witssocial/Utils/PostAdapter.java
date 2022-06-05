@@ -78,7 +78,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                             if (username != null) {
                                 if (username.equals(postUsername)) {
 
-                                    Glide.with(context).load(dataSnapshot.child("imageurl").getValue(String.class))
+                                    Glide.with(holder.itemView.getContext()).load(dataSnapshot.child("imageurl").getValue(String.class))
                                             .into(holder.profile_picture);
 
                                 }
