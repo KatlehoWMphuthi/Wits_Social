@@ -66,7 +66,7 @@ public class HomeActivityTest {
         });
     }
 
-    @BeforeClass
+
     public static void dismissANRSystemDialog() throws UiObjectNotFoundException {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         // If the device is running in English Locale
