@@ -166,26 +166,28 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     private void isFollowing(final String userid, final Button button){
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child("Follow").child(firebaseUser.getUid()).child("following");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if ( userid != null){
-                    if (dataSnapshot.child(userid).exists()){
-                        button.setText("following");
-                    } else{
-                        button.setText("follow");
+        if(firebaseUser != null){
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                    .child("Follow").child(firebaseUser.getUid()).child("following");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if ( userid != null){
+                        if (dataSnapshot.child(userid).exists()){
+                            button.setText("following");
+                        } else{
+                            button.setText("follow");
+                        }
                     }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
 
-            }
-        });
     }
 }
