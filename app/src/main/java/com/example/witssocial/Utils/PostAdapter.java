@@ -1,5 +1,9 @@
 package com.example.witssocial.Utils;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,10 +81,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
                             if (username != null) {
                                 if (username.equals(postUsername)) {
-
-                                    Glide.with(holder.itemView.getContext()).load(dataSnapshot.child("imageurl").getValue(String.class))
-                                            .into(holder.profile_picture);
-
+                                    if(context != null){
+                                        Glide.with(holder.itemView)
+                                                .load(dataSnapshot.child("imageurl")
+                                                        .getValue(String.class))
+                                                .into(holder.profile_picture);
+                                    }
                                 }
                             }
                         }
