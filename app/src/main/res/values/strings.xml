@@ -11,6 +11,7 @@
     <string name="old_user">Already a member?</string>
     <string name="signin">Sign in</string>
     <string name="create_an_a">Create an Account</string>
+    <string name="created_account">"Account successfully created </string>
 
     <string name="dont_worry_">
         Don\'t worry it happens. Please enter  the email associated

@@ -97,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
                     registerAccount(name,studentNo, password,profile_photo, bio);
                 }
 
-                //signUpUser(studentNo,name,password);
+
 
             }
         });
@@ -132,41 +132,6 @@ public class SignUpActivity extends AppCompatActivity {
         return true;
     }
 
-
-
-    private void signUpUser(final String studentNo,final String name,final String password, final String profilePhoto, final String bio) {
-
-
-
-        if(name.isEmpty())
-        {
-            name_layout_u.setError("Name required");
-
-        }
-        else if(studentNo.isEmpty())
-        {
-            student_number_layout.setError("Email required");
-        }
-        else if(password.isEmpty())
-        {
-            Password_layout.setError("Password required");
-
-        }
-        else if( password.length() <6)
-        {
-
-            Toast.makeText(this, "Password too short", Toast.LENGTH_LONG).show();
-
-        }
-
-        else {
-            loadBar.setTitle("Please wait....");
-            loadBar.show();
-            loadBar.setCancelable(false);
-
-            registerAccount(name,studentNo, password, profilePhoto, bio);
-        }
-    }
 
     private void registerAccount(String name, String email, String password, String profilePhoto, String bio)
     {
