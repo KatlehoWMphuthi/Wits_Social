@@ -36,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "FragmentActivity";
 
-    private static ProgressDialog loadBar;
+    //private static ProgressDialog loadBar;
     private FirebaseAuth mAuth;
 
     // one boolean variable to check whether all the text fields
@@ -63,7 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
 //        Student NO
         student_number_layout = findViewById(R.id.StudentNumber_layout);
         student_number = findViewById(R.id.StudentNumber);
-        loadBar = new ProgressDialog(this);
+        //loadBar = new ProgressDialog(this);
 
 
 
@@ -90,9 +90,9 @@ public class SignUpActivity extends AppCompatActivity {
                 // the boolean variable turns to be true then
                 // only the user must be proceed to register
                 if (isAllFieldsChecked) {
-                    loadBar.setTitle("Please wait....");
-                    loadBar.show();
-                    loadBar.setCancelable(false);
+                    //loadBar.setTitle("Please wait....");
+                    //loadBar.show();
+                    //loadBar.setCancelable(false);
 
                     registerAccount(name,studentNo, password,profile_photo, bio);
                 }
@@ -154,7 +154,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful())
                                         {
-                                            loadBar.dismiss();
+                                            //loadBar.dismiss();
                                             Toast.makeText(SignUpActivity.this, "Account successfully created ", Toast.LENGTH_SHORT).show();
                                             // ensure user cannot come back to this activity
                                             Intent intent = new Intent(SignUpActivity.this,SignInActivity.class);
@@ -173,7 +173,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
 
                 Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                loadBar.dismiss();
+                //loadBar.dismiss();
             }
         });
     }
