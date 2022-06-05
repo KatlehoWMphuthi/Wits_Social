@@ -91,6 +91,12 @@ public class SignUpActivityTest {
         if (waitButton.exists()) {
             waitButton.click();
         }
+
+        waitButton = device.findObject(new UiSelector().textContains("ok"));
+        if (waitButton.exists()) {
+            waitButton.click();
+        }
+
     }
 
 
@@ -108,7 +114,7 @@ public class SignUpActivityTest {
 
 
     @Test
-    public void RegisterUser() {
+    public void test4_RegisterUser() {
 
         onView(withId(R.id.Username)).perform(typeText(testUsername));
         onView(withId(R.id.StudentNumber)).perform(typeText(testUsername), ViewActions.closeSoftKeyboard());
@@ -118,19 +124,19 @@ public class SignUpActivityTest {
     }
 
     @Test
-    public void test_noinfoprovided(){
+    public void test1_noinfoprovided(){
         onView(withId(R.id.LoginButton)).perform(click());
     }
 
     @Test
-    public void test_nopasswordprovided(){
+    public void test2_nopasswordprovided(){
         onView(withId(R.id.Username)).perform(typeText(testUsername),closeSoftKeyboard());
         onView(withId(R.id.StudentNumber)).perform(typeText(testUsername), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.LoginButton)).perform(click());
     }
 
     @Test
-    public void test_noemailpovided(){
+    public void test3_noemailpovided(){
         onView(withId(R.id.Username)).perform(typeText(testUsername),ViewActions.closeSoftKeyboard());
         onView(withId(R.id.Password_editText)).perform(typeText(testPassword), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.LoginButton)).perform(click());

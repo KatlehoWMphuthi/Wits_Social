@@ -106,7 +106,7 @@ public class SignInActivityTest {
         onView(withId(R.id.LoginButton)).perform(click());
     }
 
-    @Test
+
      public void test_gotoForgetpasswordActivity(){
         onView(allOf(withId(R.id.forgot_pass))).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
         onView(withId(R.id.forgot_pass)).perform(click());
