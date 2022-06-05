@@ -587,4 +587,5 @@ public class PostAdapterTest {
 
         assertThat(postAdapter.getItemCount()).isEqualTo(1);
     }
+
 }
