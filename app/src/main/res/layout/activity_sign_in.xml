@@ -13,14 +13,7 @@
         android:layout_width="80dp"
         android:layout_height="88dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-
+        android:layout_marginTop="100dp"
         app:srcCompat="@drawable/ws_logo_blue" />
 
 
@@ -29,13 +22,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/UserMail_layout_login"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="224dp"
+        android:layout_width="600dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
         android:hint="@string/username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_centerHorizontal="true"
+        app:boxStrokeColor="@color/black"
+        android:layout_below="@id/imageView"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/stu_mail_login"
@@ -47,29 +41,23 @@
         android:id="@+id/Password_layout"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_below="@+id/UserMail_layout_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="600dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="196dp"
         android:hint="@string/password"
-        app:endIconMode="password_toggle"
-        app:layout_constraintBottom_toTopOf="@+id/LoginButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/UserMail_layout_login"
-        app:layout_constraintVertical_bias="0.0">
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.837"
+        app:boxStrokeColor="@color/black"
         >
-
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EditText_login_Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:layout_marginTop="20dp"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,81 +66,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/Password_layout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="-30dp"
         android:gravity="center_horizontal|center_vertical"
         android:lineSpacingExtra="4sp"
         android:text="@string/forgot_pass"
         android:textAppearance="@style/forgot_pass"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.992"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password_layout" />
-
-
+        android:layout_centerHorizontal="true"
+        />
 
 
     <Button
         android:id="@+id/LoginButton"
         android:layout_width="302dp"
         android:layout_height="53dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="152dp"
+        android:layout_marginTop="-150dp"
         android:onClick="registerPage"
         android:text="@string/button_text"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Password_layout"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="56dp"
         android:gravity="center_horizontal|center_vertical"
-        android:lineSpacingExtra="4sp"
-        android:paddingLeft="8dp"
-        android:paddingRight="4dp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginLeft="40dp"
         android:text="@string/new_user_si"
-
+        android:layout_below="@id/LoginButton"
+        android:layout_marginTop="20dp"
         android:textAppearance="@style/new_user_si"
         android:textColor="@color/md_theme_light_onSurface"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginButton"
-        app:layout_constraintVertical_bias="0.285" />
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="56dp"
         android:gravity="center_horizontal|center_vertical"
-        android:lineSpacingExtra="4sp"
+        android:lineSpacingExtra="4dp"
         android:minHeight="48dp"
         android:onClick="registerPage"
-
-        android:paddingLeft="4dp"
-        android:paddingRight="8dp"
         android:text="Sign Up"
+        android:layout_below="@id/LoginButton"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="225dp"
         android:textAppearance="@style/signup"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/LoginButton"
-        app:layout_constraintVertical_bias="0.285" />
+
+
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

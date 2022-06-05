@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,17 +10,11 @@
     <LinearLayout
         android:id="@+id/Linearlayout_sign"
         android:layout_width="326dp"
-        android:layout_height="122dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/pic_welcome"
+        android:layout_marginTop="70dp"
+        >
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button"
@@ -40,7 +34,8 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="296dp"
             android:layout_height="58dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="100dp"
+            android:layout_marginLeft="-318dp"
             android:onClick="goToSignUpActivity"
             android:text=" Sign Up"
             android:textAllCaps="false"
@@ -56,29 +51,19 @@
         android:id="@+id/imageView"
         android:layout_width="137dp"
         android:layout_height="87dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108"
         app:srcCompat="@drawable/ws_logo_blue" />
 
     <View
         android:layout_width="293dp"
         android:layout_height="148dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:background="@drawable/welcome"
-        app:layout_constraintBottom_toTopOf="@+id/Linearlayout_sign"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.477" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="50dp"
+        android:id="@+id/pic_welcome"
+     />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
