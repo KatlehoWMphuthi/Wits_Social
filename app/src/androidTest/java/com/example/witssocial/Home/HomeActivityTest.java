@@ -83,6 +83,5 @@ public class HomeActivityTest {
 
     @Test
     public void onCreate() {
-        onView(withId(R.id.bottom_navigation)).check(matches(isDisplayed()));
     }
 }
