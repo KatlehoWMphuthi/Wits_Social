@@ -1,12 +1,27 @@
 package com.example.witssocial.CreatePost;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
+import android.content.Intent;
+
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.intent.Intents;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import com.example.witssocial.Authentication.SignInActivity;
+import com.example.witssocial.Home.HomeActivity;
+import com.example.witssocial.R;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,26 +36,10 @@ public class PostActivityTest {
 
     @Test
     public void onCreate() {
-        String exp_Id1 = "N20PXww9q6VQRI6SoLq";
-        String Id1 = "N20PXww9q6VQRI6SoLq";
-        assertEquals(exp_Id1, Id1);
-
     }
 
-    @Test
-    public void onActivityResult() {
-        String exp_Id1 = "N20PXww9q6VQRI6SoLq";
-        String Id1 = "N20PXww9q6VQRI6SoLq";
-        assertEquals(exp_Id1, Id1);
 
-    }
 
-    @Test
-    public void getFileExtension() {
-        String exp_Id1 = "N20PXww9q6VQRI6SoLq";
-        String Id1 = "N20PXww9q6VQRI6SoLq";
-        assertEquals(exp_Id1, Id1);
-    }
 
     @Test
     public void getusername() {
@@ -51,4 +50,24 @@ public class PostActivityTest {
         });
 
     }
+
+    @Test
+    public void uploadimage(){
+        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
+        Intents.init();
+        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
+        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
+        onView(withId(R.id.LoginButton)).perform(click());
+        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
+
+        ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
+        Intents.release();
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+
+        onView(withId(R.id.nav_add)).perform(click());
+        onView(withId(R.id.caption)).perform(typeText("This is a test"));
+        onView(withId(R.id.btnUpload)).perform(click());
+    }
+
+
 }
