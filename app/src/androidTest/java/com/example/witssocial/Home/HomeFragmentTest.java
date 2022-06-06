@@ -41,20 +41,6 @@ public class HomeFragmentTest {
     public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
             new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
 
-    @Before
-    public void setup(){
-        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
-
-        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
-        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
-        onView(withId(R.id.LoginButton)).perform(click());
-
-
-
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
-
-    }
 
 
     @Test
