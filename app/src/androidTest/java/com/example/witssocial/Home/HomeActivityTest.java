@@ -61,9 +61,9 @@ public class HomeActivityTest {
 
     Context context = getInstrumentation().getContext();
 
-    //@Rule
-    //public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
-            //new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
+    @Rule
+    public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
+            new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
 
     //@Before
     /*public void dismissSystem(){

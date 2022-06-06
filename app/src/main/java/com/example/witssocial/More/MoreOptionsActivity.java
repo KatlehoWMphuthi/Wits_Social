@@ -13,12 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.witssocial.More.MoreOptions.AboutActivity;
 import com.example.witssocial.More.MoreOptions.AccountActivity;
 import com.example.witssocial.More.MoreOptions.AppSettingsActivity;
-import com.example.witssocial.More.MoreOptions.FriendInvitationActivity;
-import com.example.witssocial.More.MoreOptions.HelpAndSupportActivity;
-import com.example.witssocial.More.MoreOptions.NotificationsActivity;
+
 import com.example.witssocial.R;
 import com.example.witssocial.SignOut.SignOutFragment;
 import com.example.witssocial.dialogs.SignOutDialog;
@@ -76,19 +73,19 @@ public class MoreOptionsActivity extends AppCompatActivity implements SignOutDia
 
                 }else if(position==2) {
                     //clicked Notifications
-                    startActivity(new Intent(MoreOptionsActivity.this, NotificationsActivity.class));
+                    //startActivity(new Intent(MoreOptionsActivity.this, NotificationsActivity.class));
                 }
                 else if(position==3) {
                     //clicked Help and Support
-                    startActivity(new Intent(MoreOptionsActivity.this, HelpAndSupportActivity.class));
+                    //startActivity(new Intent(MoreOptionsActivity.this, HelpAndSupportActivity.class));
                 }
                 else if(position==4) {
                     //clicked Invite a friend
-                    startActivity(new Intent(MoreOptionsActivity.this, FriendInvitationActivity.class));
+                    //startActivity(new Intent(MoreOptionsActivity.this, FriendInvitationActivity.class));
                 }
                 else{
                     // About
-                    startActivity(new Intent(MoreOptionsActivity.this, AboutActivity.class));
+                    //startActivity(new Intent(MoreOptionsActivity.this, AboutActivity.class));
                 }
             }
         });

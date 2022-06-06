@@ -13,18 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WitsSocial">
-        <activity
-            android:name=".More.MoreOptions.AboutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".More.MoreOptions.FriendInvitationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".More.MoreOptions.HelpAndSupportActivity"
-            android:exported="false" />
-        <activity
-            android:name=".More.MoreOptions.NotificationsActivity"
-            android:exported="false" />
+
+
+
         <activity
             android:name=".More.MoreOptions.AccountActivity"
             android:exported="false" />
