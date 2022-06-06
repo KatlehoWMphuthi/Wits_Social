@@ -127,8 +127,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation "androidx.test.uiautomator:uiautomator:2.2.0"
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
 
     debugImplementation 'androidx.test:core:1.4.0'
+    def nav_version = "2.4.2"
+
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
 
 }

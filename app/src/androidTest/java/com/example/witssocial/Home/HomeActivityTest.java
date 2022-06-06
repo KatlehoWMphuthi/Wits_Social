@@ -1,18 +1,29 @@
 package com.example.witssocial.Home;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.actionWithAssertions;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.junit.Assert.*;
 
 import android.content.Context;
+import android.content.Intent;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.base.DefaultFailureHandler;
+import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.uiautomator.UiDevice;
@@ -20,17 +31,22 @@ import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 
+import com.example.witssocial.Authentication.SignInActivity;
+import com.example.witssocial.Authentication.SignUpActivity;
 import com.example.witssocial.Authentication.check_mail;
 import com.example.witssocial.R;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 import java.util.Locale;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(AndroidJUnit4.class)
 public class HomeActivityTest {
     //Running count of the number of Android Not Responding dialogues to prevent endless dismissal.
@@ -45,12 +61,12 @@ public class HomeActivityTest {
 
     Context context = getInstrumentation().getContext();
 
-    @Rule
-    public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
-            new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
+    //@Rule
+    //public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
+            //new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
 
-    @Before
-    public void dismissSystem(){
+    //@Before
+    /*public void dismissSystem(){
         Espresso.setFailureHandler((error, viewMatcher) -> {
             if (error.getMessage().contains(rootViewWithoutFocusExceptionMsg) && AnrCount < 3) {
                 AnrCount++;
@@ -64,7 +80,7 @@ public class HomeActivityTest {
             }
 
         });
-    }
+    }*/
 
 
     public static void dismissANRSystemDialog() throws UiObjectNotFoundException {
@@ -82,6 +98,105 @@ public class HomeActivityTest {
     }
 
     @Test
-    public void onCreate() {
+    public void onCreate(){
+        ActivityScenario<HomeActivity> scenario1 = ActivityScenario.launch(HomeActivity.class);
     }
+
+   @Test
+    public void test1_loginInApp(){
+        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
+        Intents.init();
+        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
+        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
+        onView(withId(R.id.LoginButton)).perform(click());
+        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
+
+        ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
+
+
+        Intents.release();
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+
+    }
+
+    @Test
+    public void test2_getintoapp(){
+        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
+        Intents.init();
+        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
+        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
+        onView(withId(R.id.LoginButton)).perform(click());
+        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
+
+        ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
+
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+        Intents.release();
+        onView(withId(R.id.bottom_navigation)).check(matches(isDisplayed()));
+
+    }
+    @Test
+    public void test3_gotoSearch(){
+        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
+        Intents.init();
+        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
+        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
+        onView(withId(R.id.LoginButton)).perform(click());
+        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
+
+        ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
+
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+        Intents.release();
+        onView(withId(R.id.nav_search)).perform(click());
+    }
+
+    @Test
+    public void test4_gotopost(){
+        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
+        Intents.init();
+        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
+        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
+        onView(withId(R.id.LoginButton)).perform(click());
+        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
+
+        ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
+
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+        Intents.release();
+        onView(withId(R.id.nav_add)).perform(click());
+    }
+
+    @Test
+    public void test5_gotonotification(){
+        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
+        Intents.init();
+        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
+        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
+        onView(withId(R.id.LoginButton)).perform(click());
+        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
+
+        ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
+
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+        Intents.release();
+        onView(withId(R.id.nav_notifications)).perform(click());
+    }
+
+    @Test
+    public void test6_gotomore(){
+        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
+        Intents.init();
+        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
+        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
+        onView(withId(R.id.LoginButton)).perform(click());
+        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
+
+        ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
+
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+        Intents.release();
+        onView(withId(R.id.nav_more)).perform(click());
+    }
+
 }

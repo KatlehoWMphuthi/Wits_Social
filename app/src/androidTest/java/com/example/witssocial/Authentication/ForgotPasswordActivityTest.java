@@ -11,6 +11,7 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static org.junit.Assert.*;
 
 import androidx.annotation.ContentView;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.base.DefaultFailureHandler;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -91,6 +92,7 @@ public class ForgotPasswordActivityTest {
 
     @Test
     public void test_resetbutton(){
+        ActivityScenario<ForgotPasswordActivity> scenario = ActivityScenario.launch(ForgotPasswordActivity.class);
         onView(withId(R.id.reset_mail_editText)).perform(typeText("testuser849"),closeSoftKeyboard());
         onView(withId(R.id.SubmitButton)).perform(click());
         pressBack();

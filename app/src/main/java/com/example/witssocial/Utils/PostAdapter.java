@@ -1,6 +1,5 @@
 package com.example.witssocial.Utils;
 
-import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
 import static java.security.AccessController.getContext;
 
@@ -24,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -82,10 +82,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                             if (username != null) {
                                 if (username.equals(postUsername)) {
                                     if(context != null){
-                                        Glide.with(holder.itemView)
+                                        /*Glide.with(context)
                                                 .load(dataSnapshot.child("imageurl")
                                                         .getValue(String.class))
-                                                .into(holder.profile_picture);
+                                                .into(holder.profile_picture);*/
+                                        Picasso.get().load(dataSnapshot.child("imageurl")
+                                                .getValue(String.class)).into(holder.profile_picture);
                                     }
                                 }
                             }

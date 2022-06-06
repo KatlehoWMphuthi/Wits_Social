@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.*;
 
 import androidx.annotation.ContentView;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.base.DefaultFailureHandler;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -94,7 +95,8 @@ public class SignInActivityTest {
     }
 
     @Test
-    public void test_SignInSuccessful(){
+    public void test3_SignInSuccessful(){
+
         onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
         onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
         onView(withId(R.id.LoginButton)).perform(click());
@@ -103,6 +105,7 @@ public class SignInActivityTest {
 
     @Test
     public void test1_Signinunsuccessful(){
+
         onView(withId(R.id.stu_mail_login)).perform(typeText("TestUser001"),closeSoftKeyboard());
         onView(withId(R.id.EditText_login_Password)).perform(typeText(" "),closeSoftKeyboard());
         onView(withId(R.id.stu_mail_login)).perform(click());

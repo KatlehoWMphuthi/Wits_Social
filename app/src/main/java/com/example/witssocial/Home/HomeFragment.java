@@ -186,7 +186,6 @@ public class HomeFragment extends Fragment implements PostRecyclerViewInterface 
         }
     }
 
-    //TODO: The time is behind by at least 2 hours, must be fixed here!
 
 
     /*
