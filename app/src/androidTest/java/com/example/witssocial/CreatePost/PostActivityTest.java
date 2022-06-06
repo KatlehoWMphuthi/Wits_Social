@@ -53,18 +53,8 @@ public class PostActivityTest {
 
     @Test
     public void uploadimage(){
-        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
-        Intents.init();
-        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
-        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
-        onView(withId(R.id.LoginButton)).perform(click());
-        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
 
-        ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
-        Intents.release();
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
 
-        onView(withId(R.id.nav_add)).perform(click());
         onView(withId(R.id.caption)).perform(typeText("This is a test"));
         onView(withId(R.id.btnUpload)).perform(click());
     }
