@@ -2,7 +2,9 @@ package com.example.witssocial.Profile;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -35,8 +37,13 @@ public class EditProfileFragmentTest {
                     goToFragment(transaction);
                 });
 
-        //onView(withId(R.id.btn_edit_profile)).perform(click());
-        onView(withId(R.id.btn_edit_profile_save)).perform(scrollTo()).check(matches(isDisplayed()));
+        onView(withId(R.id.name)).perform(typeText("TestUser"),closeSoftKeyboard());
+        onView(withId(R.id.biography)).perform(typeText("TestUser"),closeSoftKeyboard());
+        onView(withId(R.id.instagram)).perform(typeText("TestUser"),closeSoftKeyboard());
+        onView(withId(R.id.btn_edit_profile_save)).perform(scrollTo(),click());
+        //onView(withId(R.id.btn_edit_profile_save)).perform(scrollTo()).check(matches(isDisplayed()));
+
+
     }
 
     public void goToFragment(FragmentTransaction transaction){

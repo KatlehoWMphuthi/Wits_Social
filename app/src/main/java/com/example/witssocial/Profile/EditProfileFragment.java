@@ -252,12 +252,12 @@ public class EditProfileFragment extends Fragment {
                         }
                     }
 
-                    UserProfileFragment userProfileFragment = new UserProfileFragment();
+                    /*UserProfileFragment userProfileFragment = new UserProfileFragment();
 
                     FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                     transaction.replace(R.id.fragment_container, userProfileFragment);
                     transaction.addToBackStack(null);
-                    transaction.commit();
+                    transaction.commit();*/
                 }else{
                     Toast.makeText(getActivity(), "Failed To Update Profile", Toast.LENGTH_LONG).show();
                 }

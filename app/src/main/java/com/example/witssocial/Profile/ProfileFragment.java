@@ -165,7 +165,10 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                                             mWebsite.setText("My links");
                                         }
                                     }
-                                     home_profileid = dataSnapshot.getKey();
+                                    if(dataSnapshot != null){
+                                        home_profileid = dataSnapshot.getKey();
+                                    }
+
 
                                 }
                             }
@@ -268,14 +271,20 @@ public class ProfileFragment extends Fragment implements PostRecyclerViewInterfa
                 String btn = follow_btn.getText().toString();
 
                 if (btn.equals("follow")){
-                    followHelper(home_profileid);
-                    follow_btn.setText("following");
+                    if(home_profileid != null){
+                        followHelper(home_profileid);
+                        follow_btn.setText("following");
+                    }
+
                     // addNotification();
                 }
 
                 if (btn.equals("following")){
-                    unfollowHelper(home_profileid);
-                    follow_btn.setText("follow");
+                    if(home_profileid != null){
+                        unfollowHelper(home_profileid);
+                        follow_btn.setText("follow");
+                    }
+
                 }
             }
         });

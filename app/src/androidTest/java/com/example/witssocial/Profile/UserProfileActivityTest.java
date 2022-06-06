@@ -41,6 +41,7 @@ public class UserProfileActivityTest {
         onView(withId(R.id.btn_edit_profile)).check(matches(isDisplayed()));
 
 
+
     }
 
 
