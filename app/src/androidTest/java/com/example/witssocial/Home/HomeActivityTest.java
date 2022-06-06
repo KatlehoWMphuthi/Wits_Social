@@ -65,8 +65,8 @@ public class HomeActivityTest {
     public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
             new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
 
-    //@Before
-    /*public void dismissSystem(){
+    @BeforeClass
+    public void dismissSystem(){
         Espresso.setFailureHandler((error, viewMatcher) -> {
             if (error.getMessage().contains(rootViewWithoutFocusExceptionMsg) && AnrCount < 3) {
                 AnrCount++;
@@ -80,7 +80,7 @@ public class HomeActivityTest {
             }
 
         });
-    }*/
+    }
 
 
     public static void dismissANRSystemDialog() throws UiObjectNotFoundException {
@@ -99,92 +99,35 @@ public class HomeActivityTest {
 
     @Test
     public void onCreate(){
-        ActivityScenario<HomeActivity> scenario1 = ActivityScenario.launch(HomeActivity.class);
-    }
-
-   @Test
-    public void test1_loginInApp(){
-        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
-
-        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
-        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
-        onView(withId(R.id.LoginButton)).perform(click());
-
-
-
-
-
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
 
     }
+
 
     @Test
     public void test2_getintoapp(){
-        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
-
-        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
-        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
-        onView(withId(R.id.LoginButton)).perform(click());
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
 
         onView(withId(R.id.bottom_navigation)).check(matches(isDisplayed()));
 
     }
     @Test
     public void test3_gotoSearch(){
-        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
-
-        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
-        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
-        onView(withId(R.id.LoginButton)).perform(click());
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
 
         onView(withId(R.id.nav_search)).perform(click());
     }
 
     @Test
     public void test4_gotopost(){
-        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
-
-        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
-        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
-        onView(withId(R.id.LoginButton)).perform(click());
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
-
         onView(withId(R.id.nav_add)).perform(click());
     }
 
     @Test
     public void test5_gotonotification(){
-        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
-
-        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
-        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
-        onView(withId(R.id.LoginButton)).perform(click());
-        Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
-
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
 
         onView(withId(R.id.nav_notifications)).perform(click());
     }
 
     @Test
     public void test6_gotomore(){
-        ActivityScenario<SignInActivity> scenario = ActivityScenario.launch(SignInActivity.class);
-
-        onView(withId(R.id.stu_mail_login)).perform(typeText("1355854"),closeSoftKeyboard());
-        onView(withId(R.id.EditText_login_Password)).perform(typeText("123abc"),closeSoftKeyboard());
-        onView(withId(R.id.LoginButton)).perform(click());
-
-
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
-
         onView(withId(R.id.nav_more)).perform(click());
     }
 
