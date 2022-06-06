@@ -129,9 +129,9 @@ public class HomeActivityTest {
         Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
 
         ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
         Intents.release();
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+
         onView(withId(R.id.bottom_navigation)).check(matches(isDisplayed()));
 
     }
@@ -145,9 +145,9 @@ public class HomeActivityTest {
         Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
 
         ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
         Intents.release();
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+
         onView(withId(R.id.nav_search)).perform(click());
     }
 
@@ -161,9 +161,9 @@ public class HomeActivityTest {
         Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
 
         ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
         Intents.release();
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+
         onView(withId(R.id.nav_add)).perform(click());
     }
 
@@ -177,9 +177,9 @@ public class HomeActivityTest {
         Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
 
         ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
         Intents.release();
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+
         onView(withId(R.id.nav_notifications)).perform(click());
     }
 
@@ -193,9 +193,9 @@ public class HomeActivityTest {
         Intent intent = new Intent(getApplicationContext(),SignInActivity.class);
 
         ActivityScenario<SignInActivity> scenario1 = ActivityScenario.launch(intent);
-
-        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
         Intents.release();
+        ActivityScenario<HomeActivity>scenario2 = ActivityScenario.launch(HomeActivity.class);
+
         onView(withId(R.id.nav_more)).perform(click());
     }
 
