@@ -39,7 +39,7 @@ public class EditProfileFragmentTest {
 
         onView(withId(R.id.name)).perform(typeText("TestUser"),closeSoftKeyboard());
         onView(withId(R.id.biography)).perform(typeText("TestUser"),closeSoftKeyboard());
-        onView(withId(R.id.instagram)).perform(typeText("TestUser"),closeSoftKeyboard());
+        onView(withId(R.id.website)).perform(typeText("TestUser"),closeSoftKeyboard());
         onView(withId(R.id.btn_edit_profile_save)).perform(scrollTo(),click());
         //onView(withId(R.id.btn_edit_profile_save)).perform(scrollTo()).check(matches(isDisplayed()));
 
