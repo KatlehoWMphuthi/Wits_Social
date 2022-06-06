@@ -65,7 +65,7 @@ public class HomeActivityTest {
     public ActivityScenarioRule<HomeActivity> homeActivityActivityScenarioRule =
             new ActivityScenarioRule<HomeActivity>(HomeActivity.class);
 
-    @BeforeClass
+    @Before
     public void dismissSystem(){
         Espresso.setFailureHandler((error, viewMatcher) -> {
             if (error.getMessage().contains(rootViewWithoutFocusExceptionMsg) && AnrCount < 3) {
@@ -82,7 +82,7 @@ public class HomeActivityTest {
         });
     }
 
-
+    @BeforeClass
     public static void dismissANRSystemDialog() throws UiObjectNotFoundException {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         // If the device is running in English Locale
