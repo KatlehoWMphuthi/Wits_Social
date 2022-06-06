@@ -12,7 +12,6 @@ import static com.google.common.truth.Truth.assertThat;
 import android.app.Instrumentation;
 import android.provider.ContactsContract;
 
-import androidx.test.core.app.ActivityScenario;
 
 
 
